@@ -1,0 +1,58 @@
+@font-face {
+    font-display: swap;
+    font-family: 'Roboto Serif';
+    font-weight: 400;
+    font-style: normal;
+    src: url('/fonts/roboto-serif/roboto-serif-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Roboto Serif';
+  font-weight: 400;
+  font-style: italic;
+  src: url('/fonts/roboto-serif/roboto-serif-400-italic.woff2') format('woff2');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Roboto Serif';
+    font-weight: 600;
+    font-style: normal;
+    src: url('/fonts/roboto-serif/roboto-serif-600.woff2') format('woff2');
+}
+
+:root {
+  --primary-light: #4f46e5;
+  --primary-main: #3730a3;
+  --primary-dark: #1e1b4b;
+
+  --nexp-green: #c1e1c1;
+
+  --bg-main: #f2f9f5;
+  --bg-card: #ffffff;
+  
+  /* Pastel Greens */
+  --green-light: #d8ecd0;
+  --green-base: #c1e1c1;  /* Standard pastel green */
+  --green-accent: #77dd77; /* Vibrant UI element green */
+  
+  /* Text & Structure */
+  --text-primary: #2d5a27;
+  --border-subtle: #e0f0e3;
+}
+
+body {
+    font-family: 'Roboto Serif', sans-serif;
+    font-size: 14px;
+}
+
+/* p {
+    font-weight: 400;
+    font-style: italic;
+} */
+
+h1, h2, h3, h4 {
+    font-weight: 600;
+    font-style: normal;
+}

@@ -1,10 +1,7 @@
 <template>
-	<header class="header">
+	<header class="app-header">
 		<div class="brand">
-			<slot name="logo">
-				<img alt="logo" class="logo" src="/logo.png" />
-			</slot>
-            
+			<img alt="logo" class="logo" src="/logo.png" />
 			<h1 class="title">Nexp</h1>
 		</div>
 
@@ -24,19 +21,16 @@
 	</header>
 </template>
 
-<script setup>
-import { defineProps } from 'vue'
-
-defineProps({
-	// reserved for future props
-})
-</script>
-
 <style scoped>
+.app-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 8px 16px;
+	background-color: var(--green-accent, #fff);
+}
+
 .header{
-	display:flex;
-	align-items:center;
-	justify-content:space-between;
 	padding:0.5rem 1rem;
 	background:var(--header-bg, #fff);
 	border-bottom:1px solid rgba(0,0,0,0.06);
