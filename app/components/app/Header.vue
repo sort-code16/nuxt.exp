@@ -1,15 +1,14 @@
 <template>
 	<header class="app-header">
-		<div class="brand">
-			<img alt="logo" class="logo" src="/logo.png" />
-			<h1 class="title">Nexp</h1>
+		<div class="app-header__brand">
+			<img class="app-header__logo" src="/logo.png" alt="sort.code¹⁶/>"/>
 		</div>
 
 		<nav class="nav">
 			<ul>
-				<li><a href="#">Home</a></li>
+				<li><NuxtLink to="/">Home</NuxtLink></li>
 				<li><a href="#">Projects</a></li>
-				<li><a href="#">About</a></li>
+				<li><NuxtLink to="/about">About</NuxtLink></li>
 			</ul>
 		</nav>
 
@@ -28,13 +27,9 @@
 	justify-content: space-between;
 	padding: 8px 16px;
 	background-color: var(--green-accent, #fff);
+	border-bottom: 1px solid rgba(0, 0, 0, .06);
 }
 
-.header{
-	padding:0.5rem 1rem;
-	background:var(--header-bg, #fff);
-	border-bottom:1px solid rgba(0,0,0,0.06);
-}
 .brand{display:flex;align-items:center;gap:.5rem}
 .logo{width:36px;height:36px;object-fit:contain}
 .title{font-size:1.1rem;margin:0}

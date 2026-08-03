@@ -1,7 +1,25 @@
+<script setup>
+const appConfig = useAppConfig();
+
+console.log('appConfig', appConfig);
+</script>
+
 <template>
-  <div>
+  <div class="app">
     <AppHeader @open-settings="() => console.log('Settings opened')" />
-    <NuxtRouteAnnouncer />
-    <NuxtWelcome />
+
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+      
+    <AppAlert>
+      <span>This is an auto-imported component.</span>
+    </AppAlert>
   </div>
 </template>
+
+<style scoped>
+.app {
+  position: relative;
+}
+</style>
