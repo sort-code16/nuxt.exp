@@ -13,7 +13,7 @@
 	align-items: center;
 	justify-content: space-between;
 	padding: 8px 16px;
-	background-color: #c23b22;
-    color: #fff;
+	background-color: var(--nexp-red-6);
+    color: contrast-color(var(--nexp-red-6));
 }
 </style>

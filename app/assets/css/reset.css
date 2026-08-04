@@ -29,21 +29,20 @@ a {
     text-decoration: none;
 }
 
-img, picture {
+img {
     max-width: 100%;
-    display: block;
 }
 
 input, button, textarea, select {
-  font: inherit;
+    font: inherit;
 }
 
 button, [type='button'], [type='reset'], [type='submit'] {
-  -webkit-appearance: none;
-  appearance: none;
-  border: none;
-  background: none;
-  cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    background: none;
+    cursor: pointer;
 }
 
 /* table {

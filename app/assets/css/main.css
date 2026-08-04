@@ -23,28 +23,26 @@
 }
 
 :root {
-  --primary-light: #4f46e5;
-  --primary-main: #3730a3;
-  --primary-dark: #1e1b4b;
+    --nexp-red-6: #c23b22;
 
-  --nexp-green: #c1e1c1;
+    --nexp-green-1: #f2f9f5;
+    --nexp-green-2: #e0f0e3;
+    --nexp-green-3: #d8ecd0;
+    --nexp-green-4: #c1e1c1;
+    --nexp-green-5: #77dd77;
+    --nexp-green-6: #2d5a27;
 
-  --bg-main: #f2f9f5;
-  --bg-card: #ffffff;
-  
-  /* Pastel Greens */
-  --green-light: #d8ecd0;
-  --green-base: #c1e1c1;  /* Standard pastel green */
-  --green-accent: #77dd77; /* Vibrant UI element green */
-  
-  /* Text & Structure */
-  --text-primary: #2d5a27;
-  --border-subtle: #e0f0e3;
+    --nexp-blue-5: #3730a3;
+    --nexp-blue-6: #1e1b4b;
+
+    --next-black-5: #333;
+    --next-black-6: #050505;
 }
 
 body {
     font-family: 'Roboto Serif', sans-serif;
-    font-size: 14px;
+    font-size: 12px;
+    color: var(--next-black-6);
 }
 
 /* p {
@@ -52,7 +50,33 @@ body {
     font-style: italic;
 } */
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, strong {
     font-weight: 600;
     font-style: normal;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+h3 {
+    font-size: 16px;
+}
+
+a {
+    color: var(--nexp-blue-5);
+    transition: color .4s ease;
+}
+
+a:hover,
+a:focus {
+    color: var(--nexp-blue-6);
+}
+
+.nexp-title {
+    margin-bottom: 1em;
 }

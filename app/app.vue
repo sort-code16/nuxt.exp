@@ -21,5 +21,6 @@ console.log('appConfig', appConfig);
 <style scoped>
 .app {
   position: relative;
+  min-height: 100vh;
 }
 </style>

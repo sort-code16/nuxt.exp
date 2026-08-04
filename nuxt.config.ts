@@ -6,4 +6,18 @@ export default defineNuxtConfig({
     '~/assets/css/reset.css',
     '~/assets/css/main.css',
   ],
+  app: {
+    head: {
+      title: '',
+      titleTemplate: '%s - nuxt.exp',
+    },
+  },
+  $development: {
+    app: {
+      head: {
+        title: '',
+        titleTemplate: '[DEV] %s - nuxt.exp',
+      },
+    },
+  },
 })
