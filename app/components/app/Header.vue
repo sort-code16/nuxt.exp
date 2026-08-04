@@ -1,6 +1,6 @@
 <template>
 	<header class="app-header">
-		<strong class="app-header__logo">nuxt.exp</strong>
+		<span class="app-header__logo">nuxt.exp</span>
 
 		<nav class="app-header__menu">
 			<ul>
@@ -20,30 +20,41 @@
 	</header>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .app-header {
+	height: 60px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	padding: 12px 16px 8px;
 	background-color: var(--nexp-green-2);
 	border-bottom: 4px solid var(--nexp-blue-6);
-}
 
-.app-header__logo {
-	font-size: 24px;
-	text-transform: uppercase;
-}
+	&__logo {
+		font: 32px "Tourney";
+		text-transform: uppercase;
+		color: var(--nexp-blue-6);
+	}
 
-.app-header__menu ul {
-	display: flex;
-	gap: 16px;
-	font-size: 16px;
-}
+	&__menu {
+		ul {
+			display: flex;
+			gap: 24px;
+			font-size: 16px;
+		}
 
-.app-header__menu a {
-	font-weight: 600;
-}
+		a {
+			color: var(--nexp-blue-6);
+			text-transform: uppercase;
+			font-weight: 800;
 
-.app-header__actions {}
+			&:hover,
+			&:focus {
+				color: rgb(from var(--nexp-blue-6) r g b / .6);
+			}
+		}
+	}
+
+	&__actions {}
+}
 </style>

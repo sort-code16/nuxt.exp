@@ -13,6 +13,10 @@ useHead({
 
 <template>
     <section>
+        <h1 class="nexp-title">
+            Welcome to the About page
+        </h1>
+        
         <p>This page will be displayed at the /about route.</p>
     </section>
 </template>

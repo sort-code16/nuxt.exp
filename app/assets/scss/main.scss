@@ -1,0 +1,65 @@
+@mixin font($name, $dir, $weight: 400, $style: normal) {
+    @font-face {
+        font-display: swap;
+        font-family: '#{$name}';
+        font-weight: $weight;
+        font-style: $style;
+        src: url('/fonts/#{$dir}/#{$weight}-#{$style}.woff2') format('woff2');
+    }
+}
+
+@each $w in 200, 400, 600, 800 {
+    @include font('Roboto Serif', 'roboto-serif', $w);
+    @include font('Roboto Serif', 'roboto-serif', $w, italic);
+}
+
+:root {
+    --nexp-red-6: #c23b22;
+
+    --nexp-green-1: #f2f9f5;
+    --nexp-green-2: #e0f0e3;
+    --nexp-green-3: #d8ecd0;
+    --nexp-green-4: #c1e1c1;
+    --nexp-green-5: #77dd77;
+    --nexp-green-6: #2d5a27;
+
+    --nexp-blue-5: #3730a3;
+    --nexp-blue-6: #1e1b4b;
+
+    --next-black-5: #333;
+    --next-black-6: #050505;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Roboto Serif', sans-serif;
+    font-size: 14px;
+    color: var(--next-black-6);
+}
+
+h1, h2, h3, h4, strong {
+    font-weight: 600;
+}
+
+@for $i from 1 through 4 {
+  h#{$i} {
+    font-size: 28px - (4px * $i);
+  }
+}
+
+a {
+    color: var(--nexp-blue-5);
+    transition: all .4s ease;
+
+    &:hover,
+    &:focus {
+        color: var(--nexp-blue-6);
+    }
+}
+
+.nexp-title {
+    margin-bottom: 1rem;
+}
