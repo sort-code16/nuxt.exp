@@ -15,6 +15,14 @@
 				<button @click="$emit('open-settings')">
 					Settings
 				</button>
+
+				<button
+					type="button"
+					command="show-modal"
+					commandfor="nexp-dialog-1"
+				>
+					Open native dialog
+				</button>
 			</slot>
 		</div>
 	</header>
