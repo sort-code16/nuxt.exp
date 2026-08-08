@@ -1,10 +1,22 @@
+<script setup>
+const route = useRoute();
+
+const isNativeDialogExist = ref(false);
+
+watch(() => route.path, (currentPath) => {
+	isNativeDialogExist.value = currentPath === '/';
+}, { immediate: true });
+</script>
+
 <template>
 	<header class="app-header">
-		<span class="app-header__logo">nuxt.exp</span>
+		<NuxtLink to="/">
+			<span class="app-header__logo">nuxt.exp</span>
+		</NuxtLink>
 
 		<nav class="app-header__menu">
 			<ul>
-				<li><NuxtLink to="/">Home</NuxtLink></li>
+				<li><NuxtLink to="/posts">Posts</NuxtLink></li>
 				<li><NuxtLink to="/projects">Projects</NuxtLink></li>
 				<li><NuxtLink to="/about">About</NuxtLink></li>
 			</ul>
@@ -12,17 +24,21 @@
 
 		<div class="app-header__actions">
 			<slot name="actions">
-				<button @click="$emit('open-settings')">
-					Settings
-				</button>
-
-				<button
-					type="button"
+				<BaseButton
+					v-if="isNativeDialogExist"
 					command="show-modal"
-					commandfor="nexp-dialog-1"
+					command-for="nexp-dialog-1"
+					disabled
 				>
 					Open native dialog
-				</button>
+				</BaseButton>
+
+				<BaseButton
+					level="primary"
+					@click="$emit('open-settings')"
+				>
+					Settings
+				</BaseButton>
 			</slot>
 		</div>
 	</header>
@@ -63,6 +79,11 @@
 		}
 	}
 
-	&__actions {}
+	&__actions {
+		min-width: 25%;
+		display: flex;
+		justify-content: flex-end;
+		gap: 8px;
+	}
 }
 </style>
