@@ -1,18 +1,18 @@
-<template>
-  <div>
-    <h1>Edit Post #{{ id }}</h1>
-    
-    <PostForm :post="form" />
-  </div>
-</template>
-
 <script setup>
 import PostForm from '../components/PostForm.vue';
+import useRouteValidation from './useRouteValidation';
 
-const route = useRoute()
-// const router = useRouter()
-const form = ref({ title: 'test 1', content: 'content test 1' })
-const id = route.params.id
+const route = useRoute();
+// const router = useRouter();
+
+const { isValidParam } = useRouteValidation();
+
+definePageMeta({
+    validate: ({ params }) => isValidParam(params.id) || { statusCode: 404, message: 'Post not found' }
+});
+
+const form = ref({ title: 'test 1', content: 'content test 1' });
+const id = route.params.id;
 
 /* const loadPost = async () => {
   try {
@@ -40,3 +40,11 @@ const id = route.params.id
 
 // onMounted(loadPost)
 </script>
+
+<template>
+  <div>
+    <h1>Edit Post #{{ id }}</h1>
+
+    <PostForm :post="form" />
+  </div>
+</template>
