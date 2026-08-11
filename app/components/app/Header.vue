@@ -18,7 +18,6 @@ watch(() => route.path, (currentPath) => {
 			<ul>
 				<li><NuxtLink to="/posts">Posts</NuxtLink></li>
 				<li><NuxtLink to="/projects">Projects</NuxtLink></li>
-				<li><NuxtLink to="/about">About</NuxtLink></li>
 			</ul>
 		</nav>
 

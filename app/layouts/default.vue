@@ -1,3 +1,13 @@
+<script setup>
+const route = useRoute();
+
+useHead({
+    meta: [
+        ...(route.meta.title ? [{ property: 'og:title', content: `${route.meta.title}` }] : []),
+    ],
+});
+</script>
+
 <template>
     <div class="default-layout">
         <slot />

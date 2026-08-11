@@ -2,6 +2,20 @@
 const appConfig = useAppConfig();
 
 console.log('appConfig', appConfig);
+
+useHead({
+    titleTemplate: (pageTitle) => `%env ${pageTitle ? pageTitle + ' %separator %siteName': '%siteName'}`,
+    htmlAttrs: {
+        lang: 'en',
+    },
+});
+
+// useSeoMeta({
+//     title: 'Some title',
+//     description: 'Some description',
+//     ogTitle: 'Some title',
+//     ogDescription: 'Some description',
+// });
 </script>
 
 <template>

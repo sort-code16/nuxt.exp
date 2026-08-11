@@ -1,6 +1,4 @@
 <script setup>
-import useRouteValidation from './useRouteValidation';
-
 const route = useRoute();
 const { isValidParam } = useRouteValidation();
 

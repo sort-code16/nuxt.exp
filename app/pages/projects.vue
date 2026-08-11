@@ -9,6 +9,27 @@ useHead({
     },
     script: [{ innerHTML: 'console.log(\'Projects page initialized\')' }],
 });
+
+const projects = ref([]);
+const isProjectsLoading = ref(false);
+
+const loadProjects = async () => {
+    isProjectsLoading.value = true;
+
+    try {
+        const { data } = await $fetch('/api/v1/projects');
+
+        projects.value = data;
+    } catch (error) {
+        console.error('Failed to load projects', error)
+    } finally {
+        isProjectsLoading.value = false;
+    }
+}
+
+onMounted(async () => {
+    await loadProjects();
+});
 </script>
 
 <template>
@@ -16,36 +37,37 @@ useHead({
         <h1 class="nexp-title">Welcome to the Projects page</h1>
         <h2 class="nexp-title">Wordpress premium themes & plugins</h2>
 
-        <div class="masonry-grid">
-            <figure class="masonry-grid__item">
-                <img src="/images/ecotheme-story.png" alt="ecotheme" />
-                <figcaption>ecotheme - Saving nature</figcaption>
-            </figure>
+        <BaseCircleLoader
+            v-if="isProjectsLoading"
+            size="md"
+            class="loader"
+        />
 
-            <figure class="masonry-grid__item">
-                <img src="/images/bt-gallery-plugin.png" alt="BT Gallery Plugin" />
-                <figcaption>BorschTemplates - Gallery plugin</figcaption>
-            </figure>
+        <div v-else>
+            <div
+                v-if="projects.length"
+                class="masonry-grid"
+            >
+                <figure
+                    v-for="{ id, name, description, src } in projects"
+                    :key="`project-${id}`"
+                    class="masonry-grid__item"
+                >
+                    <img :src :alt="name" />
+                    <figcaption>{{ description }}</figcaption>
+                </figure>
+            </div>
 
-            <figure class="masonry-grid__item">
-                <img src="/images/bt-shortcodes-plugin-list.png" alt="BT Shortcodes Plugin - List" />
-                <figcaption>BorschTemplates - Shortcodes plugin - List</figcaption>
-            </figure>
-
-            <figure class="masonry-grid__item">
-                <img src="/images/bt-shortcodes-plugin-circle-image.png" alt="BT Shortcodes Plugin - Circle Image" />
-                <figcaption>BorschTemplates - Shortcodes plugin - Circle Image</figcaption>
-            </figure>
-
-            <figure class="masonry-grid__item">
-                <img src="/images/econcept-green.jpg" alt="eConcept" />
-                <figcaption>eConcept - Ultra cleaned and pure design theme</figcaption>
-            </figure>
+            <p v-else>No projects found</p>
         </div>
     </section>
 </template>
 
 <style scoped lang="scss">
+.loader {
+    margin: 16px auto;
+}
+
 figcaption {
     margin-top: 8px;
     line-height: 1.4;

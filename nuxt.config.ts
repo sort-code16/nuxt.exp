@@ -8,8 +8,11 @@ export default defineNuxtConfig({
   ],
   app: {
     head: {
-      title: '',
-      titleTemplate: '%s - nuxt.exp',
+      templateParams: {
+        env: '',
+        siteName: 'nuxt.exp',
+        separator: '-'
+      },
       link: [
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
@@ -20,8 +23,9 @@ export default defineNuxtConfig({
   $development: {
     app: {
       head: {
-        title: '',
-        titleTemplate: '[DEV] %s - nuxt.exp',
+        templateParams: {
+          env: '[DEV]',
+        },
       },
     },
   },

@@ -1,6 +1,5 @@
 <script setup>
 import PostForm from '../components/PostForm.vue';
-import useRouteValidation from './useRouteValidation';
 
 const route = useRoute();
 // const router = useRouter();
