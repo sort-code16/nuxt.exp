@@ -17,6 +17,7 @@ watch(() => route.path, (currentPath) => {
 		<nav class="app-header__menu">
 			<ul>
 				<li><NuxtLink to="/posts">Posts</NuxtLink></li>
+				<li><NuxtLink to="/boards">Boards</NuxtLink></li>
 				<li><NuxtLink to="/projects">Projects</NuxtLink></li>
 			</ul>
 		</nav>

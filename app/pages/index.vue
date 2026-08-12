@@ -1,13 +1,8 @@
 <script setup>
-useHead({
+definePageMeta({
+    name: 'home',
     title: 'Home',
-    meta: [
-        { name: 'description', content: 'The home page at NUXT.EXP' },
-    ],
-    bodyAttrs: {
-        class: 'nexp-home-page',
-    },
-    script: [{ innerHTML: 'console.log(\'Home page initialized\')' }],
+    // description: 'The home page at NUXT.EXP',
 });
 
 const dialogRef = useTemplateRef('favDialog');

@@ -1,11 +1,26 @@
 <script setup>
 const route = useRoute();
 
-useHead({
-    meta: [
-        ...(route.meta.title ? [{ property: 'og:title', content: `${route.meta.title}` }] : []),
-    ],
-});
+console.log('route', route);
+
+useHead(() => ({
+    ...(route.meta.title && { title: `${route.meta.title}` }),
+
+    /* meta: [
+        ...(route.meta.title ? [
+            { property: 'og:title', content: `${route.meta.title}` },
+        ] : []),
+
+        ...(route.meta.description ? [
+            { property: 'description', content: `${route.meta.description}` },
+            { property: 'og:description', content: `${route.meta.description}` },
+        ] : []),
+    ], */
+
+    bodyAttrs: {
+        ...(route.name && { class: `${route.name}-page` }),
+    },
+}));
 </script>
 
 <template>

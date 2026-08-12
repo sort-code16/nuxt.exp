@@ -9,13 +9,6 @@ useHead({
         lang: 'en',
     },
 });
-
-// useSeoMeta({
-//     title: 'Some title',
-//     description: 'Some description',
-//     ogTitle: 'Some title',
-//     ogDescription: 'Some description',
-// });
 </script>
 
 <template>

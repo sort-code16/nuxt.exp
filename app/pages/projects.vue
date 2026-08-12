@@ -1,13 +1,7 @@
 <script setup>
-useHead({
+definePageMeta({
     title: 'Projects',
-    meta: [
-        { name: 'description', content: 'The projects at NUXT.EXP' },
-    ],
-    bodyAttrs: {
-        class: 'nexp-projects-page',
-    },
-    script: [{ innerHTML: 'console.log(\'Projects page initialized\')' }],
+    // description: 'The projects at NUXT.EXP',
 });
 
 const projects = ref([]);

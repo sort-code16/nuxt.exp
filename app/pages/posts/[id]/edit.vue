@@ -7,23 +7,11 @@ const route = useRoute();
 const { isValidParam } = useRouteValidation();
 
 definePageMeta({
-    validate: ({ params }) => isValidParam(params.id) || { statusCode: 404, message: 'Post not found' }
+    validate: ({ params }) => isValidParam(params.id) || { status: 404, statusText: 'Post not found' }
 });
 
 const form = ref({ title: 'test 1', content: 'content test 1' });
 const id = route.params.id;
-
-/* const loadPost = async () => {
-  try {
-    const data = await $fetch(`/api/posts/${id}`)
-    form.value = {
-      title: data.title || '',
-      content: data.content || '',
-    }
-  } catch (error) {
-    console.error('Failed to load post', error)
-  }
-} */
 
 /* const savePost = async () => {
   try {
@@ -36,8 +24,6 @@ const id = route.params.id;
     console.error('Failed to save post', error)
   }
 } */
-
-// onMounted(loadPost)
 </script>
 
 <template>

@@ -3,7 +3,7 @@ const route = useRoute();
 const { isValidParam } = useRouteValidation();
 
 definePageMeta({
-    validate: ({ params }) => isValidParam(params.id) || { statusCode: 404, message: 'Post not found' }
+    validate: ({ params }) => isValidParam(params.id) || { status: 404, statusText: 'Post not found' }
 });
 </script>
 
