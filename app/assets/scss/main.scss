@@ -45,9 +45,10 @@ h1, h2, h3, h4, strong {
 }
 
 @for $i from 1 through 4 {
-  h#{$i} {
-    font-size: 28px - (4px * $i);
-  }
+    h#{$i} {
+        font-size: 28px - (4px * $i);
+        line-height: calc(1em + 8px);
+    }
 }
 
 a {
@@ -60,6 +61,19 @@ a {
     }
 }
 
+p {
+    line-height: 20px;
+
+    + p {
+        margin-top: 8px;
+    }
+}
+
+fieldset {
+    margin-inline: 0;
+    border-color: var(--next-black-5, #333);
+}
+
 .nexp-title {
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
 }

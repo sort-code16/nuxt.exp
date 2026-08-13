@@ -27,7 +27,7 @@ watch(() => route.path, (currentPath) => {
 				<BaseButton
 					v-if="isNativeDialogExist"
 					command="show-modal"
-					command-for="nexp-dialog-1"
+					commandfor="nexp-dialog-1"
 					disabled
 				>
 					Open native dialog
@@ -47,12 +47,13 @@ watch(() => route.path, (currentPath) => {
 <style scoped lang="scss">
 .app-header {
 	height: 60px;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 12px 16px 8px;
-	background-color: var(--nexp-green-2);
-	border-bottom: 4px solid var(--nexp-blue-6);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 12px 24px 8px;
+    background-color: var(--nexp-green-2);
+    border-bottom: 4px solid var(--nexp-blue-6);
 
 	&__logo {
 		font: 32px "Tourney";
@@ -61,6 +62,8 @@ watch(() => route.path, (currentPath) => {
 	}
 
 	&__menu {
+		flex-grow: 1;
+		
 		ul {
 			display: flex;
 			gap: 24px;

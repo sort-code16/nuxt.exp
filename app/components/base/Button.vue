@@ -17,30 +17,12 @@ defineProps({
         default: 'md',
         validator: (value) => ['sm', 'md'].includes(value),
     },
-
-    command: {
-        type: [String, null],
-        default: null,
-    },
-
-    commandFor: {
-        type: [String, null],
-        default: null,
-    },
-
-    disabled: {
-        type: Boolean,
-        default: false,
-    },
 });
 </script>
 
 <template>
     <button
         :type="type"
-        :command="command"
-        :commandfor="commandFor"
-        :disabled="disabled"
         :class="['nexp-button', `nexp-button--${level}`, `nexp-button--${size}`]"
         @click="$emit('click', $event)"
     >

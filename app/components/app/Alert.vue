@@ -7,13 +7,13 @@
 <style scoped>
 .app-alert {
     position: fixed;
-    bottom: 16px;
-    right: 16px;
+    bottom: 8px;
+    left: 8px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	padding: 8px 16px;
-	background-color: var(--nexp-red-6);
+	background-color: rgb(from var(--nexp-red-6) r g b / .8);
     color: contrast-color(var(--nexp-red-6));
 }
 </style>

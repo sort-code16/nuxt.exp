@@ -34,7 +34,8 @@ useHead(() => ({
     overflow-y: auto;
     max-height: calc(100vh - 60px);
     height: calc(100vh - 60px);
+    scrollbar-gutter: stable;
     background-color: var(--nexp-green-1);
-	padding: 16px;
+    padding: 16px 8px 32px 24px;
 }
 </style>
