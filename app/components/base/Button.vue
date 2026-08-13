@@ -9,7 +9,7 @@ defineProps({
     level: {
         type: String,
         default: 'secondary',
-        validator: (value) => ['primary', 'secondary'].includes(value),
+        validator: (value) => ['primary', 'secondary', 'tertiary'].includes(value),
     },
 
     size: {
@@ -35,18 +35,39 @@ defineProps({
 <style scoped lang="scss">
 .nexp-button {
     padding: 4px 8px;
-    color: var(--next-black-6, #000);
+    color: var(--nexp-black-6, #000);
     border: 1px solid currentColor;
+    transition: all .4s ease;
+
+    &__label {
+        text-wrap: nowrap;
+    }
 
     &:disabled {
-        opacity: 0.5;
+        opacity: .5;
         cursor: not-allowed;
     }
 
     &--primary {
-        border-color: var(--next-black-6, #000);
-        background-color: var(--next-black-6, #000);
-        color: contrast-color(var(--next-black-6, #000));
+        border-color: var(--nexp-black-6, #000);
+        background-color: var(--nexp-black-6, #000);
+        color: var(--nexp-green-2);
+
+        &:hover,
+        &:focus {
+            color: #fff;
+        }
+    }
+
+    &--tertiary {
+        border-color: var(--nexp-blue-6, #333);
+        background-color: var(--nexp-blue-6, #333);
+        color: var(--nexp-green-2);
+
+        &:hover,
+        &:focus {
+            color: #fff;
+        }
     }
 }
 </style>

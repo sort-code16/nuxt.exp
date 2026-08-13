@@ -24,18 +24,16 @@ useHead(() => ({
 </script>
 
 <template>
-    <div class="default-layout">
+    <div class="nexp-scrollbar default-layout">
         <slot />
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .default-layout {
-    overflow-y: auto;
     max-height: calc(100vh - 60px);
     height: calc(100vh - 60px);
-    scrollbar-gutter: stable;
     background-color: var(--nexp-green-1);
-    padding: 16px 8px 32px 24px;
+    padding-block: 24px 40px;
 }
 </style>

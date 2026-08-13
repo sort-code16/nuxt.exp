@@ -76,11 +76,11 @@ figcaption {
         margin-bottom: 16px;
     }
 
-    @media (min-width: 600px) and (max-width: 1024px) {
+    @media (min-width: 576px) {
         column-count: 2;
     }
 
-    @media (min-width: 1024px) {
+    @media (min-width: 992px) {
         column-count: 3;
     }
 }

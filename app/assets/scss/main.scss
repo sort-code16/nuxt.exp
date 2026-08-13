@@ -14,7 +14,11 @@
 }
 
 :root {
+    --nexp-red-5: #dc362e;
     --nexp-red-6: #c23b22;
+
+    --nexp-brown-3: #a54e20;
+    --nexp-brown-4: #9f4312;
 
     --nexp-green-1: #f2f9f5;
     --nexp-green-2: #e0f0e3;
@@ -23,11 +27,21 @@
     --nexp-green-5: #77dd77;
     --nexp-green-6: #2d5a27;
 
-    --nexp-blue-5: #3730a3;
+    --nexp-blue-1: #edf2fa;
+    --nexp-blue-2: #0b57d0;
+    --nexp-blue-3: #0842a0;
+    --nexp-blue-4: #3730a3;
+    --nexp-blue-5: #24292e;
     --nexp-blue-6: #1e1b4b;
 
-    --next-black-5: #333;
-    --next-black-6: #050505;
+    --nexp-violet-5: #8e004b;
+
+    --nexp-black-1: #ccc;
+    --nexp-black-2: #474747;
+    --nexp-black-3: #333;
+    --nexp-black-4: #282828;
+    --nexp-black-5: #1f1f1f;
+    --nexp-black-6: #050505;
 }
 
 html {
@@ -37,7 +51,7 @@ html {
 body {
     font-family: 'Roboto Serif', sans-serif;
     font-size: 14px;
-    color: var(--next-black-6);
+    color: var(--nexp-black-6);
 }
 
 h1, h2, h3, h4, strong {
@@ -47,7 +61,7 @@ h1, h2, h3, h4, strong {
 @for $i from 1 through 4 {
     h#{$i} {
         font-size: 28px - (4px * $i);
-        line-height: calc(1em + 8px);
+        line-height: calc(1em + 4px);
     }
 }
 
@@ -71,9 +85,21 @@ p {
 
 fieldset {
     margin-inline: 0;
-    border-color: var(--next-black-5, #333);
+    border-color: var(--nexp-black-4);
 }
 
 .nexp-title {
     margin-bottom: 16px;
+}
+
+.nexp-scrollbar {
+    overflow-y: auto;
+    scrollbar-gutter: stable both-edges;
+    scrollbar-width: thin;
+    scrollbar-color: var(--nexp-black-1) transparent;
+    padding-inline: 24px;
+
+    @media (pointer: fine) {
+        padding-inline: 12px;
+    }
 }

@@ -22,15 +22,40 @@ watch(() => route.path, (currentPath) => {
 			</ul>
 		</nav>
 
+		<div
+			popover="manual"
+			id="menuPopover"
+			class="app-header__popover"
+		>
+			<BaseButton popovertarget="menuPopover" popovertargetaction="hide">x</BaseButton>
+
+			<nav>
+				<ul>
+					<li><NuxtLink to="/posts">Posts</NuxtLink></li>
+					<li><NuxtLink to="/boards">Boards</NuxtLink></li>
+					<li><NuxtLink to="/projects">Projects</NuxtLink></li>
+				</ul>
+			</nav>
+		</div>
+
+		<div class="app-header__popover-page-blocker"></div>
+
 		<div class="app-header__actions">
+			<BaseButton
+				level="tertiary"
+				popovertarget="menuPopover"
+				class="app-header__popover-btn"
+			>
+				Menu
+			</BaseButton>
+
 			<slot name="actions">
 				<BaseButton
 					v-if="isNativeDialogExist"
 					command="show-modal"
 					commandfor="nexp-dialog-1"
-					disabled
 				>
-					Open native dialog
+					Info
 				</BaseButton>
 
 				<BaseButton
@@ -56,17 +81,15 @@ watch(() => route.path, (currentPath) => {
     border-bottom: 4px solid var(--nexp-blue-6);
 
 	&__logo {
-		font: 32px "Tourney";
+		font: 20px / 1 "Tourney";
 		text-transform: uppercase;
 		color: var(--nexp-blue-6);
 	}
 
-	&__menu {
-		flex-grow: 1;
-		
+	&__menu,
+	&__popover {
 		ul {
 			display: flex;
-			gap: 24px;
 			font-size: 16px;
 		}
 
@@ -77,14 +100,71 @@ watch(() => route.path, (currentPath) => {
 
 			&:hover,
 			&:focus {
-				color: rgb(from var(--nexp-blue-6) r g b / .6);
+				color: var(--nexp-black-6, #000);
 			}
+		}
+	}
+
+	&__menu {
+		display: none;
+		flex-grow: 1;
+
+		ul {
+			gap: 24px;
+		}
+	}
+
+	&__popover {
+		padding: 24px;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 16px;
+
+		&:popover-open {
+			display: flex;
+		}
+
+		&::backdrop {
+			background-color: rgba(0, 0, 0, .1);
+		}
+
+		ul {
+			flex-direction: column;
+			gap: 16px;
+		}
+	}
+
+	&__popover-page-blocker {
+		position: fixed;
+		inset: 0;
+		z-index: 9998; // just below the popover's top layer
+		display: none;
+	}
+
+	&__popover:popover-open ~ &__popover-page-blocker {
+		display: block;
+	}
+
+	@media (min-width: 576px) {
+		&__logo {
+			font-size: 32px;
+		}
+	}
+	
+	@media (min-width: 768px) {
+		&__menu {
+			display: inline-flex;
+		}
+
+		&__popover-btn {
+			display: none;
 		}
 	}
 
 	&__actions {
 		min-width: 25%;
-		display: flex;
+		display: inherit;
+		align-items: inherit;
 		justify-content: flex-end;
 		gap: 8px;
 	}

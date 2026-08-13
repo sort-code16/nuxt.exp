@@ -53,7 +53,7 @@ defineExpose({
     <dialog
         :id
         ref="dialog"
-        class="nexp-confirmation-dialog"
+        class="nexp-scrollbar nexp-confirmation-dialog"
     >
         <div class="nexp-confirmation-dialog__header">
             <h3>{{ title }}</h3>
@@ -107,9 +107,7 @@ defineExpose({
 .nexp-confirmation-dialog {
     max-width: calc(100% - 44px);
     max-height: calc(100% - 44px);
-    scrollbar-gutter: stable;
     padding-block: 24px;
-    padding-inline: 24px 8px;
 
     &__header {
         margin-bottom: 16px;
