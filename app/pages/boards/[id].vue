@@ -18,7 +18,7 @@ let ws = null;
 
 onMounted(() => {
     const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
-    const wsUrl = `${protocol}://${window.location.host}/channel?id=${id}`;
+    const wsUrl = `${protocol}://${window.location.host}/ws/boards/${id}`;
 
     console.log('[board] connecting to', wsUrl);
     
@@ -26,6 +26,8 @@ onMounted(() => {
         ws = new WebSocket(wsUrl);
 
         ws.onmessage = (event) => {
+            console.log('onmessage() event: ', event);
+
             messages.value.push(event.data);
         };
 

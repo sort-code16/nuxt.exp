@@ -1,7 +1,7 @@
 <script setup>
-const appConfig = useAppConfig();
+// const appConfig = useAppConfig();
 
-console.log('appConfig', appConfig);
+// console.log('appConfig', appConfig);
 
 useHead({
     titleTemplate: (pageTitle) => `%env ${pageTitle ? pageTitle + ' %separator %siteName': '%siteName'}`,

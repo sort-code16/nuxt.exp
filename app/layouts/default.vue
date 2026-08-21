@@ -1,7 +1,7 @@
 <script setup>
 const route = useRoute();
 
-console.log('route', route);
+// console.log('route', route);
 
 useHead(() => ({
     ...(route.meta.title && { title: `${route.meta.title}` }),
