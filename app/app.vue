@@ -9,25 +9,39 @@ useHead({
         lang: 'en',
     },
 });
+
+const { data, pending, error } = useFetch('/api/v1/test', { server: false });
 </script>
 
 <template>
-  <div class="app">
-    <AppHeader @open-settings="() => console.log('Settings opened')" />
+    <div class="app">
+        <AppHeader @open-settings="() => console.log('Settings opened')" />
 
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
+        <NuxtLayout>
+           <NuxtPage />
+        </NuxtLayout>
       
-    <AppAlert>
-      <span>This is an auto-imported component.</span>
-    </AppAlert>
-  </div>
+        <div class="app__test">
+            <BaseCircleLoader v-if="pending" size="sm" />
+
+            <AppAlert v-else-if="error">
+                <span>{{ error.data.message }}</span>
+            </AppAlert>
+
+            <span v-else>{{ data?.test }}</span>
+        </div>
+    </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .app {
-  position: relative;
-  min-height: 100vh;
+    position: relative;
+    min-height: 100vh;
+
+    &__test {
+        position: fixed;
+        bottom: 8px;
+        left: 8px;
+    }
 }
 </style>
