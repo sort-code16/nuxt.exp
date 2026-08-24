@@ -10,7 +10,11 @@ useHead({
     },
 });
 
-const { data, pending, error } = useFetch('/api/v1/test', { server: false });
+const { data, pending, error } = useFetch('/api/v1/test', {
+    // key: 'test-data',
+    server: false,
+    // lazy: true,
+});
 </script>
 
 <template>
