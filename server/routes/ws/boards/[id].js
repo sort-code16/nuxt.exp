@@ -23,10 +23,10 @@ export default defineWebSocketHandler({
         peer.publish(peer.context.board, `${peer.id}: ${message.text()}`); // .json()
     },
 
-    // Triggered whena connection drops
+    // Triggered when a connection drops
     close(peer, details) {
-        // 1006 - by server?
-        // 1001 - by client?
+        // 1006 - by server
+        // 1001 - by client
 
         console.log("Disconnected:", peer.id, details.code, details.reason);
         // console.log(`Клієнт ${peer.id} закрив з'єднання з кімнатою ${channel}`);

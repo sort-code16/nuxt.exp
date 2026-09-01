@@ -6,9 +6,6 @@
 
 <style scoped>
 .app-alert {
-    position: fixed;
-    bottom: 8px;
-    left: 8px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;

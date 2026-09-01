@@ -1,5 +1,5 @@
 <script setup>
-import PostForm from '../components/PostForm.vue';
+import PostForm from '../_components/PostForm.vue';
 
 const route = useRoute();
 // const router = useRouter();

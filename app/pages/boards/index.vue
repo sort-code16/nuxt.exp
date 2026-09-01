@@ -5,7 +5,7 @@ definePageMeta({
 
 const { data, status, error } = useFetch('/api/v1/boards');
 
-console.log(error.value);
+// console.log(error.value);
 </script>
 
 <template>

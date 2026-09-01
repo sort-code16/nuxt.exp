@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import PostForm from './components/PostForm.vue';
+import PostForm from './_components/PostForm.vue';
 
 // const router = useRouter();
 

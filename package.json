@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "bcrypt-ts": "^9.0.2",
     "better-sqlite3": "^13.0.3",
     "drizzle-orm": "^0.45.2",
     "nuxt": "^4.5.2",
