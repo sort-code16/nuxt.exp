@@ -34,6 +34,8 @@ const { data, pending, error } = useFetch('/api/v1/test', {
 
             <span v-else>{{ data?.test }}</span>
         </div>
+
+        <AppFooter />
     </div>
 </template>
 
@@ -44,7 +46,7 @@ const { data, pending, error } = useFetch('/api/v1/test', {
 
     &__test {
         position: fixed;
-        bottom: 8px;
+        bottom: calc(60px + 8px);
         left: 8px;
     }
 }
