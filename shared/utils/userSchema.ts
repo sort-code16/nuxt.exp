@@ -7,4 +7,4 @@ export const userRegisterSchema = z.object({
 });
 
 // type for TS
-// export type UserRegisterSchema = z.infer<typeof userRegisterSchema>;
+export type UserRegisterSchema = z.infer<typeof userRegisterSchema>;
