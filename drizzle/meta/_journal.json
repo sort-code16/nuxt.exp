@@ -22,6 +22,20 @@
       "when": 1788991197937,
       "tag": "0002_familiar_giant_man",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1788993307169,
+      "tag": "0003_gigantic_the_liberteens",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1788993623706,
+      "tag": "0004_puzzling_violations",
+      "breakpoints": true
     }
   ]
 }

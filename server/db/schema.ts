@@ -7,7 +7,7 @@ export const boardsTable = sqliteTable('boards', {
 
 export const usersTable = sqliteTable('users', {
     id: int().primaryKey({ autoIncrement: true }),
-    username: text().notNull(),
     email: text().notNull().unique(),
+    username: text().notNull(),
     password: text().notNull(),
 });
