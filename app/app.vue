@@ -15,6 +15,42 @@ const { data, pending, error } = useFetch('/api/v1/test', {
     server: false,
     // lazy: true,
 });
+
+const testToasts = [
+    {
+        id: '1',
+        type: 'success',
+        title: '200',
+        message: 'This is a success toast',
+        duration: 5000,
+    },
+    {
+        id: '1',
+        type: 'success',
+        message: 'This is a success toast',
+    },
+    {
+        id: '2',
+        type: 'error',
+        title: '500',
+        message: 'This is an error toast',
+        duration: 5000,
+    },
+    {
+        id: '3',
+        type: 'info',
+        title: 'Info',
+        message: 'This is an info toast',
+        duration: 5000,
+    },
+    {
+        id: '4',
+        type: 'warning',
+        title: 'Warning',
+        message: 'This is a warning toast',
+        duration: 5000,
+    },
+];
 </script>
 
 <template>
@@ -22,7 +58,11 @@ const { data, pending, error } = useFetch('/api/v1/test', {
         <AppHeader @open-settings="() => console.log('Settings opened')" />
 
         <NuxtLayout>
-           <NuxtPage />
+            <NuxtPage />
+
+            <template v-for="{ id, type, title, message, duration } in testToasts" :key="id">
+                <BaseToast :id :type :title :message :duration closable />
+            </template>
         </NuxtLayout>
       
         <div class="app__test">

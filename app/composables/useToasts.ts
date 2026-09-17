@@ -1,16 +1,11 @@
-export type ToastType = 'success' | 'error' | 'info' | 'warning';
+import type { IToast } from '~/components/base/Toast.vue';
 
-export interface IAddToastPayload {
-    id?: string;
-    type?: ToastType;
-    title?: string;
-    message: string;
-    duration?: number;
-}
-
-export interface IToast extends Required<Pick<IAddToastPayload, 'id' | 'type' | 'message' | 'duration'>> {
-    title?: string;
-    createdAt: number;
+interface IAddToastPayload {
+    readonly id?: string;
+    readonly type?: IToast['type'];
+    readonly title?: string;
+    readonly message: string;
+    readonly duration?: number;
 }
 
 export default function useToasts() {
@@ -27,7 +22,6 @@ export default function useToasts() {
             title: payload.title,
             message: payload.message,
             duration: payload.duration ?? 4000,
-            createdAt: Date.now(),
         };
 
         toasts.value.push(toast);
@@ -37,7 +31,7 @@ export default function useToasts() {
         }
     };
 
-    const createToast = (type: ToastType) => (
+    const createToast = (type: IToast['type']) => (
         (message: string, title?: string, duration?: number) => {
             addToast({ type, title, message, duration });
         }
