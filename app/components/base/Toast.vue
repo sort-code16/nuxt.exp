@@ -51,28 +51,46 @@ const {
     position: relative;
     min-width: 280px;
     max-width: 100%;
-    padding: 12px 16px;
+    padding-block: 10px;
+    padding-inline: 16px 24px;
     border: 1px solid transparent;
+    border-inline-start-width: 8px;
     background-color: #fff;
 
+    h3 {
+        margin-bottom: 4px;
+    }
+
     &--success {
-        border-color: rgba(34, 197, 94, .4);
-        background-color: rgba(34, 197, 94, .1);
+        border-color: var(--nexp-green-5);
+
+        h3 {
+            color: var(--nexp-green-5);
+        }
     }
 
     &--error {
-        border-color: rgba(239, 68, 68, .4);
-        background-color: rgba(239, 68, 68, .08);
+        border-color: var(--nexp-red-5);
+
+        h3 {
+            color: var(--nexp-red-5);
+        }
     }
 
     &--info {
-        border-color: rgba(59, 130, 246, .35);
-        background-color: rgba(59, 130, 246, .08);
+        border-color: var(--nexp-blue-5);
+
+        h3 {
+            color: var(--nexp-blue-5);
+        }
     }
 
     &--warning {
-        border-color: rgba(245, 158, 11, .35);
-        background-color: rgba(245, 158, 11, .08);
+        border-color: var(--nexp-orange-5);
+
+        h3 {
+            color: var(--nexp-orange-5);
+        }
     }
 
     &__close-btn {

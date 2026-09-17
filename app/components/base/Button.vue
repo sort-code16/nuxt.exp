@@ -69,5 +69,9 @@ defineProps({
             color: #fff;
         }
     }
+
+    &--sm {
+        font-size: 12px;
+    }
 }
 </style>
