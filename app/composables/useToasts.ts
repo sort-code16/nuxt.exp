@@ -21,7 +21,7 @@ export default function useToasts() {
             type: payload.type ?? 'info',
             title: payload.title,
             message: payload.message,
-            duration: payload.duration ?? 4000,
+            duration: payload.duration ?? 0,
         };
 
         toasts.value.push(toast);
@@ -38,7 +38,7 @@ export default function useToasts() {
     );
 
     return {
-        // toasts,
+        toasts,
         // addToast,
         removeToast,
 
