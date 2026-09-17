@@ -32,6 +32,13 @@ const {
         :aria-live="type === 'error' ? 'assertive' : 'polite'"
         aria-atomic="true"
     >
+        <div
+            v-if="duration > 0"
+            class="nexp-toast__progress"
+            :style="{ animationDuration: `${duration}ms`}"
+            aria-hidden="true"
+        ></div>
+
         <BaseButton
             v-if="closable"
             class="nexp-toast__close-btn"
@@ -47,6 +54,10 @@ const {
 </template>
 
 <style scoped lang="scss">
+@keyframes nexp-toast-progress-shrink {
+    to { width: 0 }
+}
+
 .nexp-toast {
     position: relative;
     min-width: 280px;
@@ -91,6 +102,16 @@ const {
         h3 {
             color: var(--nexp-orange-5);
         }
+    }
+
+    &__progress {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: var(--nexp-gray-5);
+        animation: nexp-toast-progress-shrink linear forwards;
     }
 
     &__close-btn {
