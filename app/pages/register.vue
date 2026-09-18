@@ -41,18 +41,16 @@ const register = async () => {
 
         <form @submit.prevent="register">
             <div>
-                <label for="email">Email:</label>
+                <BaseFieldValidationWrapper :error="validationErrors?.email?.join('; ') ?? ''">
+                    <label for="email">Email:</label>
 
-                <input
-                    v-model="formData.email"
-                    type="email"
-                    id="email"
-                    required
-                />
-
-                <p v-if="validationErrors?.email">
-                    {{ validationErrors.email.join('; ') }}
-                </p>
+                    <input
+                        v-model="formData.email"
+                        type="email"
+                        id="email"
+                        required
+                    />
+                </BaseFieldValidationWrapper>
             </div>
 
             <div>
@@ -66,18 +64,16 @@ const register = async () => {
             </div>
 
             <div>
-                <label for="password">Password:</label>
+                <BaseFieldValidationWrapper :error="validationErrors?.password?.join('; ') ?? ''">
+                    <label for="password">Password:</label>
 
-                <input
-                    v-model="formData.password"
-                    type="password"
-                    id="password"
-                    required
-                />
-
-                <p v-if="validationErrors?.password">
-                    {{ validationErrors.password.join('; ') }}
-                </p>
+                    <input
+                        v-model="formData.password"
+                        type="password"
+                        id="password"
+                        required
+                    />
+                </BaseFieldValidationWrapper>
             </div>
 
             <button type="submit">Register</button>
