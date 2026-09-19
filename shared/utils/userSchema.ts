@@ -6,5 +6,4 @@ export const userRegisterSchema = z.object({
     password: z.string().min(4),
 });
 
-// type for TS
 export type UserRegisterSchema = z.infer<typeof userRegisterSchema>;

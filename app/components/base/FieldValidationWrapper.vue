@@ -1,9 +1,11 @@
 <script setup lang="ts">
 interface IFieldValidationWrapperProps {
-    error: string;
+    error?: string;
 }
 
 defineProps<IFieldValidationWrapperProps>();
+
+const errorMessageID = useId();
 </script>
 
 <template>
@@ -11,10 +13,11 @@ defineProps<IFieldValidationWrapperProps>();
         class="nexp-field-validation-wrapper"
         :class="{ 'nexp-field-validation-wrapper--has-error': error }"
     >
-        <slot />
+        <slot :describedBy="errorMessageID" />
 
         <p
             v-if="error"
+            :id="errorMessageID"
             class="nexp-field-validation-wrapper__error-message"
             role="alert"
         >

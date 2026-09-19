@@ -1,5 +1,22 @@
 <script setup lang="ts">
-import { z } from 'zod';
+// import { z } from 'zod';
+import type { IFormValidationConfig } from '~/composables/useFormValidation';
+
+const { errors, validateField } = useFormValidation();
+
+const formValidationConfig: IFormValidationConfig = {
+    email: {
+        rules: [
+            (value: string) => !value.endsWith('.ru') || 'The registration from .ru domains is not allowed.',
+        ],
+
+        schema: userRegisterSchema.shape.email,
+    },
+
+    password: {
+        schema: userRegisterSchema.shape.password,
+    },
+};
 
 const formData = reactive<UserRegisterSchema>({
     email: '',
@@ -7,10 +24,10 @@ const formData = reactive<UserRegisterSchema>({
     password: '',
 });
 
-const validationErrors = ref<Record<string, string[] | undefined> | null>(null);
+// const validationErrors = ref<Record<string, string[] | undefined> | null>(null);
 
 const register = async () => {
-    validationErrors.value = null;
+    /* validationErrors.value = null;
 
     const validationResult = userRegisterSchema.safeParse(formData);
 
@@ -20,7 +37,7 @@ const register = async () => {
         console.log('Validation errors:', validationErrors.value);
         
         return;
-    }
+    } */
 
     try {
         const response = await $fetch('/api/v1/auth/register', {
@@ -39,9 +56,9 @@ const register = async () => {
     <div>
         <h1>Register</h1>
 
-        <form @submit.prevent="register">
+        <form @submit.prevent="register" novalidate>
             <div>
-                <BaseFieldValidationWrapper :error="validationErrors?.email?.join('; ') ?? ''">
+                <!-- <BaseFieldValidationWrapper :error="validationErrors?.email?.join('; ') ?? ''">
                     <label for="email">Email:</label>
 
                     <input
@@ -49,6 +66,20 @@ const register = async () => {
                         type="email"
                         id="email"
                         required
+                    />
+                </BaseFieldValidationWrapper> -->
+                
+                <BaseFieldValidationWrapper :error="errors.email" v-slot="{ describedBy }">
+                    <label for="email">Email:</label>
+
+                    <input
+                        v-model="formData.email"
+                        type="email"
+                        id="email"
+                        required
+                        :aria-invalid="!!errors.email"
+                        :aria-describedby="errors.email ? describedBy : undefined"
+                        @blur="validateField('email', $event, formValidationConfig.email)"
                     />
                 </BaseFieldValidationWrapper>
             </div>
@@ -64,7 +95,7 @@ const register = async () => {
             </div>
 
             <div>
-                <BaseFieldValidationWrapper :error="validationErrors?.password?.join('; ') ?? ''">
+                <BaseFieldValidationWrapper :error="errors.password" v-slot="{ describedBy }">
                     <label for="password">Password:</label>
 
                     <input
@@ -72,6 +103,9 @@ const register = async () => {
                         type="password"
                         id="password"
                         required
+                        :aria-invalid="!!errors.password"
+                        :aria-describedby="errors.password ? describedBy : undefined"
+                        @blur="validateField('password', $event, formValidationConfig.password)"
                     />
                 </BaseFieldValidationWrapper>
             </div>
