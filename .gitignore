@@ -24,3 +24,7 @@ logs
 !.env.example
 
 *.sqlite
+
+# Editor directories and files
+.vscode/*
+!.vscode/settings.json

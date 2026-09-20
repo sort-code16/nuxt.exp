@@ -37,7 +37,7 @@ const register = async (event: Event) => {
         validationErrors.value = z.flattenError(validationResult.error).fieldErrors;
 
         console.log('Validation errors:', validationErrors.value);
-        
+
         return;
     } */
 
@@ -58,7 +58,7 @@ const register = async (event: Event) => {
     <div>
         <h1>Register</h1>
 
-        <form @submit.prevent="register" novalidate>
+        <form novalidate @submit.prevent="register">
             <div>
                 <!-- <BaseFieldValidationWrapper :error="validationErrors?.email?.join('; ') ?? ''">
                     <label for="email">Email:</label>
@@ -70,7 +70,7 @@ const register = async (event: Event) => {
                         required
                     />
                 </BaseFieldValidationWrapper> -->
-                
+
                 <BaseFieldValidationWrapper :error="errors.email" v-slot="{ describedBy }">
                     <label for="email">Email:</label>
 
@@ -118,7 +118,7 @@ const register = async (event: Event) => {
         </form>
 
         <p>
-            Already have an account? 
+            Already have an account?
             <NuxtLink to="/login">Login</NuxtLink>
         </p>
     </div>

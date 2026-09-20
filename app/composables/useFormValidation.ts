@@ -1,7 +1,8 @@
-import { z } from 'zod';
+import type { z } from 'zod';
 
+// TODO: Check rule value type (maybe number or boolean are also needed)
 interface IFieldValidationConfig {
-    readonly rules?: Array<(value: any) => true | string>;
+    readonly rules?: Array<(value: string) => true | string>;
     readonly schema?: z.ZodType;
 }
 
@@ -50,7 +51,7 @@ export default function useFormValidation() {
 
             if (!result.success) {
                 errors[name] = result.error.issues[0]?.message ?? 'Validation error';
-                
+
                 return false;
             }
         }

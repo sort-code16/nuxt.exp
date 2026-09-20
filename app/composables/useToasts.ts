@@ -10,7 +10,7 @@ interface IAddToastPayload {
 
 export default function useToasts() {
     const toasts = useState<IToast[]>('app:toasts', () => []);
-    
+
     const removeToast = (id: IToast['id']) => {
         toasts.value = toasts.value.filter((toast) => toast.id !== id);
     };
