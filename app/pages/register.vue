@@ -2,7 +2,7 @@
 // import { z } from 'zod';
 import type { IFormValidationConfig } from '~/composables/useFormValidation';
 
-const { errors, validateField } = useFormValidation();
+const { errors, validateField, validateForm } = useFormValidation();
 
 const formValidationConfig: IFormValidationConfig = {
     email: {
@@ -26,7 +26,9 @@ const formData = reactive<UserRegisterSchema>({
 
 // const validationErrors = ref<Record<string, string[] | undefined> | null>(null);
 
-const register = async () => {
+const register = async (event: Event) => {
+    if (!validateForm(event, formValidationConfig)) return;
+
     /* validationErrors.value = null;
 
     const validationResult = userRegisterSchema.safeParse(formData);
@@ -76,6 +78,7 @@ const register = async () => {
                         v-model="formData.email"
                         type="email"
                         id="email"
+                        name="email"
                         required
                         :aria-invalid="!!errors.email"
                         :aria-describedby="errors.email ? describedBy : undefined"
@@ -102,6 +105,7 @@ const register = async () => {
                         v-model="formData.password"
                         type="password"
                         id="password"
+                        name="password"
                         required
                         :aria-invalid="!!errors.password"
                         :aria-describedby="errors.password ? describedBy : undefined"

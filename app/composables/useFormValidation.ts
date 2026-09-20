@@ -9,17 +9,20 @@ export interface IFormValidationConfig {
     readonly [key: string]: IFieldValidationConfig;
 }
 
+type FieldType = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+
 export default function useFormValidation() {
     const errors = reactive<Record<string, string>>({});
     const values = reactive<Record<string, string>>({});
 
-    const validateField = (name: string, event: Event, config: IFieldValidationConfig = {}) => {
-        const element = event.target as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+    function validateElement(
+        name: string,
+        element: FieldType,
+        config: IFieldValidationConfig = {},
+    ): boolean {
         const value = element.value;
 
         values[name] = value;
-
-        const { rules = [], schema = null } = config;
 
         // step 1 - native HTML validation (required, min / max, pattern etc.)
         if (typeof element.checkValidity === 'function' && !element.checkValidity()) {
@@ -27,6 +30,8 @@ export default function useFormValidation() {
 
             return false;
         }
+
+        const { rules = [], schema = null } = config;
 
         // step 2 - custom validation rules
         for (const rule of rules) {
@@ -56,8 +61,30 @@ export default function useFormValidation() {
         return true;
     };
 
+    const validateField = (
+        name: string,
+        event: Event,
+        config: IFieldValidationConfig = {},
+    ): boolean => validateElement(name, event.target as FieldType, config);
+
+    const validateForm = (event: Event, config: IFormValidationConfig = {}): boolean => {
+        let isFormValid = true;
+
+        (event.target as HTMLFormElement)
+            .querySelectorAll<FieldType>('input, select, textarea')
+            .forEach((element) => {
+                if (!element.name) return;
+                if (validateElement(element.name, element, config[element.name])) return;
+
+                isFormValid = false;
+            });
+
+        return isFormValid;
+    };
+
     return {
         errors,
         validateField,
+        validateForm,
     };
 }
