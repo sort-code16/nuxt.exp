@@ -11,10 +11,6 @@ interface IToastProps extends IToast {
     closable?: boolean;
 }
 
-const emit = defineEmits<{
-    close: [id: IToastProps['id']];
-}>();
-
 const {
     id,
     type,
@@ -23,6 +19,12 @@ const {
     duration = 0,
     closable = false,
 } = defineProps<IToastProps>();
+
+interface IToastEmits {
+    close: [id: IToastProps['id']];
+}
+
+const emit = defineEmits<IToastEmits>();
 </script>
 
 <template>
@@ -35,12 +37,13 @@ const {
         <div
             v-if="duration > 0"
             class="nexp-toast__progress"
-            :style="{ animationDuration: `${duration}ms`}"
+            :style="{ animationDuration: `${duration}ms` }"
             aria-hidden="true"
         ></div>
 
         <BaseButton
             v-if="closable"
+            type="button"
             class="nexp-toast__close-btn"
             aria-label="Close notification"
             @click="emit('close', id)"
@@ -73,34 +76,34 @@ const {
     }
 
     &--success {
-        border-color: var(--nexp-green-5);
+        border-color: #008000;
 
         h3 {
-            color: var(--nexp-green-5);
+            color: #008000;
         }
     }
 
     &--error {
-        border-color: var(--nexp-red-5);
+        border-color: #ff0000;
 
         h3 {
-            color: var(--nexp-red-5);
+            color: #ff0000;
         }
     }
 
     &--info {
-        border-color: var(--nexp-blue-5);
+        border-color: #0000ff;
 
         h3 {
-            color: var(--nexp-blue-5);
+            color: #0000ff;
         }
     }
 
     &--warning {
-        border-color: var(--nexp-orange-5);
+        border-color: #ffa500;
 
         h3 {
-            color: var(--nexp-orange-5);
+            color: #ffa500;
         }
     }
 
@@ -110,7 +113,7 @@ const {
         left: 0;
         width: 100%;
         height: 1px;
-        background-color: var(--nexp-gray-5);
+        background-color: #808080;
         animation: nexp-toast-progress-shrink linear forwards;
     }
 

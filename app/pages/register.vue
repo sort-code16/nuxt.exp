@@ -72,7 +72,7 @@ const register = async (event: Event) => {
                 </BaseFieldValidationWrapper> -->
 
                 <BaseFieldValidationWrapper :error="errors.email" v-slot="{ describedBy }">
-                    <label for="email">Email:</label>
+                    <!-- <label for="email">Email:</label>
 
                     <input
                         v-model="formData.email"
@@ -81,40 +81,61 @@ const register = async (event: Event) => {
                         name="email"
                         required
                         :aria-invalid="!!errors.email"
-                        :aria-describedby="errors.email ? describedBy : undefined"
+                        :aria-describedby="describedBy"
+                        @blur="validateField('email', $event, formValidationConfig.email)"
+                    /> -->
+
+                    <BaseTextField
+                        v-model="formData.email"
+                        type="email"
+                        label="Email:"
+                        name="email"
+                        autocomplete="on"
+                        required
+                        :invalid="!!errors.email"
+                        :aria-describedby="describedBy"
                         @blur="validateField('email', $event, formValidationConfig.email)"
                     />
                 </BaseFieldValidationWrapper>
             </div>
 
             <div>
-                <label for="username">Username:</label>
+                <!-- <label for="username">Username:</label>
 
                 <input
                     v-model="formData.username"
                     type="text"
                     id="username"
+                /> -->
+
+                <!-- <BaseTextField
+                    :model-value="formData.username"
+                    @update:model-value="formData.username = $event"
+                /> -->
+
+                <BaseTextField
+                    v-model="formData.username"
+                    label="Username:"
+                    hint="Leave blank to use your email prefix as username."
                 />
             </div>
 
             <div>
                 <BaseFieldValidationWrapper :error="errors.password" v-slot="{ describedBy }">
-                    <label for="password">Password:</label>
-
-                    <input
+                    <BaseTextField
                         v-model="formData.password"
                         type="password"
-                        id="password"
+                        label="Password:"
                         name="password"
                         required
-                        :aria-invalid="!!errors.password"
-                        :aria-describedby="errors.password ? describedBy : undefined"
+                        :invalid="!!errors.password"
+                        :aria-describedby="describedBy"
                         @blur="validateField('password', $event, formValidationConfig.password)"
                     />
                 </BaseFieldValidationWrapper>
             </div>
 
-            <button type="submit">Register</button>
+            <BaseButton label="Register" level="primary" />
         </form>
 
         <p>

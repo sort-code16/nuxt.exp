@@ -7,11 +7,15 @@ export default withNuxt(
     .override('nuxt/vue/rules', {
         rules: {
             'vue/attributes-order': 'off',
-            'vue/max-attributes-per-line': 'off',
             'vue/singleline-html-element-content-newline': 'off',
             'vue/html-self-closing': 'off',
 
             'vue/html-indent': ['error', 4],
+            'vue/attribute-hyphenation': ['warn', 'never'],
+
+            'vue/max-attributes-per-line': ['warn', {
+                singleline: { max: 6 },
+            }],
         },
     })
     .override('nuxt/stylistic', {
@@ -24,6 +28,7 @@ export default withNuxt(
 
             '@stylistic/indent': ['error', 4],
             '@stylistic/quotes': ['error', 'single'],
+            '@stylistic/quote-props': ['error', 'as-needed'],
 
             '@stylistic/max-len': ['error', {
                 code: 120,

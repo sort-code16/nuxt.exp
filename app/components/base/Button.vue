@@ -1,42 +1,37 @@
-<script setup>
-defineProps({
-    type: {
-        type: String,
-        default: 'button',
-        validator: (value) => ['button', 'submit', 'reset'].includes(value),
-    },
+<script setup lang="ts">
+interface IButtonProps {
+    label?: string;
+    level?: 'primary' | 'secondary' | 'tertiary';
+}
 
-    level: {
-        type: String,
-        default: 'secondary',
-        validator: (value) => ['primary', 'secondary', 'tertiary'].includes(value),
-    },
+const {
+    label = '',
+    level = 'tertiary',
+} = defineProps<IButtonProps>();
 
-    size: {
-        type: String,
-        default: 'md',
-        validator: (value) => ['sm', 'md'].includes(value),
-    },
-});
+interface IButtonEmits {
+    click: [event: MouseEvent];
+}
+
+const emit = defineEmits<IButtonEmits>();
 </script>
 
 <template>
     <button
-        :type="type"
-        :class="['nexp-button', `nexp-button--${level}`, `nexp-button--${size}`]"
-        @click="$emit('click', $event)"
+        :class="['nexp-button', `nexp-button--${level}`]"
+        @click="emit('click', $event)"
     >
-        <span class="nexp-button__label">
-            <slot />
+        <span v-if="label" class="nexp-button__label">
+            {{ label }}
         </span>
+
+        <slot v-else />
     </button>
 </template>
 
 <style scoped lang="scss">
 .nexp-button {
     padding: 4px 8px;
-    color: var(--nexp-black-6, #000);
-    border: 1px solid currentColor;
     transition: all .4s ease;
 
     &__label {
@@ -44,34 +39,29 @@ defineProps({
     }
 
     &:disabled {
-        opacity: .5;
+        opacity: .6;
         cursor: not-allowed;
     }
 
-    &--primary {
-        border-color: var(--nexp-black-6, #000);
-        background-color: var(--nexp-black-6, #000);
-        color: var(--nexp-green-2);
+    &:hover,
+    &:focus {
+        outline: 2px solid #0000ff;
+        outline-offset: 2px;
+    }
 
-        &:hover,
-        &:focus {
-            color: #fff;
-        }
+    &--primary {
+        background-color: #000;
+        color: #fff;
+    }
+
+    &--secondary {
+        background-color: #0000ff;
+        color: #fff;
     }
 
     &--tertiary {
-        border-color: var(--nexp-blue-6, #333);
-        background-color: var(--nexp-blue-6, #333);
-        color: var(--nexp-green-2);
-
-        &:hover,
-        &:focus {
-            color: #fff;
-        }
-    }
-
-    &--sm {
-        font-size: 12px;
+        color: #000;
+        border: 1px solid currentColor;
     }
 }
 </style>
