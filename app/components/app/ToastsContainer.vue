@@ -16,15 +16,7 @@ const { toasts, removeToast } = useToasts();
             v-for="{ id, type, title, message, duration } in toasts"
             :key="id"
         >
-            <BaseToast
-                :id
-                :type
-                :title
-                :message
-                :duration
-                closable
-                @close="removeToast"
-            />
+            <BaseToast :id :type :title :message :duration @close="removeToast" />
         </div>
     </div>
 </template>

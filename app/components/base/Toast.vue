@@ -1,14 +1,10 @@
 <script setup lang="ts">
-export interface IToast {
+export interface IToastProps {
     id: string;
     type: 'success' | 'error' | 'info' | 'warning';
     title?: string;
     message: string;
     duration?: number;
-}
-
-interface IToastProps extends IToast {
-    closable?: boolean;
 }
 
 const {
@@ -17,7 +13,6 @@ const {
     title = '',
     message,
     duration = 0,
-    closable = false,
 } = defineProps<IToastProps>();
 
 interface IToastEmits {
@@ -25,6 +20,18 @@ interface IToastEmits {
 }
 
 const emit = defineEmits<IToastEmits>();
+
+let timeoutID: ReturnType<typeof setTimeout> | null = null;
+
+onMounted(() => {
+    if (duration > 0) {
+        timeoutID = setTimeout(() => emit('close', id), duration);
+    }
+});
+
+onUnmounted(() => {
+    if (timeoutID) clearTimeout(timeoutID);
+});
 </script>
 
 <template>
@@ -42,7 +49,7 @@ const emit = defineEmits<IToastEmits>();
         ></div>
 
         <BaseButton
-            v-if="closable"
+            v-else
             type="button"
             class="nexp-toast__close-btn"
             aria-label="Close notification"
