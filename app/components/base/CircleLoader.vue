@@ -1,17 +1,16 @@
-<script setup>
-defineProps({
-    size: {
-        type: String,
-        default: 'md',
-        validator: (value) => ['xs', 'sm', 'md', 'lg'].includes(value),
-    },
-});
+<script setup lang="ts">
+interface ICircleLoaderProps {
+    size?: 'xs' | 'sm' | 'md' | 'lg';
+}
+
+const { size = 'md' } = defineProps<ICircleLoaderProps>();
 </script>
 
 <template>
     <div
-        class="nexp-circle-loader"
-        :class="`nexp-circle-loader--${size}`"
+        :class="['nexp-circle-loader', `nexp-circle-loader--${size}`]"
+        role="status"
+        aria-label="Loading..."
     ></div>
 </template>
 
