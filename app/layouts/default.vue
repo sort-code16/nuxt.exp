@@ -31,9 +31,7 @@ useHead(() => ({
 
 <style scoped lang="scss">
 .default-layout {
-    max-height: calc(100vh - 120px);
-    height: calc(100vh - 120px);
-    background-color: var(--nexp-green-1);
+    flex-grow: 1;
     padding-block: 24px 40px;
 }
 </style>

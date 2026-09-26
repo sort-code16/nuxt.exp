@@ -71,12 +71,12 @@ h1, h2, h3, h4, strong {
 
 a {
     color: #0000ff;
-    transition: all .4s ease;
+    // transition: all .4s ease;
 
-    &:hover,
-    &:focus {
-        color: #8a2be2;
-    }
+    // &:focus-visible {
+    //     outline: none;
+    //     text-decoration: underline;
+    // }
 }
 
 p {

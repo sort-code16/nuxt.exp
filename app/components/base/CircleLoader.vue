@@ -23,8 +23,8 @@ const { size = 'md' } = defineProps<ICircleLoaderProps>();
 .nexp-circle-loader {
     width: 28px;
     height: 28px;
-    border: 4px solid var(--nexp-green-3, #eee);
-    border-top-color: contrast-color(var(--nexp-green-3, #eee));
+    border: 4px solid #808080;
+    border-top-color: contrast-color(#808080);
     border-radius: 50%;
     animation: spin 1s linear infinite;
 

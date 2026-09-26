@@ -29,6 +29,7 @@ export default withNuxt(
             '@stylistic/indent': ['error', 4],
             '@stylistic/quotes': ['error', 'single'],
             '@stylistic/quote-props': ['error', 'as-needed'],
+            '@stylistic/max-statements-per-line': ['error', { max: 2 }],
 
             '@stylistic/max-len': ['error', {
                 code: 120,

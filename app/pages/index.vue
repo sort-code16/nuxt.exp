@@ -25,7 +25,7 @@ onMounted(() => {
 <template>
     <div>
         <h1>Welcome to the homepage</h1>
-        
+
         <button type="button" @click="openDialog">
             Update details
         </button>

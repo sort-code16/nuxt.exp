@@ -4,7 +4,7 @@
 // console.log('appConfig', appConfig);
 
 useHead({
-    titleTemplate: (pageTitle) => `%env ${pageTitle ? pageTitle + ' %separator %siteName': '%siteName'}`,
+    titleTemplate: (pageTitle) => `%env ${pageTitle ? pageTitle + ' %separator %siteName' : '%siteName'}`,
     htmlAttrs: {
         lang: 'en',
     },
@@ -22,7 +22,7 @@ const { data, pending, error } = useFetch('/api/v1/test', {
         <AppHeader @open-settings="() => console.log('Settings opened')" />
 
         <ClientOnly>
-           <AppToastsContainer />
+            <AppToastsContainer />
         </ClientOnly>
 
         <NuxtLayout>
@@ -46,7 +46,10 @@ const { data, pending, error } = useFetch('/api/v1/test', {
 <style scoped lang="scss">
 .app {
     position: relative;
-    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    height: 100svh;
 
     &__test {
         position: fixed;

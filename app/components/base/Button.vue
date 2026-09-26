@@ -32,7 +32,7 @@ const emit = defineEmits<IButtonEmits>();
 <style scoped lang="scss">
 .nexp-button {
     padding: 4px 8px;
-    transition: all .4s ease;
+    // transition: all .4s ease;
 
     &__label {
         text-wrap: nowrap;

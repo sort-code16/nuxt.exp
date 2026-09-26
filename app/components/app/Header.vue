@@ -1,107 +1,125 @@
-<script setup>
+<script setup lang="ts">
+interface IHeaderEmits {
+    'open-settings': [];
+}
+
+const emit = defineEmits<IHeaderEmits>();
+
 const route = useRoute();
+const router = useRouter();
 
-const isNativeDialogExist = ref(false);
+// const isNativeDialogExist = ref(false);
+const menuPopoverRef = useTemplateRef('mobileMenuPopover');
 
-watch(() => route.path, (currentPath) => {
-	isNativeDialogExist.value = currentPath === '/';
-}, { immediate: true });
+const isHomePage = computed(() => route.path === '/');
+
+onMounted(() => {
+    router.afterEach(() => {
+        const popover = menuPopoverRef.value;
+
+        if (
+            popover
+            && typeof popover.hidePopover === 'function'
+            && popover.matches(':popover-open')
+        ) {
+            popover.hidePopover();
+        }
+    });
+});
+
+// watch(() => route.path, (currentPath) => {
+//     isNativeDialogExist.value = currentPath === '/';
+// }, { immediate: true });
 </script>
 
 <template>
-	<header class="app-header">
-		<NuxtLink to="/">
-			<span class="app-header__logo">nuxt.exp</span>
-		</NuxtLink>
+    <header class="app-header">
+        <component
+            :is="isHomePage ? 'h1' : 'div'"
+            style="line-height: 0"
+        >
+            <NuxtLink to="/" class="app-header__logo">
+                nuxt.exp
+            </NuxtLink>
+        </component>
 
-		<nav class="app-header__menu">
-			<ul>
-				<li><NuxtLink to="/posts">Posts</NuxtLink></li>
-				<li><NuxtLink to="/boards">Boards</NuxtLink></li>
-				<li><NuxtLink to="/projects">Projects</NuxtLink></li>
-			</ul>
-		</nav>
+        <nav class="app-header__menu" aria-label="Main navigation">
+            <AppNavigationList role="list" />
+        </nav>
 
-		<div
-			popover="manual"
-			id="menuPopover"
-			class="app-header__popover"
-		>
-			<BaseButton popovertarget="menuPopover" popovertargetaction="hide">x</BaseButton>
+        <div
+            popover="manual"
+            id="menuPopover"
+            ref="mobileMenuPopover"
+            class="app-header__popover"
+        >
+            <BaseButton
+                type="button"
+                popovertarget="menuPopover"
+                popovertargetaction="hide"
+                aria-label="Close mobile navigation"
+            >
+                x
+            </BaseButton>
 
-			<nav>
-				<ul>
-					<li><NuxtLink to="/posts">Posts</NuxtLink></li>
-					<li><NuxtLink to="/boards">Boards</NuxtLink></li>
-					<li><NuxtLink to="/projects">Projects</NuxtLink></li>
-				</ul>
-			</nav>
-		</div>
+            <nav aria-label="Mobile navigation">
+                <AppNavigationList />
+            </nav>
+        </div>
 
-		<div class="app-header__popover-page-blocker"></div>
+        <div class="app-header__popover-page-blocker"></div>
 
-		<div class="app-header__actions">
-			<BaseButton
-				level="tertiary"
-				popovertarget="menuPopover"
-				class="app-header__popover-btn"
-			>
-				Menu
-			</BaseButton>
+        <div class="app-header__actions">
+            <BaseButton
+                type="button"
+                level="tertiary"
+                popovertarget="menuPopover"
+                class="app-header__popover-btn"
+                aria-label="Open mobile navigation"
+            >
+                Menu
+            </BaseButton>
 
-			<slot name="actions">
-				<BaseButton
-					v-if="isNativeDialogExist"
-					command="show-modal"
-					commandfor="nexp-dialog-1"
-				>
-					Info
-				</BaseButton>
+            <slot name="actions">
+                <BaseButton
+                    v-if="isHomePage"
+                    type="button"
+                    command="show-modal"
+                    commandfor="nexp-dialog-1"
+                >
+                    Info
+                </BaseButton>
 
-				<BaseButton
-					level="primary"
-					@click="$emit('open-settings')"
-				>
-					Settings
-				</BaseButton>
-			</slot>
-		</div>
-	</header>
+                <BaseButton
+                    type="button"
+                    level="primary"
+                    @click="emit('open-settings')"
+                >
+                    Settings
+                </BaseButton>
+            </slot>
+        </div>
+    </header>
 </template>
 
 <style scoped lang="scss">
 .app-header {
-	height: 60px;
+	flex: 0 0 60px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 24px;
     padding: 12px 24px 8px;
-    background-color: var(--nexp-green-2);
-    border-bottom: 4px solid var(--nexp-blue-6);
+    border-bottom: 4px solid #000;
 
 	&__logo {
 		font: 20px / 1 "Tourney";
 		text-transform: uppercase;
-		color: var(--nexp-blue-6);
-	}
+		color: #000;
 
-	&__menu,
-	&__popover {
-		ul {
-			display: flex;
-			font-size: 16px;
-		}
-
-		a {
-			color: var(--nexp-blue-6);
-			text-transform: uppercase;
-			font-weight: 800;
-
-			&:hover,
-			&:focus {
-				color: var(--nexp-black-6, #000);
-			}
+		&:focus-visible {
+			outline: none;
+			color: #0000ff;
 		}
 	}
 
@@ -150,7 +168,7 @@ watch(() => route.path, (currentPath) => {
 			font-size: 32px;
 		}
 	}
-	
+
 	@media (min-width: 768px) {
 		&__menu {
 			display: inline-flex;
