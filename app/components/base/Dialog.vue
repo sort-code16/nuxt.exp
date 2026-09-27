@@ -17,5 +17,5 @@ defineProps({
 </template>
 
 <style scoped lang="scss">
-.nexp-dialog {}
+.nexp-dialog {} /* stylelint-disable-line block-no-empty */
 </style>

@@ -104,7 +104,7 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .app-header {
-	flex: 0 0 60px;
+    flex: 0 0 60px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -112,79 +112,79 @@ onMounted(() => {
     padding: 12px 24px 8px;
     border-bottom: 4px solid #000;
 
-	&__logo {
-		font: 20px / 1 "Tourney";
-		text-transform: uppercase;
-		color: #000;
+    &__logo {
+        font: 20px / 1 Tourney, sans-serif;
+        text-transform: uppercase;
+        color: #000;
 
-		&:focus-visible {
-			outline: none;
-			color: #0000ff;
-		}
-	}
+        &:focus-visible {
+            outline: none;
+            color: #00f;
+        }
+    }
 
-	&__menu {
-		display: none;
-		flex-grow: 1;
+    &__menu {
+        display: none;
+        flex-grow: 1;
 
-		ul {
-			gap: 24px;
-		}
-	}
+        ul {
+            gap: 24px;
+        }
+    }
 
-	&__popover {
-		padding: 24px;
-		flex-direction: column;
-		align-items: flex-start;
-		gap: 16px;
+    &__popover {
+        padding: 24px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
 
-		&:popover-open {
-			display: flex;
-		}
+        &:popover-open {
+            display: flex;
+        }
 
-		&::backdrop {
-			background-color: rgba(0, 0, 0, .1);
-		}
+        &::backdrop {
+            background-color: rgb(0 0 0 / .1);
+        }
 
-		ul {
-			flex-direction: column;
-			gap: 16px;
-		}
-	}
+        ul {
+            flex-direction: column;
+            gap: 16px;
+        }
+    }
 
-	&__popover-page-blocker {
-		position: fixed;
-		inset: 0;
-		z-index: 9998; // just below the popover's top layer
-		display: none;
-	}
+    &__popover-page-blocker {
+        position: fixed;
+        inset: 0;
+        z-index: 9998; // just below the popover's top layer
+        display: none;
+    }
 
-	&__popover:popover-open ~ &__popover-page-blocker {
-		display: block;
-	}
+    &__popover:popover-open ~ &__popover-page-blocker {
+        display: block;
+    }
 
-	@media (min-width: 576px) {
-		&__logo {
-			font-size: 32px;
-		}
-	}
+    @media (width >= 576px) {
+        &__logo {
+            font-size: 32px;
+        }
+    }
 
-	@media (min-width: 768px) {
-		&__menu {
-			display: inline-flex;
-		}
+    @media (width >= 768px) {
+        &__menu {
+            display: inline-flex;
+        }
 
-		&__popover-btn {
-			display: none;
-		}
-	}
+        &__popover-btn {
+            display: none;
+        }
+    }
 
-	&__actions {
-		min-width: 25%;
-		display: inherit;
-		align-items: inherit;
-		justify-content: flex-end;
-		gap: 8px;
-	}
+    &__actions {
+        min-width: 25%;
+        display: inherit;
+        align-items: inherit;
+        justify-content: flex-end;
+        gap: 8px;
+    }
 }
 </style>

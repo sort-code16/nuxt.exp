@@ -116,7 +116,7 @@ const describedBy = computed(() => {
     }
 
     &__required-indicator {
-        color: #ff0000;
+        color: #f00;
     }
 
     &__hint {
@@ -129,12 +129,12 @@ const describedBy = computed(() => {
         padding: 4px 8px;
 
         &:focus {
-            outline: 2px solid #0000ff;
+            outline: 2px solid #00f;
             outline-offset: 2px;
         }
 
         &[aria-invalid='true'] {
-            border-color: #ff0000;
+            border-color: #f00;
         }
     }
 }

@@ -27,12 +27,12 @@ const errorMessageID = useId();
 <style scoped lang="scss">
 .nexp-field-validation-wrapper {
     &__error-message {
-        color: #ff0000;
+        color: #f00;
         margin-top: 4px;
     }
 
     /* &--has-error {
-        border-color: #ff0000;
+        border-color: #f00;
     } */
 }
 </style>

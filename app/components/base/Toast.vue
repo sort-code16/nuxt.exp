@@ -91,18 +91,18 @@ onUnmounted(() => {
     }
 
     &--error {
-        border-color: #ff0000;
+        border-color: #f00;
 
         h3 {
-            color: #ff0000;
+            color: #f00;
         }
     }
 
     &--info {
-        border-color: #0000ff;
+        border-color: #00f;
 
         h3 {
-            color: #0000ff;
+            color: #00f;
         }
     }
 

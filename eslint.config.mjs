@@ -39,5 +39,8 @@ export default withNuxt(
         },
     })
     // .append({
-    //     rules: {},
-    // })
+    //     files: ['**/*.vue'],
+    //     rules: {
+    //         '@stylistic/no-tabs': ['error', { allowIndentation: true }],
+    //     },
+    // });

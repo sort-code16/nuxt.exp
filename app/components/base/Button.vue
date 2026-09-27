@@ -45,7 +45,7 @@ const emit = defineEmits<IButtonEmits>();
 
     &:hover,
     &:focus {
-        outline: 2px solid #0000ff;
+        outline: 2px solid #00f;
         outline-offset: 2px;
     }
 
@@ -55,7 +55,7 @@ const emit = defineEmits<IButtonEmits>();
     }
 
     &--secondary {
-        background-color: #0000ff;
+        background-color: #00f;
         color: #fff;
     }
 

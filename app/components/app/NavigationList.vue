@@ -46,7 +46,7 @@ a {
     }
 
     &.active {
-        color: #0000ff;
+        color: #00f;
     }
 }
 </style>

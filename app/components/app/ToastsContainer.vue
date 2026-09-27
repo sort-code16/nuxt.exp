@@ -29,7 +29,7 @@ const { toasts, removeToast } = useToasts();
     z-index: 999;
     width: 400px;
     height: 100%;
-    background-color: rgba(0, 0, 0, .1);
+    background-color: rgb(0 0 0 / .1);
     padding-block: 24px;
     display: flex;
     flex-direction: column;

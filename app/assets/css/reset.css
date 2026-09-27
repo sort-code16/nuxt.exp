@@ -4,8 +4,8 @@
 
 html {
     line-height: 1;
-    -webkit-text-size-adjust: 100%;
-    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%; /* stylelint-disable-line property-no-vendor-prefix */
+    -moz-text-size-adjust: 100%; /* stylelint-disable-line property-no-vendor-prefix */
 }
 
 body {
@@ -37,7 +37,6 @@ input, button, textarea, select {
 }
 
 button, [type='button'], [type='reset'], [type='submit'] {
-    -webkit-appearance: none;
     appearance: none;
     border: none;
     background: none;
