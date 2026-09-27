@@ -16,7 +16,7 @@ const { data, status, error } = useFetch('/api/v1/boards');
 
         <div v-else>
             <ul v-if="data?.boards.length">
-                <li v-for="{ id, name } in data.boards">
+                <li v-for="{ id, name } in data.boards" :key="`board-${id}`">
                     {{ name }}
                 </li>
             </ul>

@@ -28,7 +28,7 @@ export default defineWebSocketHandler({
         // 1006 - by server
         // 1001 - by client
 
-        console.log("Disconnected:", peer.id, details.code, details.reason);
+        console.log('Disconnected:', peer.id, details.code, details.reason);
         // console.log(`Клієнт ${peer.id} закрив з'єднання з кімнатою ${channel}`);
 
         peer.unsubscribe(peer.context.board);

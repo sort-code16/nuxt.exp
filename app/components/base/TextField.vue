@@ -1,7 +1,7 @@
 <script setup lang="ts">
 interface ITextFieldProps {
     modelValue?: string;
-    type?: 'text' | 'email' | 'url' | 'tel' | 'password'; 
+    type?: 'text' | 'email' | 'url' | 'tel' | 'password';
     required?: boolean;
     invalid?: boolean;
     label?: string;

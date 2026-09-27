@@ -6,7 +6,7 @@ const { isValidParam } = useRouteValidation();
 definePageMeta({
     // name: 'board',
     title: 'Board',
-    validate: ({ params }) => isValidParam(params.id) || { status: 404, statusText: 'Board not found' }
+    validate: ({ params }) => isValidParam(params.id) || { status: 404, statusText: 'Board not found' },
 });
 
 const id = route.params.id;
@@ -21,7 +21,7 @@ onMounted(() => {
     const wsUrl = `${protocol}://${window.location.host}/ws/boards/${id}`;
 
     console.log('[board] connecting to', wsUrl);
-    
+
     try {
         ws = new WebSocket(wsUrl);
 

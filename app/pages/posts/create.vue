@@ -1,10 +1,3 @@
-<template>
-  <div>
-    <h1>Create Post</h1>
-    <PostForm />
-  </div>
-</template>
-
 <script setup>
 import PostForm from './_components/PostForm.vue';
 
@@ -16,3 +9,10 @@ import PostForm from './_components/PostForm.vue';
   router.push('/posts')
 } */
 </script>
+
+<template>
+    <div>
+        <h1>Create Post</h1>
+        <PostForm />
+    </div>
+</template>

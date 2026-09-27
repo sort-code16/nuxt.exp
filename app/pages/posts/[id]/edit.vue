@@ -7,7 +7,7 @@ const route = useRoute();
 const { isValidParam } = useRouteValidation();
 
 definePageMeta({
-    validate: ({ params }) => isValidParam(params.id) || { status: 404, statusText: 'Post not found' }
+    validate: ({ params }) => isValidParam(params.id) || { status: 404, statusText: 'Post not found' },
 });
 
 const form = ref({ title: 'test 1', content: 'content test 1' });
@@ -27,9 +27,9 @@ const id = route.params.id;
 </script>
 
 <template>
-  <div>
-    <h1>Edit Post #{{ id }}</h1>
+    <div>
+        <h1>Edit Post #{{ id }}</h1>
 
-    <PostForm :post="form" />
-  </div>
+        <PostForm :post="form" />
+    </div>
 </template>

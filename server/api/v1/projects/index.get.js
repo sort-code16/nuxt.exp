@@ -1,4 +1,4 @@
-export default defineEventHandler((event) => {
+export default defineEventHandler(() => {
     return {
         data: [
             {
@@ -11,7 +11,7 @@ export default defineEventHandler((event) => {
                 id: 2,
                 name: 'BT Gallery Plugin',
                 description: 'BorschTemplates - Gallery plugin',
-                src: '/images/bt-gallery-plugin.png', 
+                src: '/images/bt-gallery-plugin.png',
             },
             {
                 id: 3,
