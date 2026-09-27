@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-    modules: ['@nuxt/eslint'],
+    modules: ['@nuxt/eslint', '@nuxtjs/stylelint-module'],
 
     $development: {
         app: {
@@ -53,4 +53,8 @@ export default defineNuxtConfig({
             stylistic: true,
         },
     },
-})
+
+    stylelint: {
+        lintOnStart: false,
+    },
+});

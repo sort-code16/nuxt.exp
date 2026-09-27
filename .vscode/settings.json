@@ -10,5 +10,11 @@
     "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features",
         "files.insertFinalNewline": true
-    }
+    },
+
+    "stylelint.enable": true,
+    "stylelint.validate": ["css", "scss", "vue"],
+
+    "css.validate": false,
+    "scss.validate": false,
 }
