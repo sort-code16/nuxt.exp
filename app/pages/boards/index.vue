@@ -3,9 +3,7 @@ definePageMeta({
     middleware: 'auth',
 });
 
-const { data, status, error } = useFetch('/api/v1/boards');
-
-// console.log(error.value);
+const { data, status } = useFetch('/api/v1/boards');
 </script>
 
 <template>

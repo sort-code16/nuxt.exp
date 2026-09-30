@@ -1,10 +1,17 @@
-<script setup></script>
+<script setup lang="ts">
+const { user, logout } = useAuth();
+</script>
 
 <template>
     <footer class="app-footer">
         <span class="app-footer__copyright">© 2026 nuxt.exp</span>
 
-        <NuxtLink to="/login" custom v-slot="{ navigate }">
+        <div v-if="user">
+            <span>Hi, {{ user.username }}!</span>&nbsp;
+            <BaseButton type="button" @click="logout">Logout</BaseButton>
+        </div>
+
+        <NuxtLink v-else to="/login" custom v-slot="{ navigate }">
             <BaseButton type="button" @click="navigate">Login</BaseButton>
         </NuxtLink>
     </footer>

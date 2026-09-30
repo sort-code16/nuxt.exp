@@ -1,8 +1,13 @@
 <script setup lang="ts">
 // import { z } from 'zod';
-import type { IFormValidationConfig } from '~/composables/useFormValidation';
+
+definePageMeta({
+    middleware: 'guest',
+});
 
 const { errors, validateField, validateForm } = useFormValidation();
+const { register: makeRequest } = useAuth();
+const { success, danger } = useToasts();
 
 const formValidationConfig: IFormValidationConfig = {
     email: {
@@ -24,6 +29,8 @@ const formData = reactive<UserRegisterSchema>({
     password: '',
 });
 
+const loading = ref(false);
+
 // const validationErrors = ref<Record<string, string[] | undefined> | null>(null);
 
 const register = async (event: Event) => {
@@ -41,15 +48,19 @@ const register = async (event: Event) => {
         return;
     } */
 
-    try {
-        const response = await $fetch('/api/v1/auth/register', {
-            method: 'POST',
-            body: formData,
-        });
+    loading.value = true;
 
-        console.log('Registration successful:', response);
-    } catch (error) {
-        console.error('Registration failed:', error);
+    try {
+        const { data: { username } } = await makeRequest(formData);
+
+        success(`${username}, your account has been created`);
+        navigateTo('/');
+    } catch (e: FetchError) {
+        const msg = e.data?.message || e.message || 'Something wrong';
+
+        danger(msg, `${e.statusCode} - ${e.statusMessage}`);
+    } finally {
+        loading.value = false;
     }
 };
 </script>
@@ -135,7 +146,7 @@ const register = async (event: Event) => {
                 </BaseFieldValidationWrapper>
             </div>
 
-            <BaseButton label="Register" level="primary" />
+            <BaseButton label="Register" level="primary" :disabled="loading" />
         </form>
 
         <p>

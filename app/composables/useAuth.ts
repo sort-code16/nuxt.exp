@@ -1,0 +1,63 @@
+export default function useAuth() {
+    const user = useState<SafeUserDatabaseType | null>('auth:user', () => null);
+    const loading = useState<boolean>('auth:loading', () => false);
+
+    function clearUser() {
+        user.value = null;
+    }
+
+    const fetchUser = async () => {
+        if (user.value) return;
+
+        loading.value = true;
+
+        try {
+            user.value = await $fetch('/api/v1/auth/me');
+        } catch (e) {
+            console.log('Error while getting data about you', e);
+            clearUser();
+        } finally {
+            loading.value = false;
+        }
+    };
+
+    /* const login = async (credentials: { email: string, password: string }) => {
+        const response = await $fetch('/api/v1/auth/login', {
+            method: 'POST',
+            body: credentials,
+        });
+
+        user.value = response.data;
+
+        return response;
+    }; */
+
+    const register = async (credentials: UserRegisterSchema) => {
+        const response = await $fetch('/api/v1/auth/register', {
+            method: 'POST',
+            body: credentials,
+        });
+
+        user.value = response.data;
+
+        return response;
+    };
+
+    const logout = async () => {
+        await $fetch('/api/v1/auth/logout', { method: 'POST' });
+
+        clearUser();
+        navigateTo('/login');
+    };
+
+    return {
+        user,
+        loading,
+        isLoggedIn: computed(() => !!user.value),
+
+        fetchUser,
+        // login,
+        register,
+        logout,
+    };
+};

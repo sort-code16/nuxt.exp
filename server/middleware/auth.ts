@@ -1,3 +1,3 @@
-export default defineEventHandler(event => (
-    event.context.user = getUserFromAuthCookie(event)
-));
+export default defineEventHandler((event) => {
+    event.context.user = getUserFromAuthCookie(event);
+});

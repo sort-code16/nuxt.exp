@@ -43,7 +43,7 @@ export default function useToasts() {
         removeToast,
 
         success: createToast('success'),
-        error: createToast('error'),
+        danger: createToast('error'),
         info: createToast('info'),
         warning: createToast('warning'),
     };
