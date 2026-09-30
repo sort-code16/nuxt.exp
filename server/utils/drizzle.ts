@@ -7,8 +7,7 @@ export function useDrizzle() {
     return db;
 }
 
-type UserDatabaseType = typeof schema.usersTable.$inferSelect;
-
+export type UserDatabaseType = typeof schema.usersTable.$inferSelect;
 export type SafeUserDatabaseType = Omit<UserDatabaseType, 'password'>;
 
 // export type Board = typeof schema.boardsTable.$inferSelect;

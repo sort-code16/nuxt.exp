@@ -1,14 +1,14 @@
-import { compare } from 'bcrypt-ts';
 import { eq } from 'drizzle-orm';
-import { usersTable } from '~~/server/db/schema';
+import { usersTable } from '~~/server/db/schema'; // TODO: Might be not needed
 
+// TODO: Upgrade
 export default defineEventHandler(async (event) => {
-    const { username, password } = await readBody(event);
+    const { email, password } = await readBody(event);
 
-    if (!(username && password)) {
+    if (!(email && password)) {
         throw createError({
             statusCode: 400,
-            message: 'Username and password must be provided in data body.',
+            message: 'Email and password must be provided in data body.',
         });
     }
 
@@ -17,16 +17,17 @@ export default defineEventHandler(async (event) => {
     const user = db
         .select()
         .from(usersTable)
-        .where(eq(usersTable.username, username))
-        .limit(1) // TODO: Might be removed when checking of unique values will be done in register
+        .where(eq(usersTable.email, email))
+        // .limit(1) // TODO: Might be removed when checking of unique values will be done in register
         .get();
 
+    // TODO: Combine both errors for better security
     if (!user) throw createError({
         statusCode: 404,
-        message: 'User could not be found from the database with given username.',
+        message: 'Wrong email.',
     });
 
-    if (!(await compare(password, user.password))) {
+    if (!(verifyPassword(password, user.password))) {
         throw createError({
             statusCode: 401,
             message: 'Invalid password.',
@@ -36,7 +37,11 @@ export default defineEventHandler(async (event) => {
     // delete all rows from the 'users' table
     // await db.delete(usersTable);
 
+    const { password: _, ...data } = user;
+
+    setAuthCookie(event, data);
+
     return {
-        success: true,
+        data,
     };
 });
