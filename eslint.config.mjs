@@ -35,6 +35,9 @@ export default withNuxt(
                 code: 120,
                 ignoreUrls: true,
                 ignoreStrings: true,
+                ignoreComments: true,
+                // ignoreTemplateLiterals: true,
+                // ignoreTrailingComments: true,
             }],
         },
     })

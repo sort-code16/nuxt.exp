@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { hash } from 'bcrypt-ts';
 import { userRegisterSchema } from '~~/shared/utils/userSchema';
 import { usersTable } from '~~/server/db/schema';
 
@@ -20,7 +19,7 @@ export default defineEventHandler(async (event) => {
     const { email, username, password } = validatedBodyResult.data;
 
     const name = username || email.split('@')[0];
-    const hashedPassword = await hash(password, 8);
+    const hashedPassword = hashPassword(password);
     const db = useDrizzle();
 
     const insertUserResult = await db
@@ -41,7 +40,11 @@ export default defineEventHandler(async (event) => {
         });
     }
 
+    const { password: _, ...user } = insertUserResult[0];
+
+    setAuthCookie(event, user);
+
     return {
-        data: insertUserResult[0],
+        data: user,
     };
 });
