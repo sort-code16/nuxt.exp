@@ -41,7 +41,7 @@ export default defineEventHandler(async (event) => {
 
     const { password: _, ...user } = insertUserResult[0] as UserDatabaseType;
 
-    // setAuthCookie(event, user);
+    setAuthCookie(event, user);
 
     return {
         data: user,
