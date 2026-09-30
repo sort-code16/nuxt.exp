@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { userRegisterSchema } from '~~/shared/utils/userSchema';
 import { usersTable } from '~~/server/db/schema';
 
 export default defineEventHandler(async (event) => {

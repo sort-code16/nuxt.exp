@@ -1,5 +1,5 @@
 import { eq } from 'drizzle-orm';
-import { usersTable } from '~~/server/db/schema'; // TODO: Might be not needed
+import { usersTable } from '~~/server/db/schema';
 
 // TODO: Upgrade
 export default defineEventHandler(async (event) => {

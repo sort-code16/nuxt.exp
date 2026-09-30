@@ -3,8 +3,7 @@ import { hashSync, compareSync } from 'bcrypt-ts';
 // import { setCookie, type H3Event } from 'h3';
 
 const TOKEN_SECRET = process.env.JWT_SECRET!;
-
-export const TOKEN_COOKIE_NAME = 'auth_token';
+const TOKEN_COOKIE_NAME = 'auth_token';
 
 export function hashPassword(password: string): string {
     return hashSync(password, 8);
@@ -33,7 +32,11 @@ export function setAuthCookie(event: H3Event, user: SafeUserDatabaseType) {
     });
 };
 
-export function getUserFormCookie(event: H3Event) {
+export function clearAuthCookie(event: H3Event) {
+    deleteCookie(event, TOKEN_COOKIE_NAME);
+};
+
+export function getUserFromAuthCookie(event: H3Event) {
     const token = getCookie(event, TOKEN_COOKIE_NAME);
 
     if (!token) return null;
@@ -42,7 +45,7 @@ export function getUserFormCookie(event: H3Event) {
         return jwt.verify(token, TOKEN_SECRET) as SafeUserDatabaseType;
     } catch (e) {
         console.log('Error while verifying token', e);
-        deleteCookie(event, TOKEN_COOKIE_NAME);
+        clearAuthCookie(event);
 
         return null;
     }
