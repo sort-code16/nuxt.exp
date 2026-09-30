@@ -2,12 +2,10 @@
     return true;
 } */
 
-export default defineNuxtRouteMiddleware(async (to, from) => {
+export default defineNuxtRouteMiddleware(async (/* to, from */) => {
     /* if (to.name === 'boards' && !isAuthenticated()) {
         return navigateTo('/boards/create');
-    }
-
-    if (!isAuthenticated()) return navigateTo('/'); */
+    } */
 
     const { isLoggedIn, fetchUser } = useAuth();
 

@@ -22,7 +22,7 @@ const { data, pending, error } = useFetch('/api/v1/test', {
         <AppHeader @open-settings="() => console.log('Settings opened')" />
 
         <ClientOnly>
-            <AppToastsContainer />
+            <AppNotifications />
         </ClientOnly>
 
         <NuxtLayout>

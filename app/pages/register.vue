@@ -2,12 +2,12 @@
 // import { z } from 'zod';
 
 definePageMeta({
-    middleware: 'guest',
+    middleware: 'guest-only',
 });
 
 const { errors, validateField, validateForm } = useFormValidation();
 const { register: makeRequest } = useAuth();
-const { success, danger } = useToasts();
+const { success, danger } = useNotifications();
 
 const formValidationConfig: IFormValidationConfig = {
     email: {

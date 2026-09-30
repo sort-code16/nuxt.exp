@@ -1,6 +1,6 @@
 <script setup lang="ts">
 definePageMeta({
-    middleware: 'auth',
+    middleware: 'authorized-user-only',
 });
 
 const { data, status } = useFetch('/api/v1/boards');

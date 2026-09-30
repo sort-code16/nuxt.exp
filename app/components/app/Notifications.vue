@@ -1,11 +1,11 @@
 <script setup>
-const { toasts, removeToast } = useToasts();
+const { notifications, removeNotification } = useNotifications();
 </script>
 
 <template>
     <div
-        v-if="toasts.length"
-        class="nexp-scrollbar app-toasts-container"
+        v-if="notifications.length"
+        class="nexp-scrollbar app-notifications"
         role="log"
         aria-live="polite"
         aria-atomic="false"
@@ -13,16 +13,16 @@ const { toasts, removeToast } = useToasts();
         aria-label="Notifications"
     >
         <div
-            v-for="{ id, type, title, message, duration } in toasts"
+            v-for="{ id, type, title, message, duration } in notifications"
             :key="id"
         >
-            <BaseToast :id :type :title :message :duration @close="removeToast" />
+            <BaseToast :id :type :title :message :duration @close="removeNotification" />
         </div>
     </div>
 </template>
 
 <style scoped lang="scss">
-.app-toasts-container {
+.app-notifications {
     position: fixed;
     top: 0;
     right: 0;

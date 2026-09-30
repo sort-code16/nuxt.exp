@@ -6,13 +6,17 @@ export default function useAuth() {
         user.value = null;
     }
 
-    const fetchUser = async () => {
-        if (user.value) return;
+    const fetchUser = async (strictCookieForwarding = false) => {
+        // if (user.value) return;
 
         loading.value = true;
 
         try {
-            user.value = await $fetch('/api/v1/auth/me');
+            user.value = await $fetch('/api/v1/auth/me', {
+                ...(strictCookieForwarding && {
+                    headers: useRequestHeaders(['cookie']),
+                }),
+            });
         } catch (e) {
             console.log('Error while getting data about you', e);
             clearUser();

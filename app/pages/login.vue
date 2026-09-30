@@ -1,9 +1,9 @@
 <script setup>
 definePageMeta({
-    middleware: 'guest',
+    middleware: 'guest-only',
 });
 
-const { success, danger, info, warning } = useToasts();
+const { success, danger, info, warning } = useNotifications();
 
 onMounted(() => {
     success('This is a success message', '200 - Success');

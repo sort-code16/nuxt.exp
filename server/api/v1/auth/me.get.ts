@@ -1,5 +1,9 @@
 export default defineEventHandler((event) => {
-    if (!event.context.user) return null;
+    // console.log('/me', event.context.user);
+
+    if (!event.context.user) {
+        return null;
+    }
 
     const { iat, exp, ...data } = event.context.user;
 

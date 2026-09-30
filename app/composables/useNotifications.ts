@@ -8,11 +8,11 @@ interface IAddToastPayload {
     readonly duration?: number;
 }
 
-export default function useToasts() {
-    const toasts = useState<IToastProps[]>('app:toasts', () => []);
+export default function useNotifications() {
+    const notifications = useState<IToastProps[]>('app:notifications', () => []);
 
-    const removeToast = (id: IToastProps['id']) => {
-        toasts.value = toasts.value.filter((toast) => toast.id !== id);
+    const removeNotification = (id: IToastProps['id']) => {
+        notifications.value = notifications.value.filter((toast) => toast.id !== id);
     };
 
     const addToast = (payload: IAddToastPayload) => {
@@ -24,27 +24,26 @@ export default function useToasts() {
             duration: payload.duration ?? 0,
         };
 
-        toasts.value.push(toast);
+        notifications.value.push(toast);
 
         /* if (import.meta.client && toast.duration > 0) {
-            setTimeout(() => removeToast(toast.id), toast.duration);
+            setTimeout(() => removeNotification(toast.id), toast.duration);
         } */
     };
 
-    const createToast = (type: IToastProps['type']) => (
+    const createNotification = (type: IToastProps['type']) => (
         (message: string, title?: string, duration?: number) => {
             addToast({ type, title, message, duration });
         }
     );
 
     return {
-        toasts,
-        // addToast,
-        removeToast,
+        notifications,
+        removeNotification,
 
-        success: createToast('success'),
-        danger: createToast('error'),
-        info: createToast('info'),
-        warning: createToast('warning'),
+        success: createNotification('success'),
+        danger: createNotification('error'),
+        info: createNotification('info'),
+        warning: createNotification('warning'),
     };
 }
