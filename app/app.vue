@@ -12,7 +12,7 @@ useHead({
 
 const { data, pending, error } = useFetch('/api/v1/test', {
     // key: 'test-data',
-    server: false,
+    // server: false,
     // lazy: true,
 });
 </script>
