@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { FetchError } from 'ofetch';
 // import { z } from 'zod';
 
 definePageMeta({
@@ -55,10 +56,39 @@ const register = async (event: Event) => {
 
         success(`${username}, your account has been created`);
         navigateTo('/');
-    } catch (e: FetchError) {
-        const msg = e.data?.message || e.message || 'Something wrong';
+    } catch (e) {
+        /* if (e instanceof FetchError && e.data?.validationErrors) {
+            errors.value = e.data.validationErrors;
 
-        danger(msg, `${e.statusCode} - ${e.statusMessage}`);
+            return;
+        } */
+
+        /* if (e instanceof FetchError && e.data?.errors) {
+            errors.value = e.data.errors;
+
+            return;
+        } */
+
+        /* if (e instanceof FetchError && e.data?.message) {
+            danger(e.data.message, `${e.statusCode} - ${e.statusMessage}`);
+
+            return;
+        } */
+
+        if (e instanceof FetchError) {
+            // console.log(e.statusCode);
+            // console.log(e.statusMessage);
+
+            // the data which server returns in the response body (validation errors, error messages, etc.)
+            // console.log(e.data);
+
+            const msg = e.data?.message || e.message || 'Something wrong';
+
+            danger(msg, `${e.statusCode} - ${e.statusMessage}`);
+        } else {
+            // other system errors, like network issues, etc.
+            console.log(e);
+        }
     } finally {
         loading.value = false;
     }
