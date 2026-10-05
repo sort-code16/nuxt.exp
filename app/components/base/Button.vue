@@ -1,7 +1,7 @@
 <script setup lang="ts">
 interface IButtonProps {
     label?: string;
-    level?: 'primary' | 'secondary' | 'tertiary';
+    level?: 'primary' | 'secondary' | 'tertiary' | 'link' | 'reject';
 }
 
 const {
@@ -55,8 +55,18 @@ const emit = defineEmits<IButtonEmits>();
     }
 
     &--secondary {
-        background-color: #00f;
+        background-color: #0f0;
         color: #fff;
+    }
+
+    &--link {
+        color: #00f;
+        border: 1px solid currentColor;
+    }
+
+    &--reject {
+        color: #f00;
+        border: 1px solid currentColor;
     }
 
     &--tertiary {

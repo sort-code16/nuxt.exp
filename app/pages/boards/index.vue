@@ -8,7 +8,7 @@ const { data, status } = useFetch('/api/v1/boards');
 
 <template>
     <div>
-        <h1>Boards {{ status }}</h1>
+        <h1 class="nexp-mb-4">Boards {{ status }}</h1>
 
         <p v-if="status === 'pending'">Is loading...</p>
 

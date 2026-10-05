@@ -52,11 +52,11 @@ const closeConfirmationByAction = event => {
 
 <template>
     <main>
-        <h1 class="nexp-title">Confirmation dialog settings</h1>
+        <h1 class="nexp-mb-4">Confirmation dialog settings</h1>
 
         <form>
             <div class="form-group">
-                <label for="title" style="margin-inline-end: 4px">
+                <label for="title" class="nexp-me-1">
                     Title:
                 </label>
 

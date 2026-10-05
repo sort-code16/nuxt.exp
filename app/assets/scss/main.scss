@@ -92,10 +92,6 @@ fieldset {
     border-color: #000;
 }
 
-.nexp-title {
-    margin-bottom: 16px;
-}
-
 .nexp-scrollbar {
     overflow-y: auto;
     scrollbar-gutter: stable both-edges;
@@ -105,5 +101,17 @@ fieldset {
 
     @media (pointer: fine) {
         padding-inline: 12px;
+    }
+}
+
+@for $i from 1 through 8 {
+    $v: 4px * $i;
+
+    .nexp-mb-#{$i} {
+        margin-bottom: $v;
+    }
+
+    .nexp-me-#{$i} {
+        margin-inline-end: $v;
     }
 }

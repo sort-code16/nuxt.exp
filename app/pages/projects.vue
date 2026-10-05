@@ -28,8 +28,8 @@ onMounted(async () => {
 
 <template>
     <section>
-        <h1 class="nexp-title">Welcome to the Projects page</h1>
-        <h2 class="nexp-title">Wordpress premium themes & plugins</h2>
+        <h1 class="nexp-mb-4">Welcome to the Projects page</h1>
+        <h2 class="nexp-mb-4">Wordpress premium themes & plugins</h2>
 
         <BaseCircleLoader
             v-if="isProjectsLoading"

@@ -85,7 +85,7 @@ onMounted(() => {
                     v-if="isHomePage"
                     type="button"
                     command="show-modal"
-                    commandfor="nexp-dialog-1"
+                    commandfor="nexp-dialog-info"
                 >
                     Info
                 </BaseButton>

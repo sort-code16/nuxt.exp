@@ -7,12 +7,17 @@ const { user, logout } = useAuth();
         <span class="app-footer__copyright">© 2026 nuxt.exp</span>
 
         <div v-if="user">
-            <span>Hi, {{ user.username }}!</span>&nbsp;
-            <BaseButton type="button" @click="logout">Logout</BaseButton>
+            <span class="nexp-me-2">Hi, {{ user.username }}!</span>
+
+            <BaseButton type="button" level="reject" @click="logout">
+                Logout
+            </BaseButton>
         </div>
 
         <NuxtLink v-else to="/login" custom v-slot="{ navigate }">
-            <BaseButton type="button" @click="navigate">Login</BaseButton>
+            <BaseButton type="button" level="link" @click="navigate">
+                Login
+            </BaseButton>
         </NuxtLink>
     </footer>
 </template>

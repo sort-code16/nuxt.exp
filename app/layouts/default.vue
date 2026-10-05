@@ -33,5 +33,10 @@ useHead(() => ({
 .default-layout {
     flex-grow: 1;
     padding-block: 24px 40px;
+
+    &:focus-visible {
+        outline: dotted 1px #00f;
+        outline-offset: -1px;
+    }
 }
 </style>

@@ -24,39 +24,46 @@ onMounted(() => {
 
 <template>
     <div>
-        <h1>Welcome to the homepage</h1>
+        <h1 class="nexp-mb-4">Welcome to the homepage</h1>
 
-        <button type="button" @click="openDialog">
+        <BaseButton type="button" class="nexp-me-2" @click="openDialog">
             Update details
-        </button>
+        </BaseButton>
 
-        <button
+        <BaseButton
             type="button"
             command="show-modal"
-            commandfor="nexp-dialog-1"
+            commandfor="nexp-dialog-info"
         >
-            Open native dialog
-        </button>
+            Info
+        </BaseButton>
 
-        <dialog id="nexp-dialog-1">
-            <h2>Native dialog</h2>
+        <dialog id="nexp-dialog-info">
+            <h2 class="nexp-mb-3">Info</h2>
 
-            <p>This is a native dialog element.</p>
+            <div>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                <p>Contrary to popular belief, Lorem Ipsum is not simply random text.</p>
+            </div>
 
-            <button
-                type="button"
-                command="close"
-                commandfor="nexp-dialog-1"
-            >
-                Close
-            </button>
+            <div class="dialog-actions-group">
+                <BaseButton
+                    type="button"
+                    command="close"
+                    commandfor="nexp-dialog-info"
+                >
+                    Close
+                </BaseButton>
+            </div>
         </dialog>
 
         <dialog ref="favDialog">
             <form method="dialog">
                 <section>
-                    <p>
-                        <label for="membersCount">Favorite animal:</label>
+                    <div>
+                        <label for="membersCount" class="nexp-me-1">
+                            Favorite animal:
+                        </label>
 
                         <select id="membersCount">
                             <option>4</option>
@@ -64,17 +71,25 @@ onMounted(() => {
                             <option>8</option>
                             <option>10</option>
                         </select>
-                    </p>
+                    </div>
                 </section>
 
-                <menu>
-                    <button type="reset" @click="closeDialog">
-                        Cancel 1
-                    </button>
+                <menu class="dialog-actions-group">
+                    <BaseButton type="reset" @click="closeDialog">
+                        Cancel
+                    </BaseButton>
 
-                    <button type="submit">Confirm</button>
+                    <BaseButton type="submit">Confirm</BaseButton>
                 </menu>
             </form>
         </dialog>
     </div>
 </template>
+
+<style scoped lang="scss">
+.dialog-actions-group {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 14px;
+}
+</style>
