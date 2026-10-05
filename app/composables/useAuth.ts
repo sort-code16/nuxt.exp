@@ -25,7 +25,7 @@ export default function useAuth() {
         }
     };
 
-    /* const login = async (credentials: { email: string, password: string }) => {
+    /* const login = async (credentials: LoginSchemaType) => {
         const response = await $fetch('/api/v1/auth/login', {
             method: 'POST',
             body: credentials,
@@ -36,7 +36,7 @@ export default function useAuth() {
         return response;
     }; */
 
-    const register = async (credentials: UserRegisterSchema) => {
+    const register = async (credentials: RegisterSchemaType) => {
         const response = await $fetch('/api/v1/auth/register', {
             method: 'POST',
             body: credentials,

@@ -16,15 +16,15 @@ const formValidationConfig: IFormValidationConfig = {
             (value: string) => !value.endsWith('.ru') || 'The registration from .ru domains is not allowed.',
         ],
 
-        schema: userRegisterSchema.shape.email,
+        schema: registerSchema.shape.email,
     },
 
     password: {
-        schema: userRegisterSchema.shape.password,
+        schema: registerSchema.shape.password,
     },
 };
 
-const formData = reactive<UserRegisterSchema>({
+const formData = reactive<RegisterSchemaType>({
     email: '',
     username: '',
     password: '',
@@ -39,7 +39,7 @@ const register = async (event: Event) => {
 
     /* validationErrors.value = null;
 
-    const validationResult = userRegisterSchema.safeParse(formData);
+    const validationResult = registerSchema.safeParse(formData);
 
     if (!validationResult.success) {
         validationErrors.value = z.flattenError(validationResult.error).fieldErrors;

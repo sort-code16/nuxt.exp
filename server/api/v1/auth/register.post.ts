@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { usersTable } from '~~/server/db/schema';
 
 export default defineEventHandler(async (event) => {
-    const validatedBodyResult = await readValidatedBody(event, userRegisterSchema.safeParse);
+    const validatedBodyResult = await readValidatedBody(event, registerSchema.safeParse);
 
     if (!validatedBodyResult.success) {
         console.log('Error: ', z.prettifyError(validatedBodyResult.error));
