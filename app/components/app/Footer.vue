@@ -1,5 +1,8 @@
 <script setup lang="ts">
+const route = useRoute();
 const { user, logout } = useAuth();
+
+const isLoginPage = computed(() => route.path === '/login');
 </script>
 
 <template>
@@ -14,9 +17,14 @@ const { user, logout } = useAuth();
             </BaseButton>
         </div>
 
-        <NuxtLink v-else to="/login" custom v-slot="{ navigate }">
+        <NuxtLink
+            v-else
+            :to="isLoginPage ? '/register' : '/login'"
+            custom
+            v-slot="{ navigate }"
+        >
             <BaseButton type="button" level="link" @click="navigate">
-                Login
+                {{ isLoginPage ? 'Register' : 'Login' }}
             </BaseButton>
         </NuxtLink>
     </footer>

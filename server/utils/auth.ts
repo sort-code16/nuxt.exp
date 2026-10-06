@@ -48,7 +48,7 @@ export function getUserFromAuthCookie(event: H3Event<EventHandlerRequest>) {
     if (!token) return null;
 
     try {
-        return jwt.verify(token, TOKEN_SECRET) as SafeUserDatabaseType;
+        return jwt.verify(token, TOKEN_SECRET) as jwt.JwtPayload & SafeUserDatabaseType;
     } catch {
         clearAuthCookie(event);
 
