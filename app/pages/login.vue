@@ -87,7 +87,10 @@ const submitForm = async (event: Event) => {
                 </BaseFieldValidationWrapper>
             </div>
 
-            <BaseButton label="Login" level="primary" :disabled="loading" />
+            <div class="submit-btn-group">
+                <BaseButton label="Login" level="primary" :disabled="loading" />
+                <BaseCircleLoader v-if="loading" size="sm" />
+            </div>
         </form>
 
         <p>
@@ -98,13 +101,5 @@ const submitForm = async (event: Event) => {
 </template>
 
 <style scoped lang="scss">
-form {
-    @media (width >= 576px) {
-        width: 400px;
-    }
-}
-
-p {
-    line-height: 16px;
-}
+@use '~/assets/scss/page-form';
 </style>

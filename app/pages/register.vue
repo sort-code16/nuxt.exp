@@ -35,6 +35,7 @@ const loading = ref(false);
 // const validationErrors = ref<Record<string, string[] | undefined> | null>(null);
 
 const register = async (event: Event) => {
+    if (loading.value) return;
     if (!validateForm(event, formValidationConfig)) return;
 
     /* validationErrors.value = null;
@@ -96,11 +97,11 @@ const register = async (event: Event) => {
 </script>
 
 <template>
-    <div>
-        <h1>Register</h1>
+    <section>
+        <h1 class="nexp-mb-4">Register</h1>
 
-        <form novalidate @submit.prevent="register">
-            <div>
+        <form class="nexp-mb-3" novalidate @submit.prevent="register">
+            <div class="nexp-mb-3">
                 <!-- <BaseFieldValidationWrapper :error="validationErrors?.email?.join('; ') ?? ''">
                     <label for="email">Email:</label>
 
@@ -140,7 +141,7 @@ const register = async (event: Event) => {
                 </BaseFieldValidationWrapper>
             </div>
 
-            <div>
+            <div class="nexp-mb-3">
                 <!-- <label for="username">Username:</label>
 
                 <input
@@ -161,7 +162,7 @@ const register = async (event: Event) => {
                 />
             </div>
 
-            <div>
+            <div class="nexp-mb-3">
                 <BaseFieldValidationWrapper :error="errors.password" v-slot="{ describedBy }">
                     <BaseTextField
                         v-model="formData.password"
@@ -176,12 +177,19 @@ const register = async (event: Event) => {
                 </BaseFieldValidationWrapper>
             </div>
 
-            <BaseButton label="Register" level="primary" :disabled="loading" />
+            <div class="submit-btn-group">
+                <BaseButton label="Register" level="primary" :disabled="loading" />
+                <BaseCircleLoader v-if="loading" size="sm" />
+            </div>
         </form>
 
         <p>
             Already have an account?
             <NuxtLink to="/login">Login</NuxtLink>
         </p>
-    </div>
+    </section>
 </template>
+
+<style scoped lang="scss">
+@use '~/assets/scss/page-form';
+</style>
