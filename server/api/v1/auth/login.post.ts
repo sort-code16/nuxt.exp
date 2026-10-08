@@ -1,16 +1,22 @@
 import { eq } from 'drizzle-orm';
+import { z } from 'zod';
 import { usersTable } from '~~/server/db/schema';
 
-// TODO: Upgrade
 export default defineEventHandler(async (event) => {
-    const { email, password } = await readBody(event);
+    const validatedBodyResult = await readValidatedBody(event, loginSchema.safeParse);
 
-    if (!(email && password)) {
+    if (!validatedBodyResult.success) {
+        console.log('Login validation error: ', z.prettifyError(validatedBodyResult.error));
+
         throw createError({
-            statusCode: 400,
-            message: 'Email and password must be provided in data body.',
+            statusCode: 422, // 422 Unprocessable Entity
+            statusMessage: 'Validation Error',
+            message: 'Validation failed for the provided data.',
+            data: z.flattenError(validatedBodyResult.error).fieldErrors,
         });
     }
+
+    const { email, password } = validatedBodyResult.data;
 
     const db = useDrizzle();
 
@@ -18,19 +24,13 @@ export default defineEventHandler(async (event) => {
         .select()
         .from(usersTable)
         .where(eq(usersTable.email, email))
-        // .limit(1) // TODO: Might be removed when checking of unique values will be done in register
+        // .limit(1) // TODO: doesn't need here because email is unique in the database (checked in register)
         .get();
 
-    // TODO: Combine both errors for better security
-    if (!user) throw createError({
-        statusCode: 404,
-        message: 'Wrong email.',
-    });
-
-    if (!(verifyPassword(password, user.password))) {
+    if (!user || !verifyPassword(password, user.password)) {
         throw createError({
             statusCode: 401,
-            message: 'Invalid password.',
+            message: 'Wrong email or invalid password.',
         });
     }
 

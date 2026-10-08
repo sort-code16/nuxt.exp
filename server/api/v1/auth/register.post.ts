@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
     const validatedBodyResult = await readValidatedBody(event, registerSchema.safeParse);
 
     if (!validatedBodyResult.success) {
-        console.log('Error: ', z.prettifyError(validatedBodyResult.error));
+        console.log('Register validation error: ', z.prettifyError(validatedBodyResult.error));
 
         throw createError({
             statusCode: 422, // 422 Unprocessable Entity
@@ -40,8 +40,6 @@ export default defineEventHandler(async (event) => {
     }
 
     const { password: _, ...user } = insertUserResult[0] as UserDatabaseType;
-
-    setAuthCookie(event, user);
 
     return {
         data: user,

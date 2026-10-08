@@ -6,8 +6,8 @@ definePageMeta({
     middleware: 'guest-only',
 });
 
-const { errors, validateField, validateForm } = useFormValidation();
-const { register: makeRequest } = useAuth();
+const { errors, validateField, validateForm, setErrorsToFields } = useFormValidation();
+const { register } = useAuth();
 const { success, danger } = useNotifications();
 
 const formValidationConfig: IFormValidationConfig = {
@@ -34,7 +34,7 @@ const loading = ref(false);
 
 // const validationErrors = ref<Record<string, string[] | undefined> | null>(null);
 
-const register = async (event: Event) => {
+const submitForm = async (event: Event) => {
     if (loading.value) return;
     if (!validateForm(event, formValidationConfig)) return;
 
@@ -53,37 +53,32 @@ const register = async (event: Event) => {
     loading.value = true;
 
     try {
-        const { data: { username } } = await makeRequest(formData);
+        const { data: { username } } = await register(formData);
 
-        success(`${username}, your account has been created`);
-        navigateTo('/');
+        success(
+            `${username}, your account has been created. You can now log in with your credentials.`,
+            undefined,
+            8000,
+        );
+
+        navigateTo('/login');
     } catch (e) {
-        /* if (e instanceof FetchError && e.data?.validationErrors) {
-            errors.value = e.data.validationErrors;
-
-            return;
-        } */
-
-        /* if (e instanceof FetchError && e.data?.errors) {
-            errors.value = e.data.errors;
-
-            return;
-        } */
-
-        /* if (e instanceof FetchError && e.data?.message) {
-            danger(e.data.message, `${e.statusCode} - ${e.statusMessage}`);
-
-            return;
-        } */
-
         if (e instanceof FetchError) {
-            // console.log(e.statusCode);
-            // console.log(e.statusMessage);
+            const msg = e.data?.message || e.message || 'Something went wrong';
 
-            // the data which server returns in the response body (validation errors, error messages, etc.)
-            // console.log(e.data);
+            if (!e.statusCode) {
+                danger(msg);
 
-            const msg = e.data?.message || e.message || 'Something wrong';
+                return;
+            }
+
+            const fieldErrors = e.data?.data;
+
+            if (e.statusCode === 422 && fieldErrors) {
+                setErrorsToFields(fieldErrors);
+
+                return;
+            }
 
             danger(msg, `${e.statusCode} - ${e.statusMessage}`);
         } else {
@@ -100,7 +95,7 @@ const register = async (event: Event) => {
     <section>
         <h1 class="nexp-mb-4">Register</h1>
 
-        <form class="nexp-mb-3" novalidate @submit.prevent="register">
+        <form class="nexp-mb-3" novalidate @submit.prevent="submitForm">
             <div class="nexp-mb-3">
                 <!-- <BaseFieldValidationWrapper :error="validationErrors?.email?.join('; ') ?? ''">
                     <label for="email">Email:</label>

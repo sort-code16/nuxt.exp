@@ -25,7 +25,7 @@ export default function useAuth() {
         }
     };
 
-    /* const login = async (credentials: LoginSchemaType) => {
+    const login = async (credentials: LoginSchemaType) => {
         const response = await $fetch('/api/v1/auth/login', {
             method: 'POST',
             body: credentials,
@@ -34,7 +34,7 @@ export default function useAuth() {
         user.value = response.data;
 
         return response;
-    }; */
+    };
 
     const register = async (credentials: RegisterSchemaType) => {
         const response = await $fetch('/api/v1/auth/register', {
@@ -42,7 +42,7 @@ export default function useAuth() {
             body: credentials,
         });
 
-        user.value = response.data;
+        // user.value = response.data;
 
         return response;
     };
@@ -60,7 +60,7 @@ export default function useAuth() {
         isLoggedIn: computed(() => !!user.value),
 
         fetchUser,
-        // login,
+        login,
         register,
         logout,
     };

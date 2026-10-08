@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import { FetchError } from 'ofetch';
+
 definePageMeta({
     middleware: 'guest-only',
 });
 
-const { errors, validateField, validateForm } = useFormValidation();
-const { /* success, info, warning, */ danger } = useNotifications();
+const { errors, validateField, validateForm, setErrorsToFields } = useFormValidation();
+const { success, danger } = useNotifications();
+const { login } = useAuth();
 
 const formValidationConfig: IFormValidationConfig = {
     email: { schema: loginSchema.shape.email },
@@ -17,16 +20,6 @@ const formData = reactive<LoginSchemaType>({
 });
 
 const loading = ref(false);
-
-/* onMounted(() => {
-    success('This is a success message', '200 - Success');
-    success('This is a success message without title');
-    danger('This is an error message with title', 'Error');
-    danger('This is an error message without title but with auto-closing', null, 4000);
-    info('This is an info message', 'Info');
-    warning('This is a warning message', 'Warning');
-    warning('This is a warning message without title but with auto-closing', null, 8000);
-}); */
 
 const submitForm = async (event: Event) => {
     /* const result = await $fetch.raw('/api/auth/login', {
@@ -48,6 +41,45 @@ const submitForm = async (event: Event) => {
 
     if (loading.value) return;
     if (!validateForm(event, formValidationConfig)) return;
+
+    loading.value = true;
+
+    try {
+        const { data: { username } } = await login(formData);
+
+        success(
+            `Hi, ${username}! You have successfully logged in.`,
+            undefined,
+            8000,
+        );
+
+        navigateTo('/');
+    } catch (e) {
+        if (e instanceof FetchError) {
+            const msg = e.data?.message || e.message || 'Something went wrong';
+
+            if (!e.statusCode) {
+                danger(msg);
+
+                return;
+            }
+
+            const fieldErrors = e.data?.data;
+
+            if (e.statusCode === 422 && fieldErrors) {
+                setErrorsToFields(fieldErrors);
+
+                return;
+            }
+
+            danger(msg, `${e.statusCode} - ${e.statusMessage}`);
+        } else {
+            // other system errors, like network issues, etc.
+            console.log(e);
+        }
+    } finally {
+        loading.value = false;
+    }
 };
 </script>
 

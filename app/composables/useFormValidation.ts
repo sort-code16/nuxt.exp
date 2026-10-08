@@ -83,9 +83,17 @@ export default function useFormValidation() {
         return isFormValid;
     };
 
+    const setErrorsToFields = (fieldErrors: Record<string, string[]>) => {
+        for (const [name, messages] of Object.entries(fieldErrors)) {
+            errors[name] = messages[0] ?? '';
+        }
+    };
+
     return {
         errors,
+
         validateField,
         validateForm,
+        setErrorsToFields,
     };
 }
