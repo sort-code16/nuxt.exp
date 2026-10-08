@@ -5,36 +5,8 @@
     {
       "idx": 0,
       "version": "6",
-      "when": 1787563948210,
-      "tag": "0000_fixed_harrier",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "6",
-      "when": 1788204470241,
-      "tag": "0001_mushy_prima",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "6",
-      "when": 1788991197937,
-      "tag": "0002_familiar_giant_man",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "6",
-      "when": 1788993307169,
-      "tag": "0003_gigantic_the_liberteens",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "6",
-      "when": 1788993623706,
-      "tag": "0004_puzzling_violations",
+      "when": 1791463773311,
+      "tag": "0000_early_vance_astro",
       "breakpoints": true
     }
   ]
