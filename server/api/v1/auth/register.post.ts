@@ -8,8 +8,8 @@ export default defineEventHandler(async (event) => {
         console.log('Register validation error: ', z.prettifyError(validatedBodyResult.error));
 
         throw createError({
-            statusCode: 422, // 422 Unprocessable Entity
-            statusMessage: 'Validation Error',
+            status: 422, // 422 Unprocessable Entity
+            statusText: 'Validation Error',
             message: 'Validation failed for the provided data.',
             data: z.flattenError(validatedBodyResult.error).fieldErrors,
         });
@@ -33,8 +33,8 @@ export default defineEventHandler(async (event) => {
 
     if (insertUserResult.length === 0) {
         throw createError({
-            statusCode: 409, // 409 Conflict
-            statusMessage: 'Conflict Error',
+            status: 409, // 409 Conflict
+            statusText: 'Conflict Error',
             message: 'User with this email already exists.',
         });
     }

@@ -9,8 +9,8 @@ export default defineEventHandler(async (event) => {
         console.log('Login validation error: ', z.prettifyError(validatedBodyResult.error));
 
         throw createError({
-            statusCode: 422, // 422 Unprocessable Entity
-            statusMessage: 'Validation Error',
+            status: 422, // 422 Unprocessable Entity
+            statusText: 'Validation Error',
             message: 'Validation failed for the provided data.',
             data: z.flattenError(validatedBodyResult.error).fieldErrors,
         });
@@ -27,9 +27,10 @@ export default defineEventHandler(async (event) => {
         // .limit(1) // TODO: doesn't need here because email is unique in the database (checked in register)
         .get();
 
-    if (!user || !verifyPassword(password, user.password)) {
+    if (!(user && verifyPassword(password, user.password))) {
         throw createError({
-            statusCode: 401,
+            status: 401,
+            statusText: 'Unauthorized',
             message: 'Wrong email or invalid password.',
         });
     }

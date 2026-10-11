@@ -66,7 +66,7 @@ const submitForm = async (event: Event) => {
         if (e instanceof FetchError) {
             const msg = e.data?.message || e.message || 'Something went wrong';
 
-            if (!e.statusCode) {
+            if (!e.status) {
                 danger(msg);
 
                 return;
@@ -74,13 +74,13 @@ const submitForm = async (event: Event) => {
 
             const fieldErrors = e.data?.data;
 
-            if (e.statusCode === 422 && fieldErrors) {
+            if (e.status === 422 && fieldErrors) {
                 setErrorsToFields(fieldErrors);
 
                 return;
             }
 
-            danger(msg, `${e.statusCode} - ${e.statusMessage}`);
+            danger(msg, `${e.status} - ${e.statusText}`);
         } else {
             // other system errors, like network issues, etc.
             console.log(e);
