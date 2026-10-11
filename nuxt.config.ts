@@ -1,6 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-    modules: ['@nuxt/eslint', '@nuxtjs/stylelint-module'],
+    modules: [
+        '@nuxtjs/stylelint-module',
+        '@nuxt/eslint',
+        '@nuxt/test-utils/module',
+    ],
 
     $development: {
         app: {
@@ -25,7 +29,11 @@ export default defineNuxtConfig({
             link: [
                 { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
                 { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-                { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Tourney:ital,wght@0,100..900;1,100..900&display=swap' },
+
+                {
+                    rel: 'stylesheet',
+                    href: 'https://fonts.googleapis.com/css2?family=Tourney:ital,wght@0,100..900;1,100..900&display=swap',
+                },
             ],
         },
     },
@@ -33,6 +41,11 @@ export default defineNuxtConfig({
     css: [
         '~/assets/css/reset.css',
         '~/assets/scss/main.scss',
+    ],
+
+    ignore: [
+        'app/pages/**/components/**/*.vue',
+        'shared/**/*.{test,spec}.{ts,js}',
     ],
 
     devServer: {
@@ -46,6 +59,12 @@ export default defineNuxtConfig({
         experimental: {
             websocket: true,
         },
+
+        ignore: [
+            '**/_*',
+            '**/_*/**',
+            '**/*.{test,spec}.{ts,js}',
+        ],
     },
 
     eslint: {

@@ -1,47 +1,51 @@
 {
-  "name": "nexp",
-  "type": "module",
-  "private": true,
-  "browserslist": [
-    "defaults"
-  ],
-  "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "lint:es": "eslint .",
-    "lint:es:fix": "eslint . --fix",
-    "lint:style": "stylelint \"**/*.{css,scss,vue}\"",
-    "lint:style:fix": "stylelint \"**/*.{css,scss,vue}\" --fix"
-  },
-  "dependencies": {
-    "@nuxt/eslint": "^1.17.0",
-    "@nuxtjs/stylelint-module": "^5.2.1",
-    "bcrypt-ts": "^9.0.2",
-    "better-sqlite3": "^13.0.3",
-    "drizzle-orm": "^0.45.2",
-    "eslint": "^10.11.0",
-    "jsonwebtoken": "^9.0.3",
-    "nuxt": "^4.5.2",
-    "stylelint": "^17.15.0",
-    "vue": "^3.5.40",
-    "vue-router": "^5.2.0",
-    "zod": "^4.6.1"
-  },
-  "devDependencies": {
-    "@types/better-sqlite3": "^9.6.0",
-    "@types/jsonwebtoken": "^9.0.10",
-    "drizzle-kit": "^0.31.10",
-    "postcss-html": "^2.0.0",
-    "sass": "^1.102.0",
-    "stylelint-config-standard-scss": "^17.0.0"
-  },
-  "allowScripts": {
-    "esbuild": true,
-    "better-sqlite3@13.0.3": true,
-    "@parcel/watcher@2.6.0": true,
-    "unrs-resolver@1.12.2": true
-  }
+    "name": "nexp",
+    "type": "module",
+    "private": true,
+    "browserslist": [
+        "defaults"
+    ],
+    "scripts": {
+        "build": "nuxt build",
+        "dev": "nuxt dev",
+        "generate": "nuxt generate",
+        "preview": "nuxt preview",
+        "postinstall": "nuxt prepare",
+        "lint:es": "eslint .",
+        "lint:es:fix": "eslint . --fix",
+        "lint:style": "stylelint \"**/*.{css,scss,vue}\"",
+        "lint:style:fix": "stylelint \"**/*.{css,scss,vue}\" --fix",
+        "test": "vitest",
+        "test:run": "vitest run"
+    },
+    "dependencies": {
+        "@nuxt/eslint": "^1.17.0",
+        "@nuxtjs/stylelint-module": "^5.2.1",
+        "bcrypt-ts": "^9.0.2",
+        "better-sqlite3": "^13.0.3",
+        "drizzle-orm": "^0.45.2",
+        "eslint": "^10.11.0",
+        "jsonwebtoken": "^9.0.3",
+        "nuxt": "^4.5.2",
+        "stylelint": "^17.15.0",
+        "vue": "^3.5.40",
+        "vue-router": "^5.2.0",
+        "zod": "^4.6.1"
+    },
+    "devDependencies": {
+        "@nuxt/test-utils": "^4.3.3",
+        "@types/better-sqlite3": "^9.6.0",
+        "@types/jsonwebtoken": "^9.0.10",
+        "drizzle-kit": "^0.31.10",
+        "postcss-html": "^2.0.0",
+        "sass": "^1.102.0",
+        "stylelint-config-standard-scss": "^17.0.0",
+        "vitest": "^5.0.3"
+    },
+    "allowScripts": {
+        "esbuild": true,
+        "better-sqlite3@13.0.3": true,
+        "@parcel/watcher@2.6.0": true,
+        "unrs-resolver@1.12.2": true
+    }
 }
