@@ -47,13 +47,13 @@ const submitForm = async (event: Event) => {
     try {
         const { data: { username } } = await login(formData);
 
+        await navigateTo('/');
+
         success(
             `Hi, ${username}! You have successfully logged in.`,
             undefined,
             8000,
         );
-
-        navigateTo('/');
     } catch (e) {
         if (e instanceof FetchError) {
             const msg = e.data?.message || e.message || 'Something went wrong';

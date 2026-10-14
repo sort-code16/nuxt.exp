@@ -23,14 +23,14 @@ export default defineEventHandler(async (event) => {
         .select()
         .from(usersTable)
         .where(eq(usersTable.email, email))
-        // .limit(1) // TODO: doesn't need here because email is unique in the database (checked in register)
+        .limit(1)
         .get();
 
     if (!(user && verifyPassword(password, user.password))) {
         throw createError({
             status: 401,
             statusText: 'Unauthorized',
-            message: 'Wrong email or invalid password.',
+            message: 'Wrong credentials.',
         });
     }
 

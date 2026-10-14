@@ -2,6 +2,8 @@ import jwt from 'jsonwebtoken';
 import { hashSync, compareSync } from 'bcrypt-ts';
 import type { H3Event } from 'h3';
 
+export type JWTUserPayloadType = jwt.JwtPayload & SafeUserDatabaseType;
+
 const TOKEN_SECRET = process.env.JWT_SECRET!;
 const TOKEN_COOKIE_NAME = 'auth_token';
 
@@ -41,7 +43,7 @@ export function getUserFromAuthCookie(event: H3Event) {
     if (!token) return null;
 
     try {
-        return jwt.verify(token, TOKEN_SECRET) as jwt.JwtPayload & SafeUserDatabaseType;
+        return jwt.verify(token, TOKEN_SECRET) as JWTUserPayloadType;
     } catch {
         clearAuthCookie(event);
 

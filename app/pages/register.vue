@@ -55,13 +55,13 @@ const submitForm = async (event: Event) => {
     try {
         const { data: { username } } = await register(formData);
 
+        await navigateTo('/login');
+
         success(
             `${username}, your account has been created. You can now log in with your credentials.`,
             undefined,
             8000,
         );
-
-        navigateTo('/login');
     } catch (e) {
         if (e instanceof FetchError) {
             const msg = e.data?.message || e.message || 'Something went wrong';

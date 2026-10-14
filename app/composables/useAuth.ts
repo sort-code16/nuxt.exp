@@ -51,7 +51,8 @@ export default function useAuth() {
         await $fetch('/api/v1/auth/logout', { method: 'POST' });
 
         clearUser();
-        navigateTo('/login');
+
+        return navigateTo('/login');
     };
 
     return {
