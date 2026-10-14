@@ -1,5 +1,3 @@
-import { boardsTable } from '~~/server/db/schema';
-
 export default defineEventHandler((event) => {
     if (!event.context.user) throw createError({
         status: 401,

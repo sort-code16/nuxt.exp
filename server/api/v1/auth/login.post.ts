@@ -1,6 +1,5 @@
 import { eq } from 'drizzle-orm';
 import { z } from 'zod';
-import { usersTable } from '~~/server/db/schema';
 
 export default defineEventHandler(async (event) => {
     const validatedBodyResult = await readValidatedBody(event, loginSchema.safeParse);
