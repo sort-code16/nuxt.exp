@@ -3,6 +3,8 @@
         "editorconfig.editorconfig",
         "dbaeumer.vscode-eslint",
         "stylelint.vscode-stylelint",
-        "vue.volar"
+        "vue.volar",
+        "yy0931.vscode-sqlite3-editor",
+        "redhat.vscode-xml"
     ]
 }

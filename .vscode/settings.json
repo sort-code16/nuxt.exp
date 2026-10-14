@@ -17,4 +17,12 @@
 
     "css.validate": false,
     "scss.validate": false,
+
+    "files.associations": {
+        "*.svg": "xml"
+    },
+
+    "[xml]": {
+        "editor.defaultFormatter": "redhat.vscode-xml"
+    },
 }
