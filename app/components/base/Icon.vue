@@ -30,7 +30,7 @@ const icon = computed(() => modules[`/assets/icons/${name}.svg`] || null);
     display: inline-flex;
     vertical-align: text-bottom; // -0.125em;
 
-    $sizes: ('xs': 12px, 'sm': 16px, 'md': 24px, 'xl': 36px, 'lg': 48px);
+    $sizes: ('xs': 12px, 'sm': 16px, 'md': 24px, 'lg': 36px, 'xl': 48px);
 
     @each $variant, $size in $sizes {
         &--#{$variant} {
