@@ -76,8 +76,9 @@ onMounted(() => {
                 popovertarget="menuPopover"
                 class="app-header__popover-btn"
                 aria-label="Open mobile navigation"
+                iconOnly
             >
-                Menu
+                <BaseIcon name="menu" />
             </BaseButton>
 
             <slot name="actions">

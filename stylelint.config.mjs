@@ -9,12 +9,12 @@ export default {
     ],
 
     rules: {
-        /* 'selector-pseudo-element-no-unknown': [
+        'selector-pseudo-class-no-unknown': [
             true,
             {
-                ignorePseudoElements: ['v-deep', 'deep', 'slotted', 'global'],
+                ignorePseudoClasses: ['deep'/* , 'v-deep', 'slotted', 'global' */],
             },
-        ], */
+        ],
 
         'alpha-value-notation': 'number',
         'value-keyword-case': ['lower', { camelCaseSvgKeywords: true }],

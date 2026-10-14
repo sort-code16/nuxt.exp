@@ -21,5 +21,7 @@ const { data, status } = useFetch('/api/v1/boards');
 
             <p v-else>No boards</p>
         </div>
+
+        <BaseIcon name="info" /> и какой-то текст
     </div>
 </template>

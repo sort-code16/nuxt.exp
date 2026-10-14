@@ -2,11 +2,13 @@
 interface IButtonProps {
     label?: string;
     level?: 'primary' | 'secondary' | 'tertiary' | 'link' | 'reject';
+    iconOnly?: boolean;
 }
 
 const {
     label = '',
     level = 'tertiary',
+    iconOnly = false,
 } = defineProps<IButtonProps>();
 
 interface IButtonEmits {
@@ -18,7 +20,11 @@ const emit = defineEmits<IButtonEmits>();
 
 <template>
     <button
-        :class="['nexp-button', `nexp-button--${level}`]"
+        :class="[
+            'nexp-button',
+            `nexp-button--${level}`,
+            { 'nexp-button--icon-only': iconOnly },
+        ]"
         @click="emit('click', $event)"
     >
         <span v-if="label" class="nexp-button__label">
@@ -47,6 +53,10 @@ const emit = defineEmits<IButtonEmits>();
     &:focus {
         outline: 2px solid #00f;
         outline-offset: 2px;
+    }
+
+    &--icon-only {
+        padding: 3px 6px;
     }
 
     &--primary {
