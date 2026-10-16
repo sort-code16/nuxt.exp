@@ -34,7 +34,7 @@ export default {
         'scss/double-slash-comment-empty-line-before': [
             'never',
             {
-                ignore: ['between-comments'],
+                ignore: ['between-comments', 'inside-block'],
             },
         ],
     },

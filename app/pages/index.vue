@@ -24,7 +24,7 @@ onMounted(() => {
 
 <template>
     <div>
-        <h1 class="nexp-mb-4">Welcome to the homepage</h1>
+        <h2 class="nexp-mb-4">Welcome to the homepage</h2>
 
         <BaseButton type="button" class="nexp-me-2" @click="openDialog">
             Update details
