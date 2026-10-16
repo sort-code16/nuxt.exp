@@ -52,7 +52,7 @@ const submitForm = async (event: Event) => {
         success(
             `Hi, ${username}! You have successfully logged in.`,
             undefined,
-            8000,
+            3000,
         );
     } catch (e) {
         if (e instanceof FetchError) {
@@ -84,7 +84,7 @@ const submitForm = async (event: Event) => {
 </script>
 
 <template>
-    <section>
+    <section class="page-form">
         <h1 class="nexp-mb-4">Login</h1>
 
         <form class="nexp-mb-3" novalidate @submit.prevent="submitForm">

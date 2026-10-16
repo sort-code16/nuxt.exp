@@ -92,7 +92,7 @@ const submitForm = async (event: Event) => {
 </script>
 
 <template>
-    <section>
+    <section class="page-form">
         <h1 class="nexp-mb-4">Register</h1>
 
         <form class="nexp-mb-3" novalidate @submit.prevent="submitForm">

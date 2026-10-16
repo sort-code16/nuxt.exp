@@ -1,0 +1,12 @@
+@mixin nexp-link-base {
+    a {
+        &:focus-visible {
+            outline: none;
+        }
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+}

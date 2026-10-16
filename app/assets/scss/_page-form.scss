@@ -1,26 +1,21 @@
-form {
-    @media (width >= 576px) {
-        width: 400px;
-    }
-}
+@use '~/assets/scss/mixins' as m;
 
-p {
-    line-height: 16px;
-}
+.page-form {
+    @include m.nexp-link-base;
 
-a {
-    &:focus-visible {
-        outline: none;
+    form {
+        @media (width >= 576px) {
+            width: 400px;
+        }
     }
 
-    &:hover,
-    &:focus {
-        text-decoration: underline;
+    p {
+        line-height: 16px;
     }
-}
 
-.submit-btn-group {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    .submit-btn-group {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
 }
