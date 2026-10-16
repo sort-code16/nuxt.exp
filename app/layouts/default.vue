@@ -68,7 +68,7 @@ onUnmounted(() => {
 <style scoped lang="scss">
 .app-default-layout {
     flex-grow: 1;
-    padding-block: 24px 40px;
+    padding-block: 24px 48px;
 
     &:focus-visible {
         outline: dotted 1px #00f;

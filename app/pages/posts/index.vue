@@ -10,19 +10,7 @@ const perPageOptions = [5, 10, 15, 20, 25];
 const searchQuery = ref('');
 const perPage = ref(perPageOptions[0]);
 
-export interface IPost {
-    readonly id: number;
-    readonly title: string;
-    readonly body: string;
-}
-
-interface IPostsSearchResponse {
-    readonly posts: IPost[];
-    readonly limit: number;
-    readonly total: number;
-}
-
-const { data, status, error } = useFetch<IPostsSearchResponse>('https://dummyjson.com/posts/search', {
+const { data, status, error } = useFetch<IDummyPostsSearch>('https://dummyjson.com/posts/search', {
     query: {
         q: searchQuery,
         limit: perPage,
