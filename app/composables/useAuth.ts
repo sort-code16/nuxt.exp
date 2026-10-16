@@ -12,10 +12,16 @@ export default function useAuth() {
         loading.value = true;
 
         try {
+            // const { data } = await useFetch('/api/v1/auth/me');
+
+            // user.value = data.value;
+
             user.value = await $fetch('/api/v1/auth/me', {
-                ...(strictCookieForwarding && {
-                    headers: useRequestHeaders(['cookie']),
-                }),
+                // ...(strictCookieForwarding && { headers: useRequestHeaders(['cookie']) } as object | false || {}),
+                ...(strictCookieForwarding
+                    ? { headers: useRequestHeaders(['cookie']) }
+                    : {}
+                ),
             });
         } catch (e) {
             console.log('Error while getting data about you', e);
