@@ -28,7 +28,7 @@ const { size = 'md' } = defineProps<ICircleLoaderProps>();
     border-radius: 50%;
     animation: spin 1s linear infinite;
 
-    $sizes: (xs, 12px, 2px), (sm, 20px, 4px), (md, 28px, 4px), (lg, 36px, 6px);
+    $sizes: (xs, 12px, 2px), (sm, 20px, 3px), (md, 28px, 4px), (lg, 36px, 6px);
 
     @each $variant, $size, $border-width in $sizes {
         &--#{$variant} {

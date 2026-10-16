@@ -12,6 +12,7 @@ const router = useRouter();
 const menuPopoverRef = useTemplateRef('mobileMenuPopover');
 
 const isHomePage = computed(() => route.path === '/');
+const logoTag = computed(() => isHomePage.value ? 'h1' : 'div');
 
 onMounted(() => {
     router.afterEach(() => {
@@ -35,7 +36,8 @@ onMounted(() => {
 <template>
     <header class="app-header">
         <component
-            :is="isHomePage ? 'h1' : 'div'"
+            :is="logoTag"
+            :key="logoTag"
             style="line-height: 0"
         >
             <NuxtLink to="/" class="app-header__logo">
@@ -109,7 +111,7 @@ onMounted(() => {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 24px;
+    gap: 16px;
     padding: 12px 24px 8px;
     border-bottom: 4px solid #000;
 
@@ -129,7 +131,7 @@ onMounted(() => {
         flex-grow: 1;
 
         ul {
-            gap: 24px;
+            gap: 16px;
         }
     }
 
@@ -149,7 +151,7 @@ onMounted(() => {
 
         ul {
             flex-direction: column;
-            gap: 16px;
+            gap: 12px;
         }
     }
 

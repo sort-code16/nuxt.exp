@@ -8,6 +8,7 @@ const items: IMenuItem[] = [
     { path: '/posts', name: 'Posts' },
     { path: '/boards', name: 'Boards' },
     { path: '/projects', name: 'Projects' },
+    { path: '/dialogs', name: 'Dialogs' },
 ];
 </script>
 
