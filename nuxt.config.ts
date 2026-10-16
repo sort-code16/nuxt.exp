@@ -43,6 +43,12 @@ export default defineNuxtConfig({
         '~/assets/scss/main.scss',
     ],
 
+    // router: {
+    //     options: {
+    //         linkActiveClass: 'nexp-link-active',
+    //     },
+    // },
+
     ignore: [
         'app/pages/**/components/**/*.vue',
         'shared/**/*.{test,spec}.{ts,js}',

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const route = useRoute();
+
 interface IMenuItem {
     path: string;
     name: string;
@@ -18,9 +20,10 @@ const items: IMenuItem[] = [
             v-for="({ path, name }, index) in items"
             :key="`menu-item-${index}`"
         >
+            <!-- activeClass="active" -->
             <NuxtLink
                 :to="path"
-                activeClass="active"
+                :class="{ active: path === '/' ? route.path === '/' : route.path.startsWith(path) }"
                 exactActiveClass="exact-active"
             >
                 {{ name }}
