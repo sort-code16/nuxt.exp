@@ -2,7 +2,7 @@
 definePageMeta({
     title: 'Posts',
     // layout: 'default',
-    withoutPaddings: true,
+    layoutWithoutPaddings: true,
 });
 
 const perPageOptions = [5, 10, 15, 20, 25];
@@ -26,6 +26,7 @@ const { data, status, error } = useFetch<IPostsSearchResponse>('https://dummyjso
     query: {
         q: searchQuery,
         limit: perPage,
+        select: 'id,title,body',
         delay: 1000,
     },
 
@@ -115,7 +116,7 @@ header {
 }
 
 .header-container {
-    margin-inline: 24px 16px;
+    margin-inline: 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -137,10 +138,14 @@ header {
             gap: 4px;
         }
     }
+
+    @media (pointer: fine) {
+        margin-inline-end: 16px;
+    }
 }
 
 .content-container {
-    padding-inline: 24px 16px;
+    padding-inline: 24px;
     padding-bottom: 48px;
 
     article {
@@ -151,6 +156,10 @@ header {
             padding-bottom: 16px;
             border-bottom: 1px solid #eee;
         }
+    }
+
+    @media (pointer: fine) {
+        padding-inline-end: 16px;
     }
 }
 </style>

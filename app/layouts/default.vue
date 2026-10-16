@@ -22,7 +22,7 @@ useHead(() => ({
     },
 }));
 
-const arePaddingsSkipped = computed(() => route.meta.withoutPaddings ?? false);
+const arePaddingsSkipped = computed(() => route.meta.layoutWithoutPaddings ?? false);
 
 /* let resizeObserver = null;
 
