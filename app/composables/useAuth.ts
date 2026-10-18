@@ -1,5 +1,5 @@
 export default function useAuth() {
-    const user = useState<SafeUserDatabaseType | null>('auth:user', () => null);
+    const user = useState<SafeUserType | null>('auth:user', () => null);
     const loading = useState<boolean>('auth:loading', () => false);
 
     function clearUser() {
