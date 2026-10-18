@@ -1,25 +1,10 @@
 import jwt from 'jsonwebtoken';
-import { hashSync, compareSync } from 'bcrypt-ts';
 import type { H3Event } from 'h3';
 
 export type JWTUserPayloadType = jwt.JwtPayload & SafeUserDatabaseType;
 
 const TOKEN_SECRET = process.env.JWT_SECRET!;
 const TOKEN_COOKIE_NAME = 'auth_token';
-
-export function hashPassword(password: string): string {
-    return hashSync(password, 8);
-};
-
-export function verifyPassword(password: string, hash: string): boolean {
-    try {
-        return compareSync(password, hash);
-    } catch (e) {
-        console.log('Error while verifying user password', e);
-
-        return false;
-    }
-};
 
 export function setAuthCookie(event: H3Event, user: SafeUserDatabaseType) {
     const token = jwt.sign(user, TOKEN_SECRET, { expiresIn: '7d' });
