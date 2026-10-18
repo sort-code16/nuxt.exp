@@ -1,15 +1,30 @@
-import { drizzle } from 'drizzle-orm/better-sqlite3';
+import { drizzle } from 'drizzle-orm/libsql';
+import { createClient } from '@libsql/client'
 import * as schema from '#server/database/schema';
 
-const db = drizzle(process.env.DATABASE_URL!);
+export const tables = schema;
+
+let _db: ReturnType<typeof drizzle<typeof schema>> | null = null;
 
 export function useDrizzle() {
-    return db;
+    if (!_db) {
+        if (!process.env.DB_URL) {
+            throw new Error('`DB_URL` not found in .env');
+        }
+
+        const client = createClient({
+            url: process.env.DB_URL,
+        });
+
+        _db = drizzle({ client, schema });
+    }
+
+    return _db;
 }
 
-export const { boardsTable, usersTable } = schema;
+// export type BoardDatabaseType = typeof tables.boardsTable.$inferSelect;
 
-export type UserDatabaseType = typeof usersTable.$inferSelect;
+export type UserDatabaseType = typeof tables.usersTable.$inferSelect;
 export type SafeUserDatabaseType = Omit<UserDatabaseType, 'password'>;
 
 const _checkSafeUserTypeConsistency: SafeUserDatabaseType extends SafeUserType
@@ -17,5 +32,3 @@ const _checkSafeUserTypeConsistency: SafeUserDatabaseType extends SafeUserType
         ? true
         : never
     : never = true;
-
-// export type Board = typeof boardsTable.$inferSelect;

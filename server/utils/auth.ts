@@ -4,7 +4,7 @@ import type { H3Event } from 'h3';
 export type JWTUserPayloadType = jwt.JwtPayload & SafeUserDatabaseType;
 
 const TOKEN_SECRET = process.env.JWT_SECRET!;
-const TOKEN_COOKIE_NAME = 'auth_token';
+const TOKEN_COOKIE_NAME = 'access_token';
 
 export function setAuthCookie(event: H3Event, user: SafeUserDatabaseType) {
     const token = jwt.sign(user, TOKEN_SECRET, { expiresIn: '7d' });

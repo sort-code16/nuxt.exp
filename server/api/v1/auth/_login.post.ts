@@ -13,10 +13,10 @@ export default defineEventHandler(async (event) => {
 
     const db = useDrizzle();
 
-    const user = db
+    const user = await db
         .select()
-        .from(usersTable)
-        .where(eq(usersTable.email, email))
+        .from(tables.usersTable)
+        .where(eq(tables.usersTable.email, email))
         // .limit(1) // TODO: Might be removed when checking of unique values will be done in register
         .get();
 
@@ -34,7 +34,7 @@ export default defineEventHandler(async (event) => {
     }
 
     // delete all rows from the 'users' table
-    // await db.delete(usersTable);
+    // await db.delete(tables.usersTable);
 
     const { password: _, ...data } = user;
 

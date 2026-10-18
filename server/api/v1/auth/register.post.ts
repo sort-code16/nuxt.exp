@@ -21,13 +21,13 @@ export default defineEventHandler(async (event) => {
     const db = useDrizzle();
 
     const insertUserResult = await db
-        .insert(usersTable)
+        .insert(tables.usersTable)
         .values({
             email,
             username: name as string,
             password: hashedPassword,
         })
-        .onConflictDoNothing({ target: usersTable.email })
+        .onConflictDoNothing({ target: tables.usersTable.email })
         .returning();
 
     if (insertUserResult.length === 0) {

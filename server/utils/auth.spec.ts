@@ -12,7 +12,7 @@ import {
 import type { H3Event } from 'h3';
 
 const TEST_JWT_SECRET = 'test-jwt-secret';
-const COOKIE_NAME = 'auth_token';
+const COOKIE_NAME = 'access_token';
 
 const mocks = vi.hoisted(() => {
     const signedToken = 'test-signed-token';
