@@ -10,7 +10,9 @@ const isLoginPage = computed(() => route.path === '/login');
         <span class="app-footer__copyright">© 2026 nuxt.exp</span>
 
         <div v-if="user">
-            <span class="nexp-me-2">Hi, {{ user.username }}!</span>
+            <span class="nexp-me-2">
+                Hi, <NuxtLink to="/profile">{{ user.username }}</NuxtLink>
+            </span>
 
             <BaseButton type="button" level="reject" @click="logout">
                 Logout
