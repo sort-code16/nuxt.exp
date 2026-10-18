@@ -12,7 +12,7 @@ export const { boardsTable, usersTable } = schema;
 export type UserDatabaseType = typeof usersTable.$inferSelect;
 export type SafeUserDatabaseType = Omit<UserDatabaseType, 'password'>;
 
-const checkSafeUserTypeConsistency: SafeUserDatabaseType extends SafeUserType
+const _checkSafeUserTypeConsistency: SafeUserDatabaseType extends SafeUserType
     ? SafeUserType extends SafeUserDatabaseType
         ? true
         : never
