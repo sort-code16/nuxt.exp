@@ -43,6 +43,16 @@ export default defineNuxtConfig({
         '~/assets/scss/main.scss',
     ],
 
+    // runtimeConfig: {
+    //     // only server
+    //     dbPassword: process.env.DB_PASSWORD,
+
+    //     // server & client
+    //     public: {
+    //         apiUrl: process.env.API_URL,
+    //     },
+    // },
+
     // router: {
     //     options: {
     //         linkActiveClass: 'nexp-link-active',

@@ -1,28 +1,28 @@
 {
-    "eslint.format.enable": true,
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-    "editor.formatOnSave": true,
+  "eslint.format.enable": true,
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "editor.formatOnSave": true,
 
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": "explicit"
-    },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
 
-    "[json]": {
-        "editor.defaultFormatter": "vscode.json-language-features",
-        "files.insertFinalNewline": true
-    },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features",
+    "files.insertFinalNewline": true
+  },
 
-    "stylelint.enable": true,
-    "stylelint.validate": ["css", "scss", "vue"],
+  "stylelint.enable": true,
+  "stylelint.validate": ["css", "scss", "vue"],
 
-    "css.validate": false,
-    "scss.validate": false,
+  "css.validate": false,
+  "scss.validate": false,
 
-    "files.associations": {
-        "*.svg": "xml"
-    },
+  "files.associations": {
+    "*.svg": "xml"
+  },
 
-    "[xml]": {
-        "editor.defaultFormatter": "redhat.vscode-xml"
-    },
+  "[xml]": {
+    "editor.defaultFormatter": "redhat.vscode-xml"
+  },
 }
