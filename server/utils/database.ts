@@ -1,5 +1,4 @@
 import { drizzle } from 'drizzle-orm/libsql';
-import { createClient } from '@libsql/client'
 import * as schema from '#server/database/schema';
 
 export const tables = schema;
@@ -12,11 +11,14 @@ export function useDrizzle() {
             throw new Error('`DB_URL` not found in .env');
         }
 
-        const client = createClient({
-            url: process.env.DB_URL,
-        });
+        _db = drizzle({
+            connection: {
+                url: process.env.DB_URL,
+                authToken: process.env.DB_TOKEN,
+            },
 
-        _db = drizzle({ client, schema });
+            schema,
+        });
     }
 
     return _db;
