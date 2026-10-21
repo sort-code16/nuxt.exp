@@ -56,7 +56,7 @@ const submitForm = async (event: Event) => {
         );
     } catch (e) {
         if (e instanceof FetchError) {
-            const msg = e.data?.message || e.message || 'Something went wrong';
+            const msg = e.data?.message || e.message || 'Something went wrong.';
 
             if (!e.status) {
                 danger(msg);
@@ -72,7 +72,7 @@ const submitForm = async (event: Event) => {
                 return;
             }
 
-            danger(msg, `${e.status} - ${e.statusText}`);
+            danger(msg, `${e.status}`);
         } else {
             // other system errors, like network issues, etc.
             console.log(e);

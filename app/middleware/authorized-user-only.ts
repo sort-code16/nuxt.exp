@@ -2,7 +2,7 @@
     return true;
 } */
 
-export default defineNuxtRouteMiddleware(async (/* to, from */) => {
+export default defineNuxtRouteMiddleware(async (to/* , from */) => {
     /* if (to.name === 'boards' && !isAuthenticated()) {
         return navigateTo('/boards/create');
     } */
@@ -12,6 +12,11 @@ export default defineNuxtRouteMiddleware(async (/* to, from */) => {
     if (import.meta.client) await fetchUser();
 
     if (!isLoggedIn.value) {
-        return navigateTo('/login');
+        // return navigateTo('/login', { replace: true });
+
+        return navigateTo({
+            path: '/login',
+            query: { redirect: to.fullPath },
+        });
     }
 });

@@ -13,20 +13,22 @@ useHead(() => ({
 </script>
 
 <template>
-    <NuxtLayout class="nexp-error-page">
-        <BaseIcon name="circle-alert" size="xl" class="nexp-mb-3" />
+    <NuxtLayout>
+        <main class="nexp-error-page">
+            <BaseIcon name="circle-alert" size="xl" class="nexp-mb-3" />
 
-        <h1 class="nexp-mb-3">
-            {{ error.status ?? 'Oops! Something went wrong.' }}
-        </h1>
+            <h1 class="nexp-mb-3">
+                {{ error.status ?? 'Oops! Something went wrong.' }}
+            </h1>
 
-        <p class="nexp-mb-4">
-            {{ error.message ?? 'We encountered an unexpected error.' }}
-        </p>
+            <p class="nexp-mb-4">
+                {{ error.message ?? 'We encountered an unexpected error.' }}
+            </p>
 
-        <BaseButton type="button" @click="() => clearError({ redirect: '/' })">
-            Clear error
-        </BaseButton>
+            <BaseButton type="button" @click="() => clearError({ redirect: '/' })">
+                Clear error
+            </BaseButton>
+        </main>
     </NuxtLayout>
 </template>
 

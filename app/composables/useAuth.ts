@@ -58,7 +58,7 @@ export default function useAuth() {
 
         clearUser();
 
-        return navigateTo('/login');
+        return navigateTo('/login'); // , { replace: true }
     };
 
     return {

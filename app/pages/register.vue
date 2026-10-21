@@ -80,7 +80,7 @@ const submitForm = async (event: Event) => {
                 return;
             }
 
-            danger(msg, `${e.status} - ${e.statusText}`);
+            danger(msg, `${e.status}`);
         } else {
             // other system errors, like network issues, etc.
             console.log(e);

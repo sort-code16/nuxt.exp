@@ -4,9 +4,9 @@ const route = useRoute();
 const { isValidParam } = useRouteValidation();
 
 definePageMeta({
-    // name: 'board',
+    name: 'board',
     title: 'Board',
-    validate: ({ params }) => isValidParam(params.id) || { status: 404, statusText: 'Board not found' },
+    validate: ({ params }) => isValidParam(params.id), // isValidParam(params.id) || { status: 404, statusText: 'Board not found' }
 });
 
 const id = route.params.id;

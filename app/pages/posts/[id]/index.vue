@@ -1,53 +1,53 @@
 <script setup lang="ts">
 const route = useRoute();
-// const { danger } = useNotifications();
 const { isValidParam } = useRouteValidation();
 
 definePageMeta({
-    validate: ({ params }) => isValidParam(params.id) || { status: 404, statusText: 'Post not found' },
+    name: 'post',
+    validate: ({ params }) => isValidParam(params.id), // isValidParam(params.id) || { status: 404, statusText: 'Post not found' }
 });
 
 const { id } = route.params;
-
-// interface IResponseError {
-//     readonly _data: {
-//         readonly message: string;
-//     },
-
-//     readonly status: number;
-//     readonly statusText: string;
-// }
-
-// type IFetchResponseError = NuxtError<unknown> | IResponseError;
 
 const { data, status, error } = /* await */ useFetch<IDummyPost>(`https://dummyjson.com/posts/${id}`, {
     query: {
         delay: 1000,
     },
 
-    /* onRequestError({ request, options, error }) {
-        console.log('onRequestError', error);
-    },
+    // onRequestError({ request, options, error }) {
+    //     console.log('onRequestError', error);
+    // },
 
-    onResponseError({ request, response, options }) {
-        console.log('onResponseError', response);
-
-        const { _data, status, statusText } = response;
-
-        danger(
-            _data?.message || 'Something went wrong',
-            `${status}${statusText ? '-' + statusText : ''}`,
-        );
-    }, */
+    // onResponseError({ request, response, options }) {
+    //     console.log('onResponseError', response);
+    // },
 });
+
+useSeoMeta({
+    title: () => {
+        if (status.value === 'pending') return 'Loading...';
+        if (status.value === 'error') return 'Error';
+
+        return data.value?.title ?? '';
+    },
+});
+
+// watch(error, (e) => {
+//     if (e?.status === 404) {
+//         showError({
+//             status: 404,
+//             message: (e.data as { message?: string } | undefined)?.message ?? 'Фільм не знайдено',
+//         })
+//     }
+// })
 </script>
 
 <template>
-    <section>
+    <main>
         <BaseCircleLoader v-if="status === 'pending'" size="sm" />
 
         <p v-else-if="status === 'error'" class="nexp-text-red">
-            {{ error }}
+            <BaseIcon name="circle-alert" /> {{ error }}
         </p>
 
         <template v-else>
@@ -90,7 +90,7 @@ const { data, status, error } = /* await */ useFetch<IDummyPost>(`https://dummyj
                 <BaseIcon name="search-x" /> Not found.
             </p>
         </template>
-    </section>
+    </main>
 </template>
 
 <style scoped lang="scss">
