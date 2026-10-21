@@ -3,13 +3,6 @@
 
 // console.log('appConfig', appConfig);
 
-useHead({
-    titleTemplate: (pageTitle) => `%env ${pageTitle ? pageTitle + ' %separator %siteName' : '%siteName'}`,
-    htmlAttrs: {
-        lang: 'en',
-    },
-});
-
 const { data, pending, error } = useFetch('/api/v1/test', {
     // key: 'test-data',
     // server: false,
@@ -18,29 +11,31 @@ const { data, pending, error } = useFetch('/api/v1/test', {
 </script>
 
 <template>
-    <div class="app">
-        <AppHeader @open-settings="() => console.log('Settings opened')" />
+    <NuxtLayout>
+        <div class="app">
+            <AppHeader @open-settings="() => console.log('Settings opened')" />
 
-        <ClientOnly>
-            <AppNotifications />
-        </ClientOnly>
+            <ClientOnly>
+                <AppNotifications />
+            </ClientOnly>
 
-        <NuxtLayout>
-            <NuxtPage />
-        </NuxtLayout>
+            <NuxtLayout name="app-default">
+                <NuxtPage />
+            </NuxtLayout>
 
-        <div class="app__test">
-            <BaseCircleLoader v-if="pending" size="sm" />
+            <div class="app__test">
+                <BaseCircleLoader v-if="pending" size="sm" />
 
-            <AppAlert v-else-if="error">
-                <span>{{ error.data.message }}</span>
-            </AppAlert>
+                <AppAlert v-else-if="error">
+                    <span>{{ error.data.message }}</span>
+                </AppAlert>
 
-            <span v-else>{{ data?.test }}</span>
+                <span v-else>{{ data?.test }}</span>
+            </div>
+
+            <AppFooter />
         </div>
-
-        <AppFooter />
-    </div>
+    </NuxtLayout>
 </template>
 
 <style scoped lang="scss">

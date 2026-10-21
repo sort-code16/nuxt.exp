@@ -1,8 +1,8 @@
 <script setup lang="ts">
 definePageMeta({
     title: 'Posts',
-    // layout: 'default',
-    layoutWithoutPaddings: true,
+    // layout: 'app-default',
+    wrapperWithoutPaddings: true,
 });
 
 const perPageOptions = [5, 10, 15, 20, 25];

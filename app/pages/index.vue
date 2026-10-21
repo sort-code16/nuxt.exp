@@ -23,7 +23,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div>
+    <main>
         <h2 class="nexp-mb-4">Welcome to the homepage</h2>
 
         <BaseButton type="button" class="nexp-me-2" @click="openDialog">
@@ -83,7 +83,7 @@ onMounted(() => {
                 </menu>
             </form>
         </dialog>
-    </div>
+    </main>
 </template>
 
 <style scoped lang="scss">
