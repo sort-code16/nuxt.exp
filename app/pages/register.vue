@@ -127,7 +127,7 @@ const submitForm = async (event: Event) => {
                         type="email"
                         label="Email:"
                         name="email"
-                        autocomplete="on"
+                        autocomplete="email"
                         required
                         :invalid="!!errors.email"
                         :aria-describedby="describedBy"

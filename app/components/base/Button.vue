@@ -44,15 +44,20 @@ const emit = defineEmits<IButtonEmits>();
         text-wrap: nowrap;
     }
 
-    &:disabled {
-        opacity: .6;
-        cursor: not-allowed;
-    }
-
     &:hover,
     &:focus {
         outline: 2px solid #00f;
         outline-offset: 2px;
+    }
+
+    &:disabled {
+        opacity: .6;
+        cursor: not-allowed;
+
+        &:hover,
+        &:focus {
+            outline: none;
+        }
     }
 
     &--icon-only {

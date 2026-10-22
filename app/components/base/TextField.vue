@@ -127,7 +127,6 @@ const describedBy = computed(() => {
         background-color: #fff;
         border: 1px solid currentColor;
         padding: 4px 8px;
-        font-size: 16px;
 
         &:focus {
             outline: 2px solid #00f;
@@ -136,6 +135,18 @@ const describedBy = computed(() => {
 
         &[aria-invalid='true'] {
             border-color: #f00;
+        }
+
+        &:read-only {
+            background-color: #eee;
+            color: #666;
+            border-color: #ddd;
+            cursor: not-allowed;
+
+            &:focus {
+                outline: none;
+                border-color: #666;
+            }
         }
     }
 }
