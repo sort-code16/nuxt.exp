@@ -15,15 +15,12 @@ useHead(() => ({
 <template>
     <NuxtLayout>
         <main class="nexp-error-page">
-            <BaseIcon name="circle-alert" size="xl" class="nexp-mb-3" />
-
-            <h1 class="nexp-mb-3">
-                {{ error.status ?? 'Oops! Something went wrong.' }}
+            <h1>
+                <BaseIcon name="circle-alert" size="xl" />
+                <span>{{ error.status ?? 'Oops!' }}</span>
             </h1>
 
-            <p class="nexp-mb-4">
-                {{ error.message ?? 'We encountered an unexpected error.' }}
-            </p>
+            <p>{{ error.message ?? 'Unexpected error.' }}</p>
 
             <BaseButton type="button" @click="() => clearError({ redirect: '/' })">
                 Clear error
@@ -34,11 +31,20 @@ useHead(() => ({
 
 <style scoped lang="scss">
 .nexp-error-page {
+    height: 100vh;
+    height: 100svh;
+    padding-inline: 16px;
+    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    height: 100svh;
+    gap: 16px;
+
+    h1 {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
 }
 </style>
