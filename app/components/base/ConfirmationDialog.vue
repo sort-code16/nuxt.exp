@@ -28,7 +28,7 @@ const props = defineProps({
     },
 });
 
-const dialog = ref(null);
+const dialog = useTemplateRef('nexpDialog');
 
 const submitHandler = (event) => {
     if (props.immediately) return;
@@ -52,12 +52,15 @@ defineExpose({
 <template>
     <dialog
         :id
-        ref="dialog"
+        ref="nexpDialog"
         class="nexp-scrollbar nexp-confirmation-dialog"
     >
         <div class="nexp-confirmation-dialog__header">
             <h3>{{ title }}</h3>
-            <BaseButton command="close" :commandfor="id">x</BaseButton>
+
+            <BaseButton v-if="immediately" command="close" :commandfor="id">
+                x
+            </BaseButton>
         </div>
 
         <div
