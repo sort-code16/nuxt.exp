@@ -3,11 +3,11 @@ import type { H3Event } from 'h3';
 
 export type JWTUserPayloadType = jwt.JwtPayload & SafeUserDatabaseType;
 
-const TOKEN_SECRET = process.env.JWT_SECRET!;
 const TOKEN_COOKIE_NAME = 'access_token';
 
 export function setAuthCookie(event: H3Event, user: SafeUserDatabaseType) {
-    const token = jwt.sign(user, TOKEN_SECRET, { expiresIn: '7d' });
+    const { jwtSecret } = useRuntimeConfig();
+    const token = jwt.sign(user, jwtSecret, { expiresIn: '7d' });
 
     setCookie(event, TOKEN_COOKIE_NAME, token, {
         httpOnly: true,
@@ -28,7 +28,9 @@ export function getUserFromAuthCookie(event: H3Event) {
     if (!token) return null;
 
     try {
-        return jwt.verify(token, TOKEN_SECRET) as JWTUserPayloadType;
+        const { jwtSecret } = useRuntimeConfig();
+
+        return jwt.verify(token, jwtSecret) as JWTUserPayloadType;
     } catch {
         clearAuthCookie(event);
 

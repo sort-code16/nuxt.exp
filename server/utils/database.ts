@@ -7,14 +7,16 @@ let _db: ReturnType<typeof drizzle<typeof schema>> | null = null;
 
 export function useDrizzle() {
     if (!_db) {
-        if (!process.env.DB_URL) {
-            throw new Error('`DB_URL` not found in .env');
-        }
+        const { databaseUrl, databaseToken } = useRuntimeConfig();
+
+        // if (!databaseUrl) {
+        //     throw new Error('`NUXT_DATABASE_URL` not found in .env');
+        // }
 
         _db = drizzle({
             connection: {
-                url: process.env.DB_URL,
-                authToken: process.env.DB_TOKEN,
+                url: databaseUrl,
+                authToken: databaseToken,
             },
 
             schema,

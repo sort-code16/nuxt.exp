@@ -11,18 +11,23 @@ import {
 
 import type { H3Event } from 'h3';
 
-const TEST_JWT_SECRET = 'test-jwt-secret';
-const COOKIE_NAME = 'access_token';
-
 const mocks = vi.hoisted(() => {
     const signedToken = 'test-signed-token';
 
     return {
         signedToken,
+        jwtSecret: 'test-jwt-secret',
+
         sign: vi.fn(() => signedToken),
         setCookie: vi.fn(),
     };
 });
+
+vi.mock('#app/nuxt', () => ({
+    useRuntimeConfig: () => ({
+        jwtSecret: mocks.jwtSecret,
+    }),
+}));
 
 vi.mock('jsonwebtoken', () => ({
     default: {
@@ -30,12 +35,13 @@ vi.mock('jsonwebtoken', () => ({
     },
 }));
 
+const COOKIE_NAME = 'access_token';
+
 describe('setAuthCookie', () => {
     let auth: typeof import('./auth');
 
     beforeAll(async () => {
-        vi.stubEnv('JWT_SECRET', TEST_JWT_SECRET);
-        vi.stubGlobal('setCookie', mocks.setCookie); // stub Nuxt's auto-import so the cookie options can be checked
+        vi.stubGlobal('setCookie', mocks.setCookie);
 
         auth = await import('./auth');
     });
@@ -45,7 +51,6 @@ describe('setAuthCookie', () => {
     });
 
     afterAll(() => {
-        vi.unstubAllEnvs();
         vi.unstubAllGlobals();
     });
 
@@ -62,7 +67,7 @@ describe('setAuthCookie', () => {
 
         expect(mocks.sign).toHaveBeenCalledWith(
             user,
-            TEST_JWT_SECRET,
+            mocks.jwtSecret,
             { expiresIn: '7d' },
         );
 
