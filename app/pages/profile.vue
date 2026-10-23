@@ -104,7 +104,7 @@ onMounted(() => {
             @close="closeDeleteConfirmationByAction"
         >
             <p>This action cannot be undone.</p>
-            <p>All your data, profile settings, and history will be permanently deleted.</p>
+            <p>All your data, profile settings and history will be permanently deleted.</p>
         </BaseConfirmationDialog>
     </section>
 </template>
