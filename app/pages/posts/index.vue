@@ -21,7 +21,7 @@ const { data, status, error } = useFetch<IDummyPostsSearch>('https://dummyjson.c
     pick: ['posts', 'limit', 'total'],
 });
 
-console.log('data', data);
+// console.log('data', data);
 </script>
 
 <template>

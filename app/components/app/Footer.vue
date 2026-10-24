@@ -33,7 +33,11 @@ const isLoginPage = computed(() => route.path === '/login');
 </template>
 
 <style scoped lang="scss">
+@use '~/assets/scss/mixins' as m;
+
 .app-footer {
+    @include m.nexp-link-base;
+
     flex: 0 0 60px;
     display: flex;
     align-items: center;

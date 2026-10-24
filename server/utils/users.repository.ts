@@ -1,9 +1,9 @@
 import { eq } from 'drizzle-orm';
 
+const db = useDrizzle();
+
 type UserInsertType = typeof tables.usersTable.$inferInsert;
 type TransactionClient = Parameters<Parameters<typeof db.transaction>[0]>[0];
-
-const db = useDrizzle();
 
 export const usersRepository = {
     createUser: async (data: UserInsertType) => {
