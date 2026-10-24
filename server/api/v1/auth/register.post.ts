@@ -19,7 +19,7 @@ export default defineEventHandler(async (event) => {
     const name = username || email.split('@')[0];
     const hashedPassword = hashPassword(password);
 
-    const user = await usersRepository.create({
+    const user = await usersRepository.createUser({
         email,
         username: name as string,
         password: hashedPassword,

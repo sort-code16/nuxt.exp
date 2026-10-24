@@ -6,7 +6,7 @@ type TransactionClient = Parameters<Parameters<typeof db.transaction>[0]>[0];
 const db = useDrizzle();
 
 export const usersRepository = {
-    create: async (data: UserInsertType) => {
+    createUser: async (data: UserInsertType) => {
         const result = await db
             .insert(tables.usersTable)
             .values(data)
