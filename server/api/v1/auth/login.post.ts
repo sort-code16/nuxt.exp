@@ -1,4 +1,3 @@
-import { eq } from 'drizzle-orm';
 import { z } from 'zod';
 
 export default defineEventHandler(async (event) => {
@@ -16,15 +15,7 @@ export default defineEventHandler(async (event) => {
     }
 
     const { email, password } = validatedBodyResult.data;
-
-    const db = useDrizzle();
-
-    const user = await db
-        .select()
-        .from(tables.usersTable)
-        .where(eq(tables.usersTable.email, email))
-        .limit(1)
-        .get();
+    const user = await usersRepository.getUserByEmail(email);
 
     if (!(user && verifyPassword(password, user.password))) {
         throw createError({
@@ -33,9 +24,6 @@ export default defineEventHandler(async (event) => {
             message: 'Wrong credentials.',
         });
     }
-
-    // delete all rows from the 'users' table
-    // await db.delete(tables.usersTable);
 
     const { password: _, ...data } = user;
 

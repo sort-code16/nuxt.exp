@@ -18,19 +18,14 @@ export default defineEventHandler(async (event) => {
 
     const name = username || email.split('@')[0];
     const hashedPassword = hashPassword(password);
-    const db = useDrizzle();
 
-    const insertUserResult = await db
-        .insert(tables.usersTable)
-        .values({
-            email,
-            username: name as string,
-            password: hashedPassword,
-        })
-        .onConflictDoNothing({ target: tables.usersTable.email })
-        .returning();
+    const user = await usersRepository.create({
+        email,
+        username: name as string,
+        password: hashedPassword,
+    });
 
-    if (insertUserResult.length === 0) {
+    if (!user) {
         throw createError({
             status: 409, // 409 Conflict
             statusText: 'Conflict Error',
@@ -38,9 +33,9 @@ export default defineEventHandler(async (event) => {
         });
     }
 
-    const { password: _, ...user } = insertUserResult[0] as UserDatabaseType;
+    const { password: _, ...data } = user;
 
     return {
-        data: user,
+        data,
     };
 });

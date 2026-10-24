@@ -1,6 +1,6 @@
 import { eq } from 'drizzle-orm';
 
-// TODO: Upgrade
+// TODO: Might be removed
 export default defineEventHandler(async (event) => {
     const { email, password } = await readBody(event);
 

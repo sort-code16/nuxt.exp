@@ -1,15 +1,34 @@
 import { eq } from 'drizzle-orm';
 
+type UserInsertType = typeof tables.usersTable.$inferInsert;
 type TransactionClient = Parameters<Parameters<typeof db.transaction>[0]>[0];
 
 const db = useDrizzle();
 
 export const usersRepository = {
+    create: async (data: UserInsertType) => {
+        const result = await db
+            .insert(tables.usersTable)
+            .values(data)
+            .onConflictDoNothing({ target: tables.usersTable.email })
+            .returning();
+
+        return result.length ? result[0] : null;
+    },
+
     getUserById: async (id: UserDatabaseType['id']): Promise<UserDatabaseType | undefined> => (
         await db
             .select()
             .from(tables.usersTable)
             .where(eq(tables.usersTable.id, id))
+            .get()
+    ),
+
+    getUserByEmail: async (email: UserDatabaseType['email']): Promise<UserDatabaseType | undefined> => (
+        await db
+            .select()
+            .from(tables.usersTable)
+            .where(eq(tables.usersTable.email, email))
             .get()
     ),
 
