@@ -3,6 +3,7 @@ const route = useRoute();
 const { user, logout } = useAuth();
 
 const isLoginPage = computed(() => route.path === '/login');
+const isProfilePage = computed(() => route.path === '/profile');
 </script>
 
 <template>
@@ -11,7 +12,9 @@ const isLoginPage = computed(() => route.path === '/login');
 
         <div v-if="user">
             <span class="nexp-me-2">
-                Hi, <NuxtLink to="/profile">{{ user.username }}</NuxtLink>
+                Hi,
+                <span v-if="isProfilePage">{{ user.username }}</span>
+                <NuxtLink v-else to="/profile">{{ user.username }}</NuxtLink>
             </span>
 
             <BaseButton type="button" level="reject" @click="logout">
@@ -38,11 +41,12 @@ const isLoginPage = computed(() => route.path === '/login');
 .app-footer {
     @include m.nexp-link-base;
 
+    border-top: 4px solid #000;
+    padding: 12px 24px;
     flex: 0 0 60px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 24px;
-    border-top: 4px solid #000;
+    gap: 8px;
 }
 </style>
