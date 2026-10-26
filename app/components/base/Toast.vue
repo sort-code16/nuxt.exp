@@ -82,6 +82,10 @@ onUnmounted(() => {
         margin-bottom: 4px;
     }
 
+    p {
+        overflow-wrap: anywhere;
+    }
+
     &--success {
         border-color: #008000;
 
