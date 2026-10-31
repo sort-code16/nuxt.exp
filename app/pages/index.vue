@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 definePageMeta({
     name: 'home',
     title: 'Home',
@@ -6,13 +6,14 @@ definePageMeta({
 });
 
 const dialogRef = useTemplateRef('favDialog');
+const dropdownRef = useTemplateRef('dropdownButton');
 
-const openDialog = (value) => {
+const openDialog = (value: MouseEvent) => {
     console.log('openDialog() value', value);
     dialogRef.value?.showModal();
 };
 
-const closeDialog = (value) => {
+const closeDialog = (value: MouseEvent) => {
     console.log('closeDialog() value', value);
     dialogRef.value?.close();
 };
@@ -25,6 +26,36 @@ onMounted(() => {
 <template>
     <main>
         <h2 class="nexp-mb-4">Welcome to the homepage</h2>
+
+        <div class="nexp-mb-4">
+            <div class="nexp-me-4" style="display: inline">
+                <span class="hinted">
+                    <BaseIcon name="info" tabindex="0" class="hinted__element" style="anchor-name: --btn-id-1" />
+                    <span class="hinted__hint" style="position-anchor: --btn-id-1">Подсказка 1</span>
+                </span>
+            </div>
+
+            <span class="hinted">
+                <button class="hinted__element" style="anchor-name: --btn-id-2">Кнопка 2</button>
+                <span class="hinted__hint" style="position-anchor: --btn-id-2">Подсказка 2</span>
+            </span>
+        </div>
+
+        <div class="nexp-mb-4" style="display: flex; justify-content: space-between">
+            <BaseDropdownButton ref="dropdownButton" label="Dropdown">
+                <ul>
+                    <li>
+                        <button type="button" @click="() => dropdownRef?.close()">Close dropdown</button>
+                    </li>
+
+                    <li>Test item 1</li>
+                    <li>Test item 2</li>
+                    <li>Test item 3</li>
+                </ul>
+            </BaseDropdownButton>
+
+            <BaseDropdownButton up right />
+        </div>
 
         <BaseButton type="button" class="nexp-me-2" @click="openDialog">
             Update details
@@ -91,5 +122,24 @@ onMounted(() => {
     display: flex;
     justify-content: space-between;
     padding-top: 14px;
+}
+
+.hinted {
+    $self: &;
+
+    &__hint {
+        display: none;
+        position: absolute;
+        position-area: right;
+        background-color: #fff;
+        padding: 1px 4px;
+    }
+
+    &__element:hover,
+    &__element:focus-visible {
+        & + #{$self}__hint {
+            display: inherit;
+        }
+    }
 }
 </style>
