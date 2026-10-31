@@ -55,7 +55,7 @@ onUnmounted(() => {
             aria-label="Close notification"
             @click="emit('close', id)"
         >
-            <span aria-hidden="true">x</span>
+            <span aria-hidden="true">&times;</span>
         </BaseButton>
 
         <h3 v-if="title">{{ title }}</h3>

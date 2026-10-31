@@ -61,7 +61,7 @@ onMounted(() => {
                 popovertargetaction="hide"
                 aria-label="Close mobile navigation"
             >
-                x
+                &times;
             </BaseButton>
 
             <nav aria-label="Mobile navigation">

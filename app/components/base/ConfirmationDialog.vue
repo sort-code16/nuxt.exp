@@ -40,9 +40,9 @@ const submitHandler = (event) => {
     }
 };
 
-const attrs = useAttrs();
+// const attrs = useAttrs();
 
-console.log('attrs', attrs);
+// console.log('attrs', attrs);
 
 defineExpose({
     dialog,
@@ -59,7 +59,7 @@ defineExpose({
             <h3>{{ title }}</h3>
 
             <BaseButton v-if="immediately" command="close" :commandfor="id">
-                x
+                &times;
             </BaseButton>
         </div>
 
