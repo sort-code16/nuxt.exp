@@ -11,21 +11,18 @@ const {
     iconOnly = false,
 } = defineProps<IButtonProps>();
 
-interface IButtonEmits {
-    click: [event: MouseEvent];
-}
+// interface IButtonEmits {
+//     click: [event: MouseEvent];
+// }
 
-const emit = defineEmits<IButtonEmits>();
+// const emit = defineEmits<IButtonEmits>();
 </script>
 
 <template>
+    <!-- @click="emit('click', $event)" -->
     <button
-        :class="[
-            'nexp-button',
-            `nexp-button--${level}`,
-            { 'nexp-button--icon-only': iconOnly },
-        ]"
-        @click="emit('click', $event)"
+        class="nexp-button"
+        :class="[`nexp-button--${level}`, { 'nexp-button--icon-only': iconOnly }]"
     >
         <span v-if="label" class="nexp-button__label">
             {{ label }}
@@ -45,9 +42,11 @@ const emit = defineEmits<IButtonEmits>();
     }
 
     &:hover,
-    &:focus {
-        outline: 2px solid #00f;
-        outline-offset: 2px;
+    &:focus-visible {
+        // outline: 2px solid #00f;
+        // outline-offset: 2px;
+        outline: none;
+        box-shadow: inset 0 0 0 1px #fff, inset 0 0 0 2px rgb(0 0 0 / .4);
     }
 
     &:disabled {
@@ -55,8 +54,9 @@ const emit = defineEmits<IButtonEmits>();
         cursor: not-allowed;
 
         &:hover,
-        &:focus {
-            outline: none;
+        &:focus-visible {
+            // outline: none;
+            box-shadow: none;
         }
     }
 
@@ -66,11 +66,13 @@ const emit = defineEmits<IButtonEmits>();
 
     &--primary {
         background-color: #000;
+        border: 1px solid #000;
         color: #fff;
     }
 
     &--secondary {
         background-color: #0f0;
+        border: 1px solid #0f0;
         color: #fff;
     }
 
