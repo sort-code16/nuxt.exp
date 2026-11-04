@@ -27,18 +27,18 @@ onMounted(() => {
     <main>
         <h2 class="nexp-mb-4">Welcome to the homepage</h2>
 
-        <div class="nexp-mb-4">
-            <div class="nexp-me-4" style="display: inline">
-                <span class="hinted">
-                    <BaseIcon name="info" tabindex="0" class="hinted__element" style="anchor-name: --btn-id-1" />
-                    <span class="hinted__hint" style="position-anchor: --btn-id-1">Подсказка 1</span>
-                </span>
-            </div>
+        <div class="nexp-mb-4" style="display: flex; justify-content: space-between">
+            <span>
+                Some text
 
-            <span class="hinted">
-                <button class="hinted__element" style="anchor-name: --btn-id-2">Кнопка 2</button>
-                <span class="hinted__hint" style="position-anchor: --btn-id-2">Подсказка 2</span>
+                <BaseHint text="The default value. There are no position try fallback options set.">
+                    <BaseIcon name="info" />
+                </BaseHint>
             </span>
+
+            <BaseHint text="position-area values cannot be combined like this.">
+                <BaseIcon name="circle-alert" />
+            </BaseHint>
         </div>
 
         <div class="nexp-mb-4" style="display: flex; justify-content: space-between">
@@ -122,24 +122,5 @@ onMounted(() => {
     display: flex;
     justify-content: space-between;
     padding-top: 14px;
-}
-
-.hinted {
-    $self: &;
-
-    &__hint {
-        display: none;
-        position: absolute;
-        position-area: right;
-        background-color: #fff;
-        padding: 1px 4px;
-    }
-
-    &__element:hover,
-    &__element:focus-visible {
-        & + #{$self}__hint {
-            display: inherit;
-        }
-    }
 }
 </style>
