@@ -35,8 +35,10 @@ onUnmounted(() => {
 </script>
 
 <template>
+    <!-- :data-status="type" -->
     <div
-        :class="['nexp-toast', `nexp-toast--${type}`]"
+        class="nexp-toast"
+        :class="[`nexp-toast--${type}`]"
         :role="type === 'error' ? 'alert' : 'status'"
         :aria-live="type === 'error' ? 'assertive' : 'polite'"
         aria-atomic="true"
@@ -69,6 +71,16 @@ onUnmounted(() => {
 }
 
 .nexp-toast {
+    // --status: attr(data-status);
+
+    // --active-color: if(
+    //     style(--status: "success"): #008000;
+    //     style(--status: "error"): #f00;
+    //     style(--status: "info"): #00f;
+    //     style(--status: "warning"): #ffa500;
+    //     else: currentColor;
+    // );
+
     position: relative;
     min-width: 280px;
     max-width: 100%;
@@ -77,9 +89,11 @@ onUnmounted(() => {
     border: 1px solid transparent;
     border-inline-start-width: 8px;
     background-color: #fff;
+    // border-color: var(--active-color);
 
     h3 {
         margin-bottom: 4px;
+        // color: var(--active-color);
     }
 
     p {
