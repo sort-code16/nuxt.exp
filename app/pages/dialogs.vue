@@ -165,6 +165,14 @@ const closeConfirmationByAction = event => {
 </template>
 
 <style scoped lang="scss">
+p {
+    line-height: 20px;
+
+    + p {
+        margin-top: 8px;
+    }
+}
+
 .form-group {
     margin-block: 8px;
 }

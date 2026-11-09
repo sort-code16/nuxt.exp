@@ -72,9 +72,9 @@ const { data, status, error } = useFetch<IDummyPostsSearch>('https://dummyjson.c
                         v-for="{ id, title, body } in data.posts"
                         :key="`posts-item-${id}`"
                     >
-                        <h3 class="nexp-mb-2">
+                        <h2 class="nexp-mb-2">
                             <NuxtLink :to="`/posts/${id}`">{{ title }}</NuxtLink>
-                        </h3>
+                        </h2>
 
                         <p>{{ body }}</p>
                     </article>
@@ -143,6 +143,15 @@ header {
             margin-bottom: 16px;
             padding-bottom: 16px;
             border-bottom: 1px solid #eee;
+        }
+
+        h2 {
+            font-size: 16px;
+            line-height: 20px;
+        }
+
+        p {
+            line-height: 20px;
         }
     }
 
