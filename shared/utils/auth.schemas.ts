@@ -13,7 +13,7 @@ export const registerSchema = z.strictObject({
     username: z.string().trim().max(30).optional(),
     password: z
         .string()
-        .min(6, 'Password must be at least 6 characters long')
+        .min(6, 'Password must be at least 6 characters long.')
         .refine(
             (password) => !truncates(password),
             'Password is too long. Please use a shorter password.', // password must not exceed 72 bytes

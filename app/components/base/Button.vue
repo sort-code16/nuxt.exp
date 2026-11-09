@@ -1,7 +1,7 @@
 <script setup lang="ts">
 interface IButtonProps {
     label?: string;
-    level?: 'primary' | 'secondary' | 'tertiary' | 'link' | 'reject';
+    level?: 'primary' | 'secondary' | 'active-link' | 'tertiary' | 'link' | 'reject';
     iconOnly?: boolean;
 }
 
@@ -71,8 +71,14 @@ const {
     }
 
     &--secondary {
-        background-color: #0f0;
-        border: 1px solid #0f0;
+        background-color: #008000;
+        border: 1px solid #008000;
+        color: #fff;
+    }
+
+    &--active-link {
+        background-color: #00f;
+        border: 1px solid #00f;
         color: #fff;
     }
 

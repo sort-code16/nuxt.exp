@@ -6,7 +6,7 @@ const formData = reactive({
 </script>
 
 <template>
-    <main>
+    <main class="page-form">
         <h1 class="nexp-mb-4">Contact us</h1>
 
         <!-- novalidate -->
@@ -38,3 +38,7 @@ const formData = reactive({
         </form>
     </main>
 </template>
+
+<style scoped lang="scss">
+@use '~/assets/scss/page-form';
+</style>
