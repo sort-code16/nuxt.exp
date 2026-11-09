@@ -9,7 +9,6 @@ definePageMeta({
 const MESSAGE_MAX_LENGTH = 512;
 
 const { public: { formSubmitLink, supportAddress } } = useRuntimeConfig();
-
 const { errors, validateField, validateForm } = useFormValidation();
 const { success, danger } = useNotifications();
 
