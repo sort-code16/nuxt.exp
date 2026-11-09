@@ -38,7 +38,10 @@ onUnmounted(() => {
     <!-- :data-status="type" -->
     <div
         class="nexp-toast"
-        :class="[`nexp-toast--${type}`]"
+        :class="[
+            `nexp-toast--${type}`,
+            { 'nexp-toast--with-close-btn': !duration },
+        ]"
         :role="type === 'error' ? 'alert' : 'status'"
         :aria-live="type === 'error' ? 'assertive' : 'polite'"
         aria-atomic="true"
@@ -90,6 +93,10 @@ onUnmounted(() => {
     border-inline-start-width: 8px;
     background-color: #fff;
     // border-color: var(--active-color);
+
+    &--with-close-btn {
+        padding-inline-end: 33px;
+    }
 
     h3 {
         margin-bottom: 4px;

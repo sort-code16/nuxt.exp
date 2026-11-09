@@ -100,7 +100,11 @@ const describedBy = computed(() => {
         />
 
         <div v-if="hint || maxLength" class="nexp-textarea__meta">
-            <span v-if="hint" :id="`${fieldID}-hint`">
+            <span
+                v-if="hint"
+                :id="`${fieldID}-hint`"
+                class="nexp-textarea__hint"
+            >
                 {{ hint }}
             </span>
 
@@ -138,6 +142,10 @@ const describedBy = computed(() => {
         line-height: 1.2;
         font-size: 12px;
         color: #808080;
+    }
+
+    &__hint {
+        overflow-wrap: anywhere;
     }
 
     &__counter {
