@@ -1,40 +1,129 @@
 <script setup lang="ts">
-const formData = reactive({
-    email: '',
-    message: '',
+import { FetchError } from 'ofetch';
+import { z } from 'zod';
+
+definePageMeta({
+    title: 'Contact us',
 });
+
+const MESSAGE_MAX_LENGTH = 512;
+
+const { public: { formSubmitLink, supportAddress } } = useRuntimeConfig();
+
+const { errors, validateField, validateForm } = useFormValidation();
+const { success, danger } = useNotifications();
+
+const formSchema = z.strictObject({
+    email: loginSchema.shape.email,
+    message: z
+        .string()
+        .min(10, 'Message must be at least 10 characters long.')
+        .max(MESSAGE_MAX_LENGTH, `Message cannot exceed ${MESSAGE_MAX_LENGTH} characters.`),
+});
+
+type formDataType = z.infer<typeof formSchema>;
+
+const formValidationConfig: IFormValidationConfig = {
+    email: { schema: formSchema.shape.email },
+    message: { schema: formSchema.shape.message },
+};
+
+const getSubmitLink = () => `https://formsubmit.co/ajax/${formSubmitLink || supportAddress}`;
+const getDefaultData = () => ({ email: '', message: '' });
+
+const formData = reactive<formDataType>(getDefaultData());
+
+const loading = ref(false);
+
+const submitForm = async (event: Event) => {
+    if (loading.value) return;
+    if (!validateForm(event, formValidationConfig)) return;
+
+    loading.value = true;
+
+    try {
+        await $fetch(getSubmitLink(), {
+            method: 'POST',
+
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+            },
+
+            body: {
+                ...formData,
+
+                _subject: 'From "Contact us" on nuxt.exp',
+                _template: 'table',
+
+                // _next: `${window.location.origin}/contact?success=true`,
+            },
+        })
+
+        success(
+            'You have successfully sent your message.',
+            undefined,
+            3000,
+        );
+
+        Object.assign(formData, getDefaultData()); // clear the form after successful submission
+    } catch (e) {
+        if (e instanceof FetchError) {
+            danger(e.message || 'Something went wrong.');
+
+            return;
+        }
+
+        console.error(e); // other system errors, like network issues, etc.
+    } finally {
+        loading.value = false;
+    }
+};
 </script>
 
 <template>
     <main class="page-form">
         <h1 class="nexp-mb-4">Contact us</h1>
 
-        <!-- novalidate -->
-        <form @submit.prevent="() => {}">
+        <form novalidate @submit.prevent="submitForm">
             <div class="nexp-mb-3">
-                <BaseTextField
-                    v-model="formData.email"
-                    type="email"
-                    label="Email:"
-                    name="email"
-                    autocomplete="email"
-                    required
-                />
+                <BaseFieldValidationWrapper :error="errors.email" v-slot="{ describedBy }">
+                    <BaseTextField
+                        v-model="formData.email"
+                        type="email"
+                        label="Email:"
+                        name="email"
+                        autocomplete="email"
+                        required
+                        :invalid="!!errors.email"
+                        :aria-describedby="describedBy"
+                        @blur="validateField('email', $event, formValidationConfig.email)"
+                    />
+                </BaseFieldValidationWrapper>
             </div>
 
             <div class="nexp-mb-3">
-                <BaseTextarea
-                    :value="formData.message"
-                    :maxLength="512"
-                    autoResize
-                    required
-                    label="Message:"
-                    name="message"
-                    @input="formData.message = $event.target.value"
-                />
+                <BaseFieldValidationWrapper :error="errors.message" v-slot="{ describedBy }">
+                    <BaseTextarea
+                        label="Message:"
+                        name="message"
+                        required
+                        autoResize
+                        hint="Have a question or found a glitch? Drop us a line!"
+                        :value="formData.message"
+                        :maxLength="MESSAGE_MAX_LENGTH"
+                        :invalid="!!errors.message"
+                        :aria-describedby="describedBy"
+                        @input="formData.message = $event.target.value"
+                        @blur="validateField('message', $event, formValidationConfig.message)"
+                    />
+                </BaseFieldValidationWrapper>
             </div>
 
-            <BaseButton label="Send" level="primary" />
+            <div class="submit-btn-group">
+                <BaseButton label="Send" level="primary" :disabled="loading" />
+                <BaseCircleLoader v-if="loading" size="sm" />
+            </div>
         </form>
     </main>
 </template>

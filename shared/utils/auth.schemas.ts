@@ -5,7 +5,7 @@ import { truncates } from 'bcrypt-ts';
 //     message: 'The registration from .ru domains is not allowed.',
 // });
 
-const emailSchema = z.email().max(254);
+const emailSchema = z.email('Invalid email address.').max(254);
 
 // TODO: Add password confirmation
 export const registerSchema = z.strictObject({
