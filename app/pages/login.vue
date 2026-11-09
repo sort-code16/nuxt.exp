@@ -75,7 +75,7 @@ const submitForm = async (event: Event) => {
             danger(msg, `Error ${e.status}`);
         } else {
             // other system errors, like network issues, etc.
-            console.log(e);
+            console.error(e);
         }
     } finally {
         loading.value = false;

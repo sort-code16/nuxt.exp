@@ -80,6 +80,10 @@ const {
         background-color: #00f;
         border: 1px solid #00f;
         color: #fff;
+
+        &:disabled {
+            cursor: default; // resets cursor to default arrow
+        }
     }
 
     &--link {

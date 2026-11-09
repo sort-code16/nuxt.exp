@@ -118,6 +118,10 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
+p + p {
+    margin-top: 8px;
+}
+
 .dialog-actions-group {
     display: flex;
     justify-content: space-between;

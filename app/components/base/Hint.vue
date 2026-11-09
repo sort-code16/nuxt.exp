@@ -11,6 +11,7 @@ const id = useId();
 <template>
     <span class="nexp-hinted-element">
         <span
+            style="cursor: help"
             tabindex="0"
             :style="`anchor-name: --${id}`"
             :aria-describedby="id"

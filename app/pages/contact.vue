@@ -28,6 +28,13 @@ const formValidationConfig: IFormValidationConfig = {
     message: { schema: formSchema.shape.message },
 };
 
+const directLinkParams = new URLSearchParams({
+    subject: 'From direct link on nuxt.exp',
+    // email: '',
+});
+
+const directLink = `https://formsubmit.co/el/yupohi?${directLinkParams.toString()}`;
+
 const getSubmitLink = () => `https://formsubmit.co/ajax/${formSubmitLink || supportAddress}`;
 const getDefaultData = () => ({ email: '', message: '' });
 
@@ -85,7 +92,7 @@ const submitForm = async (event: Event) => {
     <main class="page-form">
         <h1 class="nexp-mb-4">Contact us</h1>
 
-        <form novalidate @submit.prevent="submitForm">
+        <form class="nexp-mb-3" novalidate @submit.prevent="submitForm">
             <div class="nexp-mb-3">
                 <BaseFieldValidationWrapper :error="errors.email" v-slot="{ describedBy }">
                     <BaseTextField
@@ -105,10 +112,11 @@ const submitForm = async (event: Event) => {
             <div class="nexp-mb-3">
                 <BaseFieldValidationWrapper :error="errors.message" v-slot="{ describedBy }">
                     <BaseTextarea
-                        label="Message:"
-                        name="message"
                         required
                         autoResize
+                        label="Message:"
+                        name="message"
+                        style="min-height: calc(5lh + 8px)"
                         hint="Have a question or found a glitch? Drop us a line!"
                         :value="formData.message"
                         :maxLength="MESSAGE_MAX_LENGTH"
@@ -125,9 +133,18 @@ const submitForm = async (event: Event) => {
                 <BaseCircleLoader v-if="loading" size="sm" />
             </div>
         </form>
+
+        <p>
+            An alternative way to
+            <NuxtLink :to="directLink" target="_blank">send a message</NuxtLink>
+        </p>
     </main>
 </template>
 
 <style scoped lang="scss">
 @use '~/assets/scss/page-form';
+
+p {
+    line-height: 20px;
+}
 </style>
