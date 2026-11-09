@@ -9,7 +9,6 @@ const errorMessageID = useId();
 </script>
 
 <template>
-    <!-- :class="{ 'nexp-field-validation-wrapper--has-error': error }" -->
     <div class="nexp-field-validation-wrapper">
         <slot :describedBy="error ? errorMessageID : undefined" />
 
@@ -27,12 +26,10 @@ const errorMessageID = useId();
 <style scoped lang="scss">
 .nexp-field-validation-wrapper {
     &__error-message {
+        margin-top: 8px;
+        line-height: 1.2;
+        font-size: 12px;
         color: #f00;
-        margin-top: 4px;
     }
-
-    /* &--has-error {
-        border-color: #f00;
-    } */
 }
 </style>
