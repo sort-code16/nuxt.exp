@@ -14,7 +14,7 @@ type FieldType = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
 
 export default function useFormValidation() {
     const errors = reactive<Record<string, string>>({});
-    const values = reactive<Record<string, string>>({});
+    // const values = reactive<Record<string, string>>({});
 
     function validateElement(
         name: string,
@@ -23,7 +23,7 @@ export default function useFormValidation() {
     ): boolean {
         const value = element.value;
 
-        values[name] = value;
+        // values[name] = value;
 
         // step 1 - native HTML validation (required, min / max, pattern etc.)
         if (typeof element.checkValidity === 'function' && !element.checkValidity()) {

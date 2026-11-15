@@ -6,11 +6,13 @@ definePageMeta({
     title: 'Contact us',
 });
 
+const FORM_SUBMIT_URL = 'https://formsubmit.co';
 const MESSAGE_MAX_LENGTH = 512;
 
 const { public: { formSubmitLink, supportAddress } } = useRuntimeConfig();
 const { errors, validateField, validateForm } = useFormValidation();
 const { success, danger } = useNotifications();
+const { user } = useAuth();
 
 const formSchema = z.strictObject({
     email: loginSchema.shape.email,
@@ -28,19 +30,19 @@ const formValidationConfig: IFormValidationConfig = {
     message: { schema: formSchema.shape.message },
 };
 
-const directLinkParams = new URLSearchParams({
-    subject: 'From direct link on nuxt.exp',
-    // email: '',
-});
-
-const directLink = `https://formsubmit.co/el/yupohi?${directLinkParams.toString()}`;
-
-const getSubmitLink = () => `https://formsubmit.co/ajax/${formSubmitLink || supportAddress}`;
+const getSubmitLink = () => `${FORM_SUBMIT_URL}/ajax/${formSubmitLink || supportAddress}`;
 const getDefaultData = () => ({ email: '', message: '' });
 
 const formData = reactive<formDataType>(getDefaultData());
 
 const loading = ref(false);
+
+const directLinkParams = computed(() => new URLSearchParams({
+    subject: 'From direct link on nuxt.exp',
+    ...(user.value && { email: user.value.email }),
+}));
+
+const directLink = computed(() => `${FORM_SUBMIT_URL}/el/yupohi?${directLinkParams.value.toString()}`);
 
 const submitForm = async (event: Event) => {
     if (loading.value) return;
@@ -86,6 +88,12 @@ const submitForm = async (event: Event) => {
         loading.value = false;
     }
 };
+
+onMounted(() => {
+    if (!user.value) return;
+
+    formData.email = user.value.email;
+});
 </script>
 
 <template>
