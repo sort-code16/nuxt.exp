@@ -3,19 +3,27 @@ export default defineEventHandler(async (event) => {
 
     const { iat, exp, ...data } = event.context.user;
 
+    let doesUserExist: boolean;
+
     try {
-        const doesUserExist = await usersRepository.isUserExistByEmail(data.email);
-
-        if (!doesUserExist) {
-            clearAuthCookie(event);
-
-            return null;
-        }
-
-        return data;
+        doesUserExist = await usersRepository.isUserExistByEmail(data.email);
     } catch (error) {
-        console.error(`[Turso / API crash at ${event.path}]: `, error);
+        console.error(`[Turso crash at ${event.path}]: `, error);
 
-        throw error;
+        // throw error;
+
+        throw createError({
+            status: 500,
+            statusText: 'Internal Server Error',
+            message: 'An unexpected server error occurred.',
+        });
     }
+
+    if (!doesUserExist) {
+        clearAuthCookie(event);
+
+        return null;
+    }
+
+    return data;
 });
