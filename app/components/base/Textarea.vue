@@ -3,6 +3,7 @@ interface ITextareaProps {
     modelValue?: string;
     value?: string;
     maxLength?: number;
+    minLines?: number;
     autoResize?: boolean;
     required?: boolean;
     invalid?: boolean;
@@ -14,6 +15,7 @@ const {
     modelValue,
     value,
     maxLength,
+    minLines = 2,
     autoResize = false,
     required = false,
     invalid = false,
@@ -93,6 +95,7 @@ const describedBy = computed(() => {
             :aria-describedby="describedBy"
             class="nexp-textarea__field"
             :class="{ 'nexp-textarea__field--auto-resize': autoResize }"
+            :style="`min-height: calc(${minLines}lh + 10px)`"
             v-bind="fieldAttrs"
             @input="emit('update:modelValue', ($event.target as HTMLTextAreaElement).value)"
             @blur="emit('blur', $event)"
@@ -131,32 +134,18 @@ const describedBy = computed(() => {
         gap: 4px;
     }
 
+    // &:has([aria-invalid='true']) &__label {
+    //     color: #f00;
+    // }
+
     &__required-indicator {
         color: #f00;
-    }
-
-    &__meta {
-        display: flex;
-        justify-content: space-between;
-        gap: 16px;
-        line-height: 1.2;
-        font-size: 12px;
-        color: #808080;
-    }
-
-    &__hint {
-        overflow-wrap: anywhere;
-    }
-
-    &__counter {
-        text-wrap: nowrap;
     }
 
     &__field {
         scrollbar-width: thin;
         scrollbar-color: #808080 transparent;
         resize: vertical;
-        min-height: calc(3lh + 8px);
         max-width: 100%;
         width: 100%;
         background-color: #fff;
@@ -188,6 +177,23 @@ const describedBy = computed(() => {
     &__field--auto-resize {
         field-sizing: content;
         resize: none;
+    }
+
+    &__meta {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        line-height: 1.2;
+        font-size: 12px;
+        color: #808080;
+    }
+
+    &__hint {
+        overflow-wrap: anywhere;
+    }
+
+    &__counter {
+        text-wrap: nowrap;
     }
 }
 </style>
