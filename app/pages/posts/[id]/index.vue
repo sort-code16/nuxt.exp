@@ -94,11 +94,17 @@ useSeoMeta({
 </template>
 
 <style scoped lang="scss">
-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    flex-wrap: wrap;
+article {
+    p {
+        line-height: 20px;
+    }
+
+    footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
 }
 </style>

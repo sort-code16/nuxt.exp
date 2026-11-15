@@ -15,7 +15,20 @@ export default defineEventHandler(async (event) => {
     }
 
     const { email, password } = validatedBodyResult.data;
-    const user = await usersRepository.getUserByEmail(email);
+
+    let user;
+
+    try {
+        user = await usersRepository.getUserByEmail(email);
+    } catch (error) {
+        console.error(`[Turso crash at ${event.path}]: `, error);
+
+        throw createError({
+            status: 500,
+            statusText: 'Internal Server Error',
+            message: 'An unexpected server error occurred.',
+        });
+    }
 
     if (!(user && verifyPassword(password, user.password))) {
         throw createError({
@@ -29,7 +42,5 @@ export default defineEventHandler(async (event) => {
 
     setAuthCookie(event, data);
 
-    return {
-        data,
-    };
+    return { data };
 });

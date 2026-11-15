@@ -19,11 +19,23 @@ export default defineEventHandler(async (event) => {
     const name = username || email.split('@')[0];
     const hashedPassword = hashPassword(password);
 
-    const user = await usersRepository.createUser({
-        email,
-        username: name as string,
-        password: hashedPassword,
-    });
+    let user;
+
+    try {
+        user = await usersRepository.createUser({
+            email,
+            username: name as string,
+            password: hashedPassword,
+        });
+    } catch (error) {
+        console.error(`[Turso crash at ${event.path}]: `, error);
+
+        throw createError({
+            status: 500,
+            statusText: 'Internal Server Error',
+            message: 'An unexpected server error occurred.',
+        });
+    }
 
     if (!user) {
         throw createError({
@@ -35,7 +47,5 @@ export default defineEventHandler(async (event) => {
 
     const { password: _, ...data } = user;
 
-    return {
-        data,
-    };
+    return { data };
 });

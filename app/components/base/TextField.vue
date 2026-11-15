@@ -107,7 +107,7 @@ const describedBy = computed(() => {
 .nexp-text-field {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 8px;
 
     &__label {
         display: inline-flex;
@@ -120,6 +120,8 @@ const describedBy = computed(() => {
     }
 
     &__hint {
+        line-height: 1.2;
+        font-size: 12px;
         color: #808080;
     }
 

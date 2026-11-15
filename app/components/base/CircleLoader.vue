@@ -8,7 +8,8 @@ const { size = 'md' } = defineProps<ICircleLoaderProps>();
 
 <template>
     <div
-        :class="['nexp-circle-loader', `nexp-circle-loader--${size}`]"
+        class="nexp-circle-loader"
+        :class="[`nexp-circle-loader--${size}`]"
         role="status"
         aria-label="Loading..."
     ></div>

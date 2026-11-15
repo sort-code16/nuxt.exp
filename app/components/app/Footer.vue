@@ -8,7 +8,7 @@ const isProfilePage = computed(() => route.path === '/profile');
 
 <template>
     <footer class="app-footer">
-        <span class="app-footer__copyright">© 2026 nuxt.exp</span>
+        <span class="app-footer__copyright">&copy; 2026 nuxt.exp</span>
 
         <div v-if="user">
             <span class="nexp-me-2">

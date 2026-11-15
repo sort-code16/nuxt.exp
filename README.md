@@ -1,75 +1,16 @@
-# Nuxt Minimal Starter
+[![Netlify Status](https://api.netlify.com/api/v1/badges/20b84ed3-ee20-41fd-9f2a-dd944a2feda4/deploy-status)](https://app.netlify.com/projects/code16-nexp/deploys)
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+# Nuxt 4.x, Vue 3.x & modern HTML5 / CSS3
 
-## Setup
+**Educational & Experimental Repository**
 
-Make sure to install dependencies:
+## How to run
+Make sure to set up your `.env` file (or `.env` + `.env.local`)
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+npx drizzle-kit migrate
+npm run dev / preview / build
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Check out the [Nuxt deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

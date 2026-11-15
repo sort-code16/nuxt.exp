@@ -21,7 +21,20 @@ export default defineEventHandler(async (event) => {
     }
 
     const { id } = event.context.user;
-    const user = await usersRepository.getUserById(id);
+
+    let user;
+
+    try {
+        user = await usersRepository.getUserById(id);
+    } catch (error) {
+        console.error(`[Turso crash at ${event.path} (getting user by id)]: `, error);
+
+        throw createError({
+            status: 500,
+            statusText: 'Internal Server Error',
+            message: 'An unexpected server error occurred.',
+        });
+    }
 
     if (!user) {
         clearAuthCookie(event);
@@ -41,13 +54,25 @@ export default defineEventHandler(async (event) => {
         });
     }
 
-    /* const db = useDrizzle();
+    // const db = useDrizzle();
 
-    const isDeleted = await db.transaction(async (tx) => {
-        return usersRepository.deleteUserById(id, tx);
-    }); */
+    let isDeleted: boolean;
 
-    const isDeleted = await usersRepository.deleteUserById(id);
+    try {
+        /* isDeleted = await db.transaction(async (tx) => {
+            return usersRepository.deleteUserById(id, tx);
+        }); */
+
+        isDeleted = await usersRepository.deleteUserById(id);
+    } catch (error) {
+        console.error(`[Turso crash at ${event.path} (deleting user by id)]: `, error);
+
+        throw createError({
+            status: 500,
+            statusText: 'Internal Server Error',
+            message: 'An unexpected server error occurred.',
+        });
+    }
 
     clearAuthCookie(event);
 

@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 definePageMeta({
     name: 'home',
     title: 'Home',
@@ -6,13 +6,14 @@ definePageMeta({
 });
 
 const dialogRef = useTemplateRef('favDialog');
+const dropdownRef = useTemplateRef('dropdownButton');
 
-const openDialog = (value) => {
+const openDialog = (value: MouseEvent) => {
     console.log('openDialog() value', value);
     dialogRef.value?.showModal();
 };
 
-const closeDialog = (value) => {
+const closeDialog = (value: MouseEvent) => {
     console.log('closeDialog() value', value);
     dialogRef.value?.close();
 };
@@ -25,6 +26,36 @@ onMounted(() => {
 <template>
     <main>
         <h2 class="nexp-mb-4">Welcome to the homepage</h2>
+
+        <div class="nexp-mb-4" style="display: flex; justify-content: space-between">
+            <span>
+                Some text
+
+                <BaseHint text="The default value. There are no position try fallback options set.">
+                    <BaseIcon name="info" />
+                </BaseHint>
+            </span>
+
+            <BaseHint text="position-area values cannot be combined like this.">
+                <BaseIcon name="circle-alert" />
+            </BaseHint>
+        </div>
+
+        <div class="nexp-mb-4" style="display: flex; justify-content: space-between">
+            <BaseDropdownButton ref="dropdownButton" label="Dropdown">
+                <ul>
+                    <li>
+                        <button type="button" @click="() => dropdownRef?.close()">Close dropdown</button>
+                    </li>
+
+                    <li>Test item 1</li>
+                    <li>Test item 2</li>
+                    <li>Test item 3</li>
+                </ul>
+            </BaseDropdownButton>
+
+            <BaseDropdownButton up right />
+        </div>
 
         <BaseButton type="button" class="nexp-me-2" @click="openDialog">
             Update details
@@ -87,6 +118,10 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
+p + p {
+    margin-top: 8px;
+}
+
 .dialog-actions-group {
     display: flex;
     justify-content: space-between;

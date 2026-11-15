@@ -45,21 +45,16 @@ export default defineNuxtConfig({
 
     runtimeConfig: {
         // only server
-        databaseUrl: '',
+        databaseUrl: '', // can be overridden by NUXT_DATABASE_URL environment variable
         databaseToken: '',
         jwtSecret: '',
 
         // server & client
-        // public: {
-        //     apiUrl: process.env.API_URL,
-        // },
+        public: {
+            supportAddress: '',
+            formSubmitLink: '',
+        },
     },
-
-    // router: {
-    //     options: {
-    //         linkActiveClass: 'nexp-link-active',
-    //     },
-    // },
 
     ignore: [
         'app/pages/**/components/**/*.vue',

@@ -12,6 +12,7 @@ const router = useRouter();
 const menuPopoverRef = useTemplateRef('mobileMenuPopover');
 
 const isHomePage = computed(() => route.path === '/');
+const isContactPage = computed(() => route.path === '/contact');
 const logoTag = computed(() => isHomePage.value ? 'h1' : 'div');
 
 onMounted(() => {
@@ -61,7 +62,7 @@ onMounted(() => {
                 popovertargetaction="hide"
                 aria-label="Close mobile navigation"
             >
-                x
+                &times;
             </BaseButton>
 
             <nav aria-label="Mobile navigation">
@@ -83,16 +84,31 @@ onMounted(() => {
                 <BaseIcon name="menu" />
             </BaseButton>
 
-            <slot name="actions">
-                <BaseButton
-                    v-if="isHomePage"
-                    type="button"
-                    command="show-modal"
-                    commandfor="nexp-dialog-info"
-                >
-                    Info
-                </BaseButton>
+            <BaseButton
+                v-if="isHomePage"
+                type="button"
+                command="show-modal"
+                commandfor="nexp-dialog-info"
+                aria-label="Open information dialog"
+                iconOnly
+            >
+                <BaseIcon name="info" />
+            </BaseButton>
 
+            <NuxtLink to="/contact" custom v-slot="{ navigate }">
+                <BaseButton
+                    type="button"
+                    aria-label="Contact us"
+                    :level="isContactPage ? 'active-link' : 'link'"
+                    :disabled="isContactPage"
+                    iconOnly
+                    @click="navigate"
+                >
+                    <BaseIcon name="mail" />
+                </BaseButton>
+            </NuxtLink>
+
+            <slot name="actions">
                 <BaseButton
                     type="button"
                     level="primary"
