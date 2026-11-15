@@ -14,6 +14,7 @@ const { success, danger } = useNotifications();
 
 const formSchema = z.strictObject({
     email: loginSchema.shape.email,
+
     message: z
         .string()
         .min(10, 'Message must be at least 10 characters long.')
@@ -115,10 +116,10 @@ const submitForm = async (event: Event) => {
                         autoResize
                         label="Message:"
                         name="message"
-                        style="min-height: calc(5lh + 10px)"
-                        hint="Have a question or found a glitch? Drop us a line!"
+                        hint="Questions or glitches? Drop us a line!"
                         :value="formData.message"
                         :maxLength="MESSAGE_MAX_LENGTH"
+                        :minLines="5"
                         :invalid="!!errors.message"
                         :aria-describedby="describedBy"
                         @input="formData.message = $event.target.value"
