@@ -115,7 +115,7 @@ const submitForm = async (event: Event) => {
                         autoResize
                         label="Message:"
                         name="message"
-                        style="min-height: calc(5lh + 8px)"
+                        style="min-height: calc(5lh + 10px)"
                         hint="Have a question or found a glitch? Drop us a line!"
                         :value="formData.message"
                         :maxLength="MESSAGE_MAX_LENGTH"
