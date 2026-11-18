@@ -28,8 +28,6 @@ onMounted(() => {
         <h2 class="nexp-mb-4">Welcome to the homepage</h2>
 
         <div class="nexp-mb-4 slider-wrapper">
-            <div class="slider-wrapper__marker"></div>
-
             <section class="slider">
                 <div class="slider__item">1</div>
                 <div class="slider__item">2</div>
@@ -137,19 +135,15 @@ onMounted(() => {
 .slider-wrapper {
     position: relative;
 
-    &__marker {
+    &::before {
         position: absolute;
-        inset: 0;
-        left: calc(50% - 16.5%);
-        height: 100px;
-        width: 33%;
+        content: '▼';
+        top: -4px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 32px;
         z-index: 1;
-        border: 3px solid #000;
-        opacity: .4;
-
-        @media (width >= 576px) {
-            height: 200px;
-        }
+        opacity: .2;
     }
 }
 

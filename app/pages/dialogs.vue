@@ -232,7 +232,7 @@ article {
         scroll-margin-top: 76px;
 
         h2::before {
-            content: "♦";
+            content: '♦';
             font-size: 24px;
             margin-inline-end: 4px;
         }
