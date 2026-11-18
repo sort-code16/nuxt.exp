@@ -27,6 +27,22 @@ onMounted(() => {
     <main>
         <h2 class="nexp-mb-4">Welcome to the homepage</h2>
 
+        <div class="nexp-mb-4 slider-wrapper">
+            <div class="slider-wrapper__marker"></div>
+
+            <section class="slider">
+                <div class="slider__item">1</div>
+                <div class="slider__item">2</div>
+                <div class="slider__item">3</div>
+                <div class="slider__item">4</div>
+                <div class="slider__item">5</div>
+                <div class="slider__item">6</div>
+                <div class="slider__item">7</div>
+                <div class="slider__item">8</div>
+                <div class="slider__item">9</div>
+            </section>
+        </div>
+
         <div class="nexp-mb-4" style="display: flex; justify-content: space-between">
             <span>
                 Some text
@@ -118,6 +134,59 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
+.slider-wrapper {
+    position: relative;
+
+    &__marker {
+        position: absolute;
+        inset: 0;
+        left: calc(50% - 16.5%);
+        height: 100px;
+        width: 33%;
+        z-index: 1;
+        border: 3px solid #000;
+        opacity: .4;
+
+        @media (width >= 576px) {
+            height: 200px;
+        }
+    }
+}
+
+.slider {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 33%;
+    gap: .5%;
+    overflow-x: scroll;
+    padding-bottom: 4px;
+    scroll-snap-type: inline mandatory;
+    position: relative;
+
+    &__item {
+        scroll-snap-align: center;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f00;
+        font-size: 32px;
+        color: #fff;
+
+        &:nth-child(2n) {
+            background-color: #0f0;
+        }
+
+        &:nth-child(3n+1) {
+            background-color: #00f;
+        }
+
+        @media (width >= 576px) {
+            height: 200px;
+        }
+    }
+}
+
 p + p {
     margin-top: 8px;
 }
