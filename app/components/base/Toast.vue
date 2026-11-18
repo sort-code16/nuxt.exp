@@ -104,6 +104,7 @@ onUnmounted(() => {
     }
 
     p {
+        line-height: 20px;
         overflow-wrap: anywhere;
     }
 

@@ -54,8 +54,8 @@ const closeConfirmationByAction = event => {
     <main>
         <h1 class="nexp-mb-4">Confirmation dialog settings</h1>
 
-        <form>
-            <div class="form-group">
+        <form class="nexp-mb-6">
+            <div class="nexp-mb-3">
                 <label for="title" class="nexp-me-1">
                     Title:
                 </label>
@@ -63,14 +63,14 @@ const closeConfirmationByAction = event => {
                 <input id="title" v-model="settings.title" />
             </div>
 
-            <div class="form-group">
+            <div class="nexp-mb-3">
                 <label>
                     <input type="checkbox" v-model="settings.immediately" />
                     Close immediately
                 </label>
             </div>
 
-            <fieldset class="form-group">
+            <fieldset class="nexp-mb-3">
                 <legend>Choose the mode:</legend>
 
                 <input
@@ -91,26 +91,54 @@ const closeConfirmationByAction = event => {
 
                 <label for="confirmation">Confirmation</label>
             </fieldset>
+
+            <BaseButton
+                type="button"
+                level="primary"
+                command="show-modal"
+                :commandfor="confirmationDialogId"
+            >
+                Open confirmation
+            </BaseButton>
         </form>
 
-        <BaseButton
-            level="primary"
-            command="show-modal"
-            :commandfor="confirmationDialogId"
-        >
-            Open confirmation
-        </BaseButton>
+        <hr />
 
         <article>
+            <nav aria-label="Table of contents">
+                <h3>In this article</h3>
+
+                <ul>
+                    <li><a href="#intro">Introduction</a></li>
+                    <li><a href="#semantics">Semantics</a></li>
+                    <li><a href="#summary">Summary</a></li>
+                </ul>
+            </nav>
+
             <!-- eslint-disable @stylistic/max-len -->
-            <h2>Ea voluptatum laudantium ut esse voluptatem sit sapiente cumque.</h2>
-            <p>Lorem ipsum dolor sit amet. Ea voluptas repellat ut sint dolores eum officiis quam a dolores officiis sit aliquam cupiditate ut eligendi quam ut quasi quasi. Sed nemo molestias eos eius obcaecati est nulla cumque sed suscipit accusamus aut doloribus omnis ut delectus corporis. Et dolorum veritatis a sapiente nemo sed totam dolores ut odio culpa aut provident magni est sint enim? Sed possimus ullam et omnis laudantium aut voluptas dolorum ut voluptatem dolor ea nesciunt minima ut eius galisum. Sit omnis veniam vel sint vitae eum similique sunt et libero distinctio aut autem consequatur. Quo dignissimos laboriosam At inventore velit et molestiae Quis quo illum nihil et voluptatem officia qui accusamus provident eos accusamus accusamus. Ex deserunt nostrum sed tempora quaerat qui voluptate corrupti et eligendi ducimus est galisum debitis in molestiae quas.</p>
+            <section id="intro" aria-labelledby="intro-heading">
+                <h2 id="intro-heading">
+                    Ea voluptatum laudantium ut esse voluptatem sit sapiente cumque.
+                </h2>
 
-            <h2>Sed voluptatibus accusantium et facilis velit.</h2>
-            <p>Qui enim maxime ut accusamus voluptas nam soluta obcaecati quo omnis culpa in incidunt autem et dolorem sapiente aut assumenda tempora. Qui nemo voluptatibus quo enim totam ut aspernatur illo. Et quia consequuntur aut suscipit sunt et reprehenderit unde et saepe consectetur sed odit laborum 33 impedit inventore in eius nostrum. Nam amet dolorem qui deleniti dolorum quo aperiam omnis ut minima natus ut sunt culpa ex magnam quidem ut maiores quasi. Et quaerat molestiae 33 molestiae dolor ab error saepe. Ut voluptatem laborum sit maxime libero hic velit corrupti in alias veniam. Ut quia quae a velit porro cum fuga blanditiis aut omnis nisi et repellendus porro.</p>
+                <p>Lorem ipsum dolor sit amet. Ea voluptas repellat ut sint dolores eum officiis quam a dolores officiis sit aliquam cupiditate ut eligendi quam ut quasi quasi. Sed nemo molestias eos eius obcaecati est nulla cumque sed suscipit accusamus aut doloribus omnis ut delectus corporis. Et dolorum veritatis a sapiente nemo sed totam dolores ut odio culpa aut provident magni est sint enim? Sed possimus ullam et omnis laudantium aut voluptas dolorum ut voluptatem dolor ea nesciunt minima ut eius galisum. Sit omnis veniam vel sint vitae eum similique sunt et libero distinctio aut autem consequatur. Quo dignissimos laboriosam At inventore velit et molestiae Quis quo illum nihil et voluptatem officia qui accusamus provident eos accusamus accusamus. Ex deserunt nostrum sed tempora quaerat qui voluptate corrupti et eligendi ducimus est galisum debitis in molestiae quas.</p>
+            </section>
 
-            <h2>Qui nihil maxime est mollitia vero.</h2>
-            <p>Ut cupiditate eaque sit voluptatem exercitationem et aliquid vero qui nostrum ipsa rem commodi voluptatem. In laudantium veniam et tempora minus et internos odit ea eligendi impedit et consequatur corrupti. Est amet quisquam est porro tenetur et atque laborum non reprehenderit aliquid et placeat veritatis ut quia autem et magni dignissimos. Ut quisquam optio ut amet consequatur aut odit sint est consequatur dolores id quibusdam perspiciatis aut alias repellendus. Qui eaque ipsam cum laborum nemo non mollitia pariatur quo adipisci aliquid quo dolores ipsa quo excepturi molestiae! Id perspiciatis beatae At suscipit Quis et velit autem aut quisquam quia! Et harum maxime in consequuntur accusantium qui atque veritatis eum reprehenderit minus ab galisum velit. Non quibusdam alias ut impedit illo ut aliquid obcaecati in doloremque incidunt eos omnis accusantium. Sed modi nulla sed ratione autem et officiis reprehenderit ea consequatur incidunt.</p>
+            <section id="semantics" aria-labelledby="semantics-heading">
+                <h2 id="semantics-heading">
+                    Sed voluptatibus accusantium et facilis velit.
+                </h2>
+
+                <p>Qui enim maxime ut accusamus voluptas nam soluta obcaecati quo omnis culpa in incidunt autem et dolorem sapiente aut assumenda tempora. Qui nemo voluptatibus quo enim totam ut aspernatur illo. Et quia consequuntur aut suscipit sunt et reprehenderit unde et saepe consectetur sed odit laborum 33 impedit inventore in eius nostrum. Nam amet dolorem qui deleniti dolorum quo aperiam omnis ut minima natus ut sunt culpa ex magnam quidem ut maiores quasi. Et quaerat molestiae 33 molestiae dolor ab error saepe. Ut voluptatem laborum sit maxime libero hic velit corrupti in alias veniam. Ut quia quae a velit porro cum fuga blanditiis aut omnis nisi et repellendus porro.</p>
+            </section>
+
+            <section id="summary" aria-labelledby="summary-heading">
+                <h2 id="summary-heading">
+                    Qui nihil maxime est mollitia vero.
+                </h2>
+
+                <p>Ut cupiditate eaque sit voluptatem exercitationem et aliquid vero qui nostrum ipsa rem commodi voluptatem. In laudantium veniam et tempora minus et internos odit ea eligendi impedit et consequatur corrupti. Est amet quisquam est porro tenetur et atque laborum non reprehenderit aliquid et placeat veritatis ut quia autem et magni dignissimos. Ut quisquam optio ut amet consequatur aut odit sint est consequatur dolores id quibusdam perspiciatis aut alias repellendus. Qui eaque ipsam cum laborum nemo non mollitia pariatur quo adipisci aliquid quo dolores ipsa quo excepturi molestiae! Id perspiciatis beatae At suscipit Quis et velit autem aut quisquam quia! Et harum maxime in consequuntur accusantium qui atque veritatis eum reprehenderit minus ab galisum velit. Non quibusdam alias ut impedit illo ut aliquid obcaecati in doloremque incidunt eos omnis accusantium. Sed modi nulla sed ratione autem et officiis reprehenderit ea consequatur incidunt.</p>
+            </section>
             <!-- eslint-enable @stylistic/max-len -->
         </article>
 
@@ -173,13 +201,45 @@ p {
     }
 }
 
-.form-group {
-    margin-block: 8px;
-}
-
 article {
+    nav {
+        position: sticky;
+        top: -24px;
+        background-color: #fff;
+        padding-block: 12px;
+
+        ul {
+            margin-top: 8px;
+            display: flex;
+            gap: 16px;
+
+            a {
+                @media (hover: hover) {
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+
+                &:focus {
+                    outline: none;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    :target {
+        scroll-margin-top: 76px;
+
+        h2::before {
+            content: "♦";
+            font-size: 24px;
+            margin-inline-end: 4px;
+        }
+    }
+
     h2 {
-        margin-block: 12px 8px;
+        margin-block: 16px 8px;
     }
 }
 </style>

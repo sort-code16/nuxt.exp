@@ -82,5 +82,11 @@ onUnmounted(() => {
             scrollbar-gutter: stable;
         }
     }
+
+    @media (prefers-reduced-motion: no-preference) {
+        &.nexp-scrollbar {
+            scroll-behavior: smooth;
+        }
+    }
 }
 </style>
