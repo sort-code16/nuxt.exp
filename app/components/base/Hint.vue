@@ -11,7 +11,7 @@ const id = useId();
 <template>
     <span class="nexp-hinted-element">
         <span
-            style="cursor: help"
+            class="nexp-hinted-element__element"
             tabindex="0"
             :style="`anchor-name: --${id}`"
             :aria-describedby="id"
@@ -34,6 +34,15 @@ const id = useId();
 .nexp-hinted-element {
     $self: &;
 
+    &__element {
+        cursor: help;
+
+        &:focus-visible {
+            outline: 1px solid #00f;
+            outline-offset: 1px;
+        }
+    }
+
     &__hint {
         display: none;
         position: absolute;
@@ -45,6 +54,7 @@ const id = useId();
         padding: 2px 4px;
         text-align: start;
         // text-wrap: pretty;
+        line-height: 16px;
         z-index: 1;
 
         font: {

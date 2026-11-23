@@ -41,16 +41,16 @@ onMounted(() => {
             </section>
         </div>
 
-        <div class="nexp-mb-4" style="display: flex; justify-content: space-between">
-            <span>
-                Some text
+        <div class="nexp-mb-4" style="display: flex; justify-content: space-between; gap: 16px">
+            <p style="line-height: 20px">
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
 
-                <BaseHint text="The default value. There are no position try fallback options set.">
-                    <BaseIcon name="info" />
-                </BaseHint>
-            </span>
+                <BaseHint text="There are no position try fallback options set.">
+                    <span>laborum</span>
+                </BaseHint>.
+            </p>
 
-            <BaseHint text="position-area values cannot be combined like this.">
+            <BaseHint text="Values cannot be combined like this.">
                 <BaseIcon name="circle-alert" />
             </BaseHint>
         </div>
@@ -178,6 +178,11 @@ onMounted(() => {
         @media (width >= 576px) {
             height: 200px;
         }
+    }
+
+    &:focus-visible {
+        outline: 2px solid #00f;
+        outline-offset: 2px;
     }
 }
 
