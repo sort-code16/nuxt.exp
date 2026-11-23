@@ -74,15 +74,6 @@ export default function useAuth() {
         return navigateTo('/login'); // , { replace: true }
     };
 
-    // const deleteAccount = async (password: string) => {
-    //     await $fetch('/api/v1/auth/delete-account', {
-    //         method: 'POST',
-    //         body: { password },
-    //     });
-
-    //     clearUser();
-    // };
-
     return {
         user,
         loading,
@@ -92,6 +83,5 @@ export default function useAuth() {
         login,
         register,
         logout,
-        // deleteAccount,
     };
 };

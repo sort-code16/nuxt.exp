@@ -1,7 +1,7 @@
 import type { z } from 'zod';
 
 // TODO: Check rule value type (maybe number or boolean are also needed)
-interface IFieldValidationConfig {
+export interface IFieldValidationConfig {
     readonly rules?: Array<(value: string) => true | string>;
     readonly schema?: z.ZodType;
 }

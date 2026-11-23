@@ -85,7 +85,7 @@ onUnmounted(() => {
     // );
 
     position: relative;
-    min-width: 280px;
+    min-width: 260px;
     max-width: 100%;
     padding-block: 10px;
     padding-inline: 16px 24px;
