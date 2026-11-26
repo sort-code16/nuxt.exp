@@ -7,6 +7,13 @@ definePageMeta({
 
 const dialogRef = useTemplateRef('favDialog');
 const dropdownRef = useTemplateRef('dropdownButton');
+// const favoriteAnimal = ref('cat');
+
+// const animalOptions = [
+//     { label: 'Cat', value: 'cat' },
+//     { label: 'Dog', value: 'dog' },
+//     { label: 'Rabbit', value: 'rabbit' },
+// ];
 
 const openDialog = (value: MouseEvent) => {
     console.log('openDialog() value', value);
@@ -27,6 +34,16 @@ onMounted(() => {
     <main>
         <h2 class="nexp-mb-4">Welcome to the homepage</h2>
 
+        <!-- <div class="nexp-mb-4">
+            <BaseSelect
+                v-model="favoriteAnimal"
+                label="Favorite animal"
+                hint="Choose an animal to see the selected value."
+                :options="animalOptions"
+            />
+            <p>Selected: {{ favoriteAnimal }}</p>
+        </div> -->
+
         <div class="nexp-mb-4 slider-wrapper">
             <section class="slider">
                 <div class="slider__item">1</div>
@@ -40,6 +57,28 @@ onMounted(() => {
                 <div class="slider__item">9</div>
             </section>
         </div>
+
+        <section class="nexp-mb-4 accordion">
+            <details name="tool" open>
+                <summary>What is Vue?</summary>
+                <p>Vue (pronounced /vjuː/, like view) is a JavaScript framework for building user interfaces.</p>
+                <!-- eslint-disable-next-line @stylistic/max-len -->
+                <p>It builds on top of standard HTML, CSS, and JavaScript and provides a declarative, component-based programming model that helps you efficiently develop user interfaces of any complexity.</p>
+            </details>
+
+            <details name="tool">
+                <summary>What is Nuxt?</summary>
+                <p>The Full-Stack Vue Framework</p>
+                <!-- eslint-disable-next-line @stylistic/max-len -->
+                <p>Build fast, production-ready web apps with Vue. File-based routing, auto-imports, and server-side rendering, all configured out of the box.</p>
+            </details>
+
+            <details name="tool">
+                <summary>What is Drizzle ORM?</summary>
+                <p>Drizzle ORM - next gen TypeScript ORM.</p>
+                <p>Drizzle ORM is a lightweight and performant TypeScript ORM with developer experience in mind.</p>
+            </details>
+        </section>
 
         <div class="nexp-mb-4" style="display: flex; justify-content: space-between; gap: 16px">
             <p style="line-height: 20px">
@@ -183,6 +222,41 @@ onMounted(() => {
     &:focus-visible {
         outline: 2px solid #00f;
         outline-offset: 2px;
+    }
+}
+
+.accordion {
+    p {
+        line-height: 20px;
+    }
+
+    details {
+        margin-bottom: 8px;
+
+        summary {
+            cursor: pointer;
+            border: 1px solid;
+            background-color: #eee;
+            padding: 8px 12px;
+
+            &:hover,
+            &:focus-visible {
+                outline: none;
+                box-shadow: inset 0 0 0 1px #fff, inset 0 0 0 2px rgb(0 0 0 / .4);
+            }
+        }
+
+        &:open {
+            summary {
+                background-color: #ddd;
+            }
+
+            &::details-content {
+                border: 1px solid;
+                border-top: none;
+                padding: 8px 12px;
+            }
+        }
     }
 }
 
