@@ -15,9 +15,7 @@ const { data, pending, error } = useFetch('/api/v1/test', {
         <div class="app">
             <AppHeader @open-settings="() => console.log('Settings opened')" />
 
-            <ClientOnly>
-                <AppNotifications />
-            </ClientOnly>
+            <AppNotifications />
 
             <NuxtLayout name="app-default">
                 <NuxtPage />
